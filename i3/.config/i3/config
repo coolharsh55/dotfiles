@@ -75,10 +75,10 @@ bindsym $mod+i; exec --no-startup-id ~/bin/texpander.sh
 #bindsym $mod+d; exec --no-statup-id thunar
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -87,10 +87,10 @@ bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+lemicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -99,10 +99,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+b split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -122,7 +122,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -225,8 +225,20 @@ mode "power" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Ctrl+l mode "power"
+
+mode "music" {
+    bindsym space exec --no-startup-id playerctl play-pause, mode "default"
+    bindsym n exec --no-startup-id playerctl next, mode "default"
+    bindsym p exec --no-startup-id playerctl previous, mode "default"
+    bindsym s exec --no-startup-id playerctl stop, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+m mode "music"
+
 # compton
-exec --no-startup-id compton -d -b ~/.config/compton.conf
+exec --no-startup-id compton -d -b ~/.config/i3/compton.conf
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
@@ -246,13 +258,13 @@ exec --no-startup-id xautolock -time 5 -locker "~/.config/i3/fancy-multimonitor/
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id xfce4-power-manager
-exec --no-startupid ClipIt
+exec --no-startupid clipIt
 
 # natural scrolling
 # exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-27
 
 # wallpaper
-exec_always --no-startup-id DISPLAY=:0.0 feh --bg-scale /home/harsh/Pictures/wallpapers/wallpapers/wallpaper1247920.jpg 
+exec_always --no-startup-id DISPLAY=:0.0 feh --bg-scale /home/harsh/Pictures/wallpaper.jpg 
 
 # redshift
 # exec --no-startup-id redshift
@@ -271,4 +283,5 @@ exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
 exec --no-startup-id i3-msg "workspace 9; exec zim"
 exec --no-startup-id i3-msg "workspace 7; exec spotify"
 exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
-
+# actions declared in init script
+exec --no-startup-id ~/.initscript
