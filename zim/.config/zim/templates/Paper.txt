@@ -1,0 +1,29 @@
+======= [% page.basename %] =======
+Created [% strftime("%A %d %B %Y") %]
+
+===== Metadata =====
+Title:
+Notation:
+Authors:
+1.
+Conference:
+Published date:
+Keywords:
+BibTeX:
+
+===== Abstract =====
+==== Abstract ====
+==== My Abstract ====
+
+===== Summary =====
+*
+
+===== Points of Interest =====
+1.
+
+===== References =====
+[]
+
+===== Notes =====
+*
+

@@ -1,0 +1,21 @@
+REPOSITORY="/media/harsh/SYSBACKUP/backups/$(hostname)"
+echo $REPOSITORY
+if [ ! -d $REPOSITORY ]; then
+    echo ERROR: BACKUP FOLDER DOES NOT EXIST. DISK MAY NOT BE MOUNTED
+    exit 1;
+fi
+echo "creating borg backup..."
+borg create -v -s -p \
+    $REPOSITORY::'{hostname}--{now:%Y-%m-%d-%H-%M}' \
+    /home/harsh \
+    --exclude '/home/harsh/.cache' \
+    --exclude '/home/harsh/Music' \
+    --exclude-caches
+echo "finished backup."
+echo "starting prune"
+borg prune -v --list $REPOSITORY \
+    --prefix '{hostname}--' \
+    --keep-daily=7 \
+    --keep-weekly=4 \
+    --keep-month=6
+echo "DONE"
