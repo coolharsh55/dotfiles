@@ -136,3 +136,5 @@ export PS1="\[\033[38;5;1m\]\\$\[$(tput sgr0)\]\[\033[38;5;14m\]\u\[$(tput sgr0)
 # Vim as default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+source ~/.env

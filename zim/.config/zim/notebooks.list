@@ -1,8 +1,8 @@
 [NotebookList]
 Default=~/Dropbox/Notebooks/Journal
 1=~/Dropbox/Notebooks/Journal
-2=~/Dropbox/Notebooks/linux
-3=~/Dropbox/Notebooks/PhD
+2=~/Dropbox/Notebooks/PhD
+3=~/Dropbox/Notebooks/linux
 4=~/Dropbox/Notebooks/harshp.com
 
 [Notebook 1]
@@ -12,14 +12,14 @@ interwiki=None
 icon=None
 
 [Notebook 2]
-uri=~/Dropbox/Notebooks/linux
-name=linux
+uri=~/Dropbox/Notebooks/PhD
+name=PhD
 interwiki=None
 icon=None
 
 [Notebook 3]
-uri=~/Dropbox/Notebooks/PhD
-name=PhD
+uri=~/Dropbox/Notebooks/linux
+name=linux
 interwiki=None
 icon=None
 
