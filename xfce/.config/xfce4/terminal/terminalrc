@@ -1,4 +1,5 @@
 [Configuration]
+FontName=Inconsolata-dz for Powerline Medium 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=FALSE
@@ -16,9 +17,13 @@ MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
 MiscScrollAlternateScreen=TRUE
+BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 TitleMode=TERMINAL_TITLE_REPLACE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontName=Ubuntu Mono 12
+ScrollingLines=9000
+FontAllowBold=FALSE
+BackgroundDarkness=1.000000
+Encoding=UTF-8
 ColorForeground=#839496
 ColorBackground=#002b36
 ColorCursor=#93a1a1

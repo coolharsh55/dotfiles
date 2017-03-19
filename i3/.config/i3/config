@@ -62,6 +62,9 @@ mode "apps" {
     bindsym z workspace 9; layout stacking; exec --no-startup-id zim ; mode "default"
     # thunar
     bindsym f ; exec thunar ; mode "default"
+    # Pulse Audio Control
+    bindsym v ; exec pavucontrol; mode "default"
+
 
     # back to normal
     bindsym Return mode "default"
@@ -76,7 +79,7 @@ bindsym $mod+i; exec --no-startup-id ~/bin/texpander.sh
 
 # change focus
 bindsym $mod+h focus left
-bindsym $mod+j focus down
+bindsym $mod+j focusc down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
@@ -90,7 +93,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
-bindsym $mod+Shift+lemicolon move right
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -154,7 +157,7 @@ bindsym $mod+u workspace prev
 bindsym $mod+o workspace next
 
 # move workspace between outputs
-bindsym $mod+y move workspace to output right
+bindsym $mod+y move workspace to output up
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -211,7 +214,7 @@ bar {
 	position top
     # tray_output primary
 	# custom i3status.conf
-	status_command i3status -c ~/.config/i3/i3status.conf
+    status_command i3status -c ~/.config/i3/i3status.conf
 }
 
 # custom keybinds
@@ -238,7 +241,7 @@ mode "music" {
 bindsym $mod+m mode "music"
 
 # compton
-exec --no-startup-id compton -d -b ~/.config/i3/compton.conf
+exec --no-startup-id compton -b --config ~/.config/i3/compton.conf
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
@@ -285,3 +288,4 @@ exec --no-startup-id i3-msg "workspace 7; exec spotify"
 exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
 # actions declared in init script
 exec --no-startup-id ~/.initscript
+exec --no-startup-id "ssh-agent -s"

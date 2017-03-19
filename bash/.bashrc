@@ -130,11 +130,112 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
+# autojump
+. /usr/share/autojump/autojump.bash
+
+# colored manpages
+# http://serverfault.com/questions/3743/what-useful-things-can-one-add-to-ones-bashrc
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export PAGER='less'
+
 # colored PROMPT
 export PS1="\[\033[38;5;1m\]\\$\[$(tput sgr0)\]\[\033[38;5;14m\]\u\[$(tput sgr0)\]\[\033[38;5;3m\]@\[$(tput sgr0)\]\[\033[38;5;6m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;3m\] \[$(tput sgr0)\]\[\033[38;5;11m\]>\[$(tput sgr0)\]"
 
 # Vim as default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# add this configuration to ~/.bashrc
+export HH_CONFIG=hicolor         # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# SSH AGENT
+function sshagent_findsockets {
+    find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
+}
+
+function sshagent_testsocket {
+    if [ ! -x "$(which ssh-add)" ] ; then
+        echo "ssh-add is not available; agent testing aborted"
+        return 1
+    fi
+
+    if [ X"$1" != X ] ; then
+        export SSH_AUTH_SOCK=$1
+    fi
+
+    if [ X"$SSH_AUTH_SOCK" = X ] ; then
+        return 2
+    fi
+
+    if [ -S $SSH_AUTH_SOCK ] ; then
+        ssh-add -l > /dev/null
+        if [ $? = 2 ] ; then
+            echo "Socket $SSH_AUTH_SOCK is dead!  Deleting!"
+            rm -f $SSH_AUTH_SOCK
+            return 4
+        else
+            echo "Found ssh-agent $SSH_AUTH_SOCK"
+            return 0
+        fi
+    else
+        echo "$SSH_AUTH_SOCK is not a socket!"
+        return 3
+    fi
+}
+
+function sshagent_init {
+    # ssh agent sockets can be attached to a ssh daemon process or an
+    # ssh-agent process.
+
+    AGENTFOUND=0
+
+    # Attempt to find and use the ssh-agent in the current environment
+    if sshagent_testsocket ; then AGENTFOUND=1 ; fi
+
+    # If there is no agent in the environment, search /tmp for
+    # possible agents to reuse before starting a fresh ssh-agent
+    # process.
+    if [ $AGENTFOUND = 0 ] ; then
+        for agentsocket in $(sshagent_findsockets) ; do
+            if [ $AGENTFOUND != 0 ] ; then break ; fi
+            if sshagent_testsocket $agentsocket ; then AGENTFOUND=1 ; fi
+        done
+    fi
+
+    # If at this point we still haven't located an agent, it's time to
+    # start a new one
+    if [ $AGENTFOUND = 0 ] ; then
+        eval `ssh-agent`
+    fi
+
+    # Clean up
+    unset AGENTFOUND
+    unset agentsocket
+
+    # Finally, show what keys are currently in the agent
+    ssh-add -l
+}
+
+alias sagent="sshagent_init"
 
 source ~/.env

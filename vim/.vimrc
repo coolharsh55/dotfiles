@@ -6,8 +6,8 @@ set tabstop=4  " no of spaces per tab
 set softtabstop=4  " number of spaces in tab when editing
 set expandtab  " tabs are spaces
 set shiftwidth=4
-set textwidth=79
-set wrap
+"set textwidth=79
+"set wrap
 set autoindent
 set fileformat=unix
 set spell   " Enable spell-checking
@@ -104,8 +104,8 @@ Plug 'git://github.com/tpope/vim-surround.git'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-commentary'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 " folding
 Plug 'tmhedberg/SimpylFold'
 " python indentation
