@@ -1,0 +1,26 @@
+======= [% page.basename %] =======
+Created [% strftime("%A %d %B %Y") %]
+
+===== Metadata =====
+Title:
+Notation:
+Authors:
+1.
+Conference:
+Published date:
+Keywords:
+Zotero section:
+
+===== Abstract =====
+
+===== Summary =====
+*
+
+===== Cite =====
+1.
+
+===== References =====
+* 
+
+===== Notes =====
+*
