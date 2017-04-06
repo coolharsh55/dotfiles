@@ -295,5 +295,5 @@ exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
 exec --no-startup-id i3-msg "workspace 9; exec zim"
 exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
 # actions declared in init script
-exec_always /home/harsh/initscript.sh &
+exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id "ssh-agent -s"

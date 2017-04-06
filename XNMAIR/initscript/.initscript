@@ -1,3 +1,0 @@
-xmodmap ~/.xmodmaprc
-synclient VertScrollDelta=-111 HorizEdgeScroll=1 VertEdgeScroll=1
-
