@@ -22,7 +22,7 @@ fi
 DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
 # Get monitor position from env
 source ~/.env
-source ~/.config/monitors
+#source ~/.config/monitors
 
 # If no secondary display is connected, exit gracefully
 exit_if_not_secondary_display() {
