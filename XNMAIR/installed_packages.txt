@@ -1,0 +1,50 @@
+adapta-gtk-theme Theme
+autojump Shell utility to jump directories
+bcmwl-kernel-source wifi card
+borgbackup incremental backup utility
+clipit clipboard history
+compton composter
+curl shell utility to download and interact with web requests
+feh picture manager
+firmware-b43-installer
+git version controll
+gitkraken git gui
+google-chrome-stable browser
+graphviz visualisation
+heroku web hosting toolkit
+hh interactive bash history
+htop interactive process viewer
+i3 window manager
+i3lock lock for i3
+insync client for google drive
+insync-thunar integration with thunar for insync
+libc6:i386
+libgl1-mesa-dri:i386
+libgl1-mesa-glx:i386
+lxappearance theme switcher
+nautilus-dropbox dropbox client
+ncdu interactive disk usage analyser
+okular pdf viewer
+openjdk-9-jdk-headless java jdk
+paper-icon-theme theme
+playerctl api for music player control
+postgresql database
+pulseaudio-module-bluetooth bluetooth module for pulseaudio
+python3-pip python3 package manager
+python-gtksourceview2 python package for source code view, used with zim
+python-gtkspellcheck python package for spell check, used with zim
+redshift display utility to reduce glare
+refind boot utility for macbook
+scrot screenshot utility
+spotify-client music web service client
+steam-launcher game client
+stow manage dotfiles
+sublime-text text editor
+tlp power management
+tree display directories in a hierarchy
+vim text editor
+xbacklight control backlight of monitors
+xclip clipboard management
+xsel clipboard management
+zim wiki/note utility
+zotero-standalone reference manager
