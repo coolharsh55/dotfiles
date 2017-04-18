@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
+
+# author: Harshvardhan Pandit
+# Splits lines on clipboard at 80-character mark
+# Set to split by space
+# Copies split text back to keyboard
 xclip -o | fold -w 80 -s | xclip -sel c

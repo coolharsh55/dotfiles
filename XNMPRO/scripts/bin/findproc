@@ -1,1 +1,4 @@
+#!/usr/bin/env bash
+
+# author: Harshvardhan Pandit
 ps aux | grep $1 | grep -v grep | awk {'printf ("%s\t%s\t%s\n", $1, $2, $11)'}

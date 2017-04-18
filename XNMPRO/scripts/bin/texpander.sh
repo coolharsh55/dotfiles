@@ -3,13 +3,11 @@
 # TEXPANDER
 # Snippet expander
 
-# TODO: if file is a script, execute it and paste its output
-
 # set base directory
 # all files in base directory are considered to be individual snippets
 base_dir="${HOME}/.snippets/"
 # generate list of file names as snippet expanding abbreviations
-abbrvs=$(ls $base_dir)
+abbrvs=$(ls "$base_dir")
 # create zenity window with filename as lists
 # zenity will return selected filename
 name=$(zenity --list --title=SnippetExpander --column=Snippets $abbrvs)
@@ -21,6 +19,7 @@ copy_text_file() {
 }
 
 copy_sh_script() {
+   # shellcheck source=/dev/null
    source "$1" | xclip -selection c
 }
 
@@ -33,24 +32,25 @@ then
   # get PID of current process to paste into
   pid=$(xdotool getwindowfocus getwindowpid)
   # get process name from PID
+  # shellcheck disable=SC2086
   proc_name=$(cat /proc/$pid/comm)
   # check if path is valid
   if [ -e "$path" ]
   then
     # copy existing clipboard into variable
-    clipboard=$(xclip -selection clipboard -o)
+    # clipboard=$(xclip -selection clipboard -o)
 
     # Based on file type, do different copy operations
     if [[ $name =~ \.txt$ ]]
     then
         # copy file contents into clipboard
         #xclip -selection c -i "$path"
-        copy_text_file $path
+        copy_text_file "$path"
     elif [[ $name =~ \.py$ ]]
     then
-        copy_python_script $path
+        copy_python_script "$path"
     else
-        copy_sh_script $path
+        copy_sh_script "$path"
     fi
     
     # if in terminal, paste using terminal shortcut

@@ -2,6 +2,7 @@
 # Get backup disk information from user repo
 NOW=$(date +"%Y-%m-%d %H:%M:%S,%3N")
 echo "script started at $NOW"
+# shellcheck disable=SC1091
 source /home/harsh/.env
 echo "Backup disk declared as ${BACKUPDISK}"
 # Generate repository path from backup disk and hostname
@@ -16,6 +17,7 @@ fi
 NOW=$(date +"%Y-%m-%d %H:%M:%S,%3N")
 echo "starting borg backup at $NOW"
 # set passphrase variable
+# shellcheck source=/dev/null
 source /home/harsh/.private/borg/${HOSTNAME}/passphrase
 export BORG_PASSPHRASE=$PASSPHRASE
 # create backup

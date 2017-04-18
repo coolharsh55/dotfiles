@@ -21,6 +21,7 @@ fi
 # Get secondary display
 DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
 # Get monitor position from env
+# shellcheck source=/dev/null
 source ~/.env
 #source ~/.config/monitors
 
