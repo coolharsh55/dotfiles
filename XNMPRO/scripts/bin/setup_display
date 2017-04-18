@@ -31,6 +31,7 @@ exit_if_not_secondary_display() {
         exit 0;
     fi
 }
+exit_if_not_secondary_display
 
 # Primary display only
 display_only_primary() {

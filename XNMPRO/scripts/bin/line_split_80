@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+xclip -o | fold -w 80 -s | xclip -sel c
