@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>[% title %]</title>
+        <meta name="generator" content="[% generator.name %]">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.7.1/tachyons.min.css" integrity="sha256-l3DMo/GxEQVlJzjWPiejtPntZ+Fb/gAuZKVdyQ1mO6Q=" crossorigin="anonymous" />
+        <style type="text/css">
+            li.unchecked-box:before {
+              content:'☐';
+              display:inline-block;
+              margin-right: 0.3em;
+              color: #333;
+            }
+            li.checked-box:before {
+              content:'☑';
+              display:inline-block;
+              margin-right: 0.3em;
+              color: #3A3;
+            }
+            li.xchecked-box:before {
+              content:'☒';
+              display:inline-block;
+              margin-right: 0.3em;
+              color: #A33;
+            }
+            .zim-tag {
+                color: #A33;
+            }
+            
+            #navigation {
+                height: 100%;
+                overflow-x: hidden;
+                transition: 2s;
+                display: none;
+            }
+            #nav-closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+            #nav-openbtn {
+                position: absolute;
+                top: 0;
+                right: 50px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+        </style>     
+    </head>
+    <body>
+        <a href="javascript:void(0)" id="nav-openbtn" onclick="nav()">&#9776;</a>
+        <div id="navigation" class="w-100 pa5-ns center bg-washed-red dark-green nav">
+            <!-- <a href="javascript:void(0)" id="nav-closebtn" onclick="closeNav()">&times;</a> -->
+            
+            [% index() %]
+        </div>
+        <article class="athelas">
+        <div id="content" class="w-80-ns center mt2">
+            [% FOR page IN pages %]
+            <h1 class="f1 tc">[% page.heading %] <a name='[% anchor(page) %]'></a></h1>
+            [% page.body %]
+            <br/>
+            [% END %]
+        </div>
+        </article>
+        <script type="text/javascript">
+            var nav_visible = false;
+            function nav() {
+                console.log(nav_visible);
+                if (nav_visible == false) {
+                    document.getElementById('navigation').style.display = 'block';
+                    nav_visible = true;
+                } else {
+                    document.getElementById('navigation').style.display = 'none';
+                    nav_visible = false;
+                }
+            }
+        </script>
+    </body>
+</html>
