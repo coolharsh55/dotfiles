@@ -17,3 +17,10 @@ udisksctl mount -b /dev/sda2 || true
 
 # Start monitor if connected
 setup_display --auto || true
+
+# Natural Scrolling
+xinput --set-prop 11 279 -50, -50
+
+# disable touchpad when typing
+syndaemon -i 0.5 -t -K -R &
+
