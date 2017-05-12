@@ -1,13 +1,13 @@
 colorscheme solarized
 set background=dark
 
-
 set tabstop=4  " no of spaces per tab
 set softtabstop=4  " number of spaces in tab when editing
 set expandtab  " tabs are spaces
 set shiftwidth=4
 "set textwidth=79
 "set wrap
+set colorcolumn=78
 set autoindent
 set fileformat=unix
 set spell   " Enable spell-checking
@@ -46,10 +46,8 @@ nnoremap gV `[v`]  " visually select block of characters last inserted
 " save session - will open same windows next time with vim -S
 " nnoremap <leader>s :mksession<CR>
 
-" NERDTree
-" map <C-n> :NERDTreeToggle<CR>
-map <F2> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+" airline
+set laststatus=2
 
 " Tags
 nmap <F8> :TagbarToggle<CR>
@@ -107,43 +105,40 @@ let g:limelight_eop = '\ze\n^\s'
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 
-" syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 
-" ale - lint
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
-Plug 'git://github.com/tpope/vim-surround.git'
-" Plug 'Valloric/YouCompleteMe'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'tpope/vim-commentary'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-" folding
-Plug 'tmhedberg/SimpylFold'
-" python indentation
-Plug 'vim-scripts/indentpython.vim'
-" Plug 'Valloric/YouCompleteMe'
-"Plug 'scrooloose/syntastic'
-Plug 'nvie/vim-flake8'
-Plug 'altercation/vim-colors-solarized'
+" linter
+Plug 'w0rp/ale'
+" git
+Plug 'tpope/vim-fugitive'
+" netrw (directory listing) tools
+Plug 'tpope/vim-vinegar'
+" brackets
+Plug 'tpope/vim-surround'
+" fuzzy file finder
 Plug 'kien/ctrlp.vim'
-
-" Writing
+" colorscheme
+Plug 'altercation/vim-colors-solarized'
+" theme for status bar
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" sidebar with tags
+Plug 'majutsushi/tagbar'
+" commenting
+Plug 'tpope/vim-commentary'
+" show visual indication of indents
+Plug 'nathanaelkane/vim-indent-guides'
+" sublime multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+" minimalist writing environment
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+" easy moving around matching words
+Plug 'easymotion/vim-easymotion'
+" marks in sidebar
+Plug 'kshenoy/vim-signature'
+
+
 
 " Initialize plugin system
 call plug#end()
