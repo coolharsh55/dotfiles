@@ -220,9 +220,9 @@ bar {
 # custom keybinds
 mode "power" {
     bindsym l exec --no-startup-id $locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg-exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym e exec --no-startup-id $locker; i3-msg-exit, mode "default"
+    bindsym s exec --no-startup-id $locker; systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $locker; systemctl hibernate, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
