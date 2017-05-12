@@ -12,27 +12,30 @@
 #   off: switches off secondary display
 #   on: switches on secondary display
 # Get primary display
+
+DEBUG=true;
+
+debug() {
+    if [ "$DEBUG" = true ]
+    then
+        echo "$1";
+    fi
+}
+
 DISPLAY_PRIMARY=$(xrandr --query | grep "eDP1" | grep -oP "^[\w-]+ ")
-if [[ -z $DISPLAY_PRIMARY ]]
-then
-    echo "ERROR: Primary Monitor eDP1 cannot be detected"
+if [[ -z $DISPLAY_PRIMARY ]]; then
+    debug "ERROR: Primary Monitor eDP1 cannot be detected";
     exit 1;
+else
+    debug "found primary display $DISPLAY_PRIMARY";
 fi
 # Get secondary display
 DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
+debug "found secondary display $DISPLAY_SECONDARY";
 # Get monitor position from env
 # shellcheck source=/dev/null
 source ~/.env
 #source ~/.config/monitors
-
-# If no secondary display is connected, exit gracefully
-exit_if_not_secondary_display() {
-    if [ -z "$DISPLAY_SECONDARY" ]
-    then
-        exit 0;
-    fi
-}
-exit_if_not_secondary_display
 
 # Primary display only
 display_only_primary() {
@@ -60,6 +63,17 @@ switch_off() {
     eval "xrandr --output ${DISPLAY_SECONDARY} --off --output $DISPLAY_PRIMARY --primary --auto"
 }
 
+# If no secondary display is connected, exit gracefully
+exit_if_not_secondary_display() {
+    if [ -z "$DISPLAY_SECONDARY" ]
+    then
+        debug "SECONDARY display not detected; switched to primary only"
+        display_only_primary
+        exit 0;
+    fi
+}
+exit_if_not_secondary_display
+
 # Handle arguments
 while test $# -gt 0; do
     case "$1" in
@@ -79,9 +93,11 @@ while test $# -gt 0; do
         -a|--auto)
             if [ -z "$DISPLAY_SECONDARY" ]
             then
-                switch_off
+                debug "no secondary display; switching to primary output"
+                display_only_primary 
             else
-                switch_on
+                debug "switching to dual output"
+                display_dual_primary_inbuilt
             fi
             ;;
         -p|--primary-only)

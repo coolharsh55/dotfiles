@@ -16,7 +16,7 @@ fi
 udisksctl mount -b /dev/sda2 || true
 
 # Start monitor if connected
-setup_display --auto || true
+~/bin/setup_display --auto >> ~/.display.log 2>&1 || true
 
 # Natural Scrolling
 xinput --set-prop 11 279 -50, -50
