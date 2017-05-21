@@ -11,6 +11,7 @@ set colorcolumn=78
 set autoindent
 set fileformat=unix
 set spell   " Enable spell-checking
+set relativenumber
 
 "" Advanced
 set confirm " Prompt confirmation dialogs
@@ -133,6 +134,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
 " minimalist writing environment
 Plug 'junegunn/goyo.vim'
+" limelight writing focus
+Plug 'junegunn/limelight.vim'
 " easy moving around matching words
 Plug 'easymotion/vim-easymotion'
 " marks in sidebar
