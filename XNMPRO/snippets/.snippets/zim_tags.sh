@@ -18,5 +18,5 @@ tag=$(zenity --list --title=Tags --column=tag $TAGS)
 # if there is a selection, echo it with the @ symbol prefixed
 if [[ -n "$tag" ]]
 then
-	echo "@$tag"
+	printf "%s" "@$tag"
 fi

@@ -243,6 +243,7 @@ bindsym $mod+m mode "music"
 # scripts
 mode "scripts" {
     bindsym n exec --no-startup-id ~/bin/quick_note.sh, mode "default"
+    bindsym t exec --no-startup-id ~/bin/zim_insert_tag.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
