@@ -20,7 +20,6 @@ set showtabline=2   " Show tab bar
 set cmdheight=2 " Command line height
 
 set autochdir   " Change working directory to open buffer
-set relativenumber
 set nocompatible
 filetype off
 
