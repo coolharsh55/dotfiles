@@ -19,7 +19,7 @@ set showtabline=2   " Show tab bar
 set cmdheight=2 " Command line height
 
 set autochdir   " Change working directory to open buffer
-
+set relativenumber
 set nocompatible
 filetype off
 
@@ -78,7 +78,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=250
 
 " powerline
 set laststatus=2
-let g:airline_theme='molokai'
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1
 
 " Limelight
 " Color name (:help cterm-colors) or ANSI code
@@ -104,6 +105,10 @@ let g:limelight_eop = '\ze\n^\s'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
