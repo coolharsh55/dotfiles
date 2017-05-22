@@ -244,3 +244,9 @@ function sshagent_init {
 alias sagent="sshagent_init"
 
 source ~/.env
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/harsh/google-cloud-sdk/path.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/harsh/google-cloud-sdk/completion.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/completion.bash.inc'; fi
