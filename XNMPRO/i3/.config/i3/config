@@ -221,7 +221,7 @@ bar {
 mode "power" {
     bindsym l exec --no-startup-id $locker, mode "default"
     bindsym e exec --no-startup-id $locker; i3-msg-exit, mode "default"
-    bindsym s exec --no-startup-id $locker; systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id "systemctl suspend && $locker", mode "default"
     bindsym h exec --no-startup-id $locker; systemctl hibernate, mode "default"
 
     bindsym Return mode "default"
@@ -239,6 +239,13 @@ mode "music" {
     bindsym Escape mode "default"
 }
 bindsym $mod+m mode "music"
+
+mode "display" {
+    bindsym p exec --no-startup-id "/home/harsh/bin/setup_display -p"; mode "default"
+    bindsym s exec --no-startup-id "/home/harsh/bin/setup_display -s"; mode "default"
+    bindsym a exec --no-startup-id "/home/harsh/bin/setup_display -a"; mode "default"
+}
+bindsym $mod+Ctrl+m mode "display"
 
 # scripts
 mode "scripts" {
