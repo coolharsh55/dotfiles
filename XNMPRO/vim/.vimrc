@@ -7,7 +7,7 @@ set expandtab  " tabs are spaces
 set shiftwidth=4
 "set textwidth=79
 "set wrap
-set colorcolumn=78
+set colorcolumn=80
 set autoindent
 set fileformat=unix
 set spell   " Enable spell-checking
@@ -85,17 +85,13 @@ let g:airline#extensions#tabline#enabled = 1
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-
 " Color name (:help gui-colors) or RGB color
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
-
 " Default: 0.5
 let g:limelight_default_coefficient = 0.5
-
 " Number of preceding/following paragraphs to include (default: 0)
 let g:limelight_paragraph_span = 0
-
 " Beginning/end of paragraph
 "   When there's no empty line between the paragraphs
 "   and each paragraph starts with indentation
