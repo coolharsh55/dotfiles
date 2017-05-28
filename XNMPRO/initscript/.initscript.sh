@@ -19,6 +19,10 @@ udisksctl mount -b /dev/sda2 || true
 # Natural Scrolling
 # xinput --set-prop 11 279 -50, -50
 synclient VertScrollDelta=-111 HorizEdgeScroll=1 VertEdgeScroll=1
+xinput set-prop 10 279 -22 -22
+xinput set-prop 10 281 1 1
+xinput set-prop 10 292 1
+
 
 # Adjust keyboard keys
 xmodmap ~/.xmodmaprc
