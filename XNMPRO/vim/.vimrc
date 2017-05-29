@@ -72,9 +72,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " indent guidlines
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue ctermbg=240
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=250
+let g:indent_guides_auto_colors = 0 
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 " powerline
 set laststatus=2
@@ -140,7 +140,8 @@ Plug 'junegunn/limelight.vim'
 Plug 'easymotion/vim-easymotion'
 " marks in sidebar
 Plug 'kshenoy/vim-signature'
-
+" tmux focus events
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 
 " Initialize plugin system
