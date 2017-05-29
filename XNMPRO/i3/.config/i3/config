@@ -55,7 +55,8 @@ mode "apps" {
     
     bindsym t exec xfce4-terminal ; mode "default"
     # browser
-    bindsym b exec google-chrome ; mode "default"
+    bindsym c exec google-chrome ; mode "default"
+    bindsym b exec firefox; mode "default"
     # thunderbird
     bindsym m workspace 8; layout stacking; exec --no-startup-id thunderbird ; mode "default"
     # zim
