@@ -15,18 +15,17 @@ workspace_auto_back_and_forth yes
 ### Variables ### {{{
     set $locker ~/.config/i3/fancy-multimonitor/lock # i3lock -e -i /home/harsh/Pictures/wallpapers/lock.png && sleep 1
 	### Workspace Names ### {{{
-	set $ws1 "1:terminal"
-	set $ws2 "2:"
-	set $ws3 "3:"
-	set $ws4 "4:"
-	set $ws5 "5:"
+	set $ws1 "1:term"
+	set $ws2 "2:zot"
+	set $ws3 "3:fm"
+	set $ws4 "4:anc"
+	set $ws5 "5:misc"
 	set $ws6 "6:web"
 	set $ws7 "7:spotify"
 	set $ws8 "8:mail"
 	set $ws9 "9:zim"
-	set $ws10 "10:"
-	### End Workspace Names ### }}}
-    
+	set $ws10 "10:dash"
+	### End Workspace Names ### }}} 
 ### End Variables ### }}}
 
 # move to last workspace
@@ -60,7 +59,7 @@ mode "apps" {
     # thunderbird
     bindsym m workspace 8; layout stacking; exec --no-startup-id thunderbird ; mode "default"
     # zim
-    bindsym z workspace 9; layout stacking; exec --no-startup-id zim ; mode "default"
+    bindsym z workspace 9; layout tabbed; exec --no-startup-id zim ; mode "default"
     # thunar
     bindsym f ; exec thunar ; mode "default"
     # Pulse Audio Control
@@ -301,7 +300,7 @@ bindsym $mod+x [urgent=latest] focus
 
 # login items
 exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
-exec --no-startup-id i3-msg "workspace 9; exec zim"
+exec --no-startup-id i3-msg "workspace 9; layout tabbed; exec zim"
 exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
