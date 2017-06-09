@@ -282,7 +282,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startupid clipIt
 
 # natural scrolling
-# exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-27
+exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
 
 # wallpaper
 exec_always --no-startup-id DISPLAY=:0.0 feh --bg-scale /home/harsh/Pictures/wallpaper.jpg 
