@@ -1,82 +1,83 @@
+" colorscheme "
 colorscheme solarized
-set background=dark
+"set background=dark
 
-set tabstop=4  " no of spaces per tab
-set softtabstop=4  " number of spaces in tab when editing
-set expandtab  " tabs are spaces
+" formatting "
+set tabstop=4
+set softtabstop=4
+set expandtab
 set shiftwidth=4
-"set textwidth=79
-"set wrap
-set colorcolumn=80
+
+" filetype "
+
 set autoindent
 set fileformat=unix
-set spell   " Enable spell-checking
-set relativenumber
-
-"" Advanced
-set confirm " Prompt confirmation dialogs
-set ruler   " Show row and column ruler information
-set showtabline=2   " Show tab bar
-set cmdheight=2 " Command line height
-
+syntax enable
+let python_highlight_all=1
+filetype indent on
+set encoding=utf-8
 set autochdir   " Change working directory to open buffer
 set nocompatible
 filetype off
 
-set undolevels=1000 " Number of undo levels
-set backspace=indent,eol,start  " Backspace behaviour
 
-syntax enable  " set syntax on
-let python_highlight_all=1
-set number  " show line numbers
-filetype indent on  " load filetype specific indentation
-set encoding=utf-8
+" spell "
+set spell   " Enable spell-checking
 
-set showcmd  " show command in bottom bar
-set cursorline  " highlight current line
-set wildmenu  " autocomplete for command menu
+" line numbers "
+set number
+set relativenumber
+set cursorline
 
-set lazyredraw  " redraw only when needed
-set showmatch  " highlight matching brackets
-set incsearch  " search as characters are entered
-set hlsearch  " highlight search matches
-" nnoremap <leader><space> :nohlsearch<CR>  " map remove highlight to \<space>
-nnoremap gV `[v`]  " visually select block of characters last inserted
+" rulers and margins "
+set colorcolumn=80
+set ruler
 
-" save session - will open same windows next time with vim -S
-" nnoremap <leader>s :mksession<CR>
+" search "
+set showmatch
+set incsearch
+set hlsearch
 
-" airline
-set laststatus=2
-
-" Tags
-nmap <F8> :TagbarToggle<CR>
-
-" folding
+" folding "
 set foldmethod=indent
 set foldlevel=99
 " enable folding with spacebar
 noremap <space> za
-" see docstrings for folded code
-let g:SimpylFold_docstring_preview=1
 
+" movement
 " splits
 set splitbelow
 set splitright
-
-" movement
 " split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" indent guidlines
-let g:indent_guides_auto_colors = 0 
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+" UI/UX "
+set confirm " Prompt confirmation dialogs
+set showtabline=2   " Show tab bar
+set cmdheight=2 " Command line height
+set showcmd  " show command in bottom bar
+set wildmenu  " autocomplete for command menu
+set lazyredraw  " redraw only when needed
+nnoremap gV `[v`]  " visually select block of characters last inserted
 
-" powerline
+" undo "
+set undolevels=1000 " Number of undo levels
+set backspace=indent,eol,start  " Backspace behaviour
+
+
+""" PLUGINS """
+
+" Tags
+nmap <F8> :TagbarToggle<CR>
+
+" folding
+" see docstrings for folded code
+let g:SimpylFold_docstring_preview=1
+
+" airline
 set laststatus=2
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
@@ -105,6 +106,12 @@ let g:limelight_priority = -1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
