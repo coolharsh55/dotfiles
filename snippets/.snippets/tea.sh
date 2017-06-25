@@ -5,6 +5,8 @@
 
 selected=$(
     zenity --list --title=Tea --column=name --text="text" \
+    "Irish Cream" \
+    "Ginseng & Ginger" \
     "1001 Nights" \
     "Strawberries & Cream" \
     "Nana Mint" \
