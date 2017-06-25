@@ -5,5 +5,5 @@
 # Script to create quick note using Zim
 # Uses the QuickNote plugin to append the note
 # Journal:ToDo:Inbox
-zim --plugin quicknote --notebook Journal --section "ToDo:Inbox" --append true
+zim --plugin quicknote --notebook Journal --section "Inbox" --append true
 
