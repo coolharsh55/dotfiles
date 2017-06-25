@@ -28,13 +28,21 @@ Created [% strftime("%A %d %B %Y") %]
 ==== PhD ====
 []
 
-==== harshp.com ====
+==== Meetings / Events ====
 []
 
-==== chores ====
+==== Chores ====
 []
 
-==== web lookups ====
+==== Things to do when I'm bored ====
+
+==== Projects ====
+[]
+
+==== Reading ====
+[]
+
+==== Writing ====
 []
 
 ===== Log =====
@@ -49,4 +57,15 @@ Slept:
 1. 
 
 ===== Journal =====
+==== Memorable events ====
+*
+
+==== Things worth remembering ====
+*
+
+==== Mistakes made ====
+*
+
+==== Happy list ====
+*
 

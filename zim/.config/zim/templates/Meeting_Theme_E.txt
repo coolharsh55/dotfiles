@@ -1,0 +1,49 @@
+===== Supervisor Meeting [% page.basename %] =====
+@meeting @supervisor @dave_lewis @declan_osullivan
+-------------------------
+Time Start:
+Time End:
+Place: 
+Attendees:
+* Dave Lewis
+* Declan O'Sullivan
+* Christophe DeBruyne
+* Alan Meehan
+* Kris
+* Kaniz Fatema
+* Ensar
+* Ademar
+* Lucy
+* Rob Brennan
+* Sahil Mathur
+* Anuj Singh
+* Wessel Reijers
+* Gwenyth Morgan
+* Harshvardhan Pandit
+-------------------------
+
+==== Agenda ====
+1.
+2.
+3.
+
+-------------------------
+
+==== Tasks ====
+[]
+[]
+[]
+
+-------------------------
+
+==== Comments ====
+*
+*
+*
+
+-------------------------
+Next planned meeting:
+Date:
+Place:
+Agenda:
+-------------------------

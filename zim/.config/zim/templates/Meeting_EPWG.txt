@@ -1,0 +1,38 @@
+===== EPWG Meeting [% page.basename %] =====
+@meeting @supervisor @dave_lewis @kaniz_fatema @ensar
+-------------------------
+Time Start:
+Time End:
+Place: Dave's Office
+Attendees:
+* Dave Lewis
+* Kaniz Fatema
+* Ensar Hadziselimovic
+* Harshvardhan Pandit
+-------------------------
+
+==== Agenda ====
+1.
+2.
+3.
+
+-------------------------
+
+==== Tasks ====
+[]
+[]
+[]
+
+-------------------------
+
+==== Comments ====
+*
+*
+*
+
+-------------------------
+Next planned meeting:
+Date:
+Place:
+Agenda:
+-------------------------
