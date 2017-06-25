@@ -223,6 +223,9 @@ mode "power" {
     bindsym e exec --no-startup-id $locker; i3-msg-exit, mode "default"
     bindsym s exec --no-startup-id "systemctl suspend && $locker", mode "default"
     bindsym h exec --no-startup-id $locker; systemctl hibernate, mode "default"
+    bindsym p exec --no-startup-id "systemctl poweroff", mode "default"
+    bindsym r exec --no-startup-id "systemctl reboot", mode "default"
+
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
