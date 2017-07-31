@@ -16,7 +16,7 @@ TAGS=$(cat ${TAGFILE})
 # show a list using zenity, and get the selected tag
 tag=$(zenity --list --title=Tags --column=tag $TAGS)
 # if there is a selection, echo it with the @ symbol prefixed
-if [[ -n "$tag" ]]
+if [[ $tag ]]
 then
     # get PID of current process to paste into
     pid=$(xdotool getwindowfocus getwindowpid)
@@ -46,7 +46,5 @@ then
     else
         xclip -section c -i /dev/null
     fi
-else
-    zenity --error --text="Abbreviation not found:\n$name"
 fi
 

@@ -4,7 +4,6 @@
 
 TAGFILE=~/.local/share/zim/tags.list
 
-
 # check if file exists
 if [ ! -f "$TAGFILE" ]
 then
@@ -16,7 +15,7 @@ TAGS=$(cat ${TAGFILE})
 # show a list using zenity, and get the selected tag
 tag=$(zenity --list --title=Tags --column=tag $TAGS)
 # if there is a selection, echo it with the @ symbol prefixed
-if [[ -n "$tag" ]]
+if [[ $tag ]]
 then
 	printf "%s" "@$tag"
 fi
