@@ -1,6 +1,6 @@
 " colorscheme "
 colorscheme solarized
-"set background=dark
+set background=dark
 
 " formatting "
 set tabstop=4
