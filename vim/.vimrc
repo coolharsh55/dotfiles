@@ -1,7 +1,3 @@
-" colorscheme "
-colorscheme solarized
-set background=dark
-
 " formatting "
 set tabstop=4
 set softtabstop=4
@@ -113,6 +109,16 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" ale
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 
@@ -153,3 +159,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Initialize plugin system
 call plug#end()
+" colorscheme "
+colorscheme solarized
+set background=dark
+
