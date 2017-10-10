@@ -250,3 +250,10 @@ if [ -f '/home/harsh/google-cloud-sdk/path.bash.inc' ]; then source '/home/harsh
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/harsh/google-cloud-sdk/completion.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/completion.bash.inc'; fi
+
+# virtualenv
+export VIRTUALENV_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code/python
+source /usr/local/bin/virtualenvwrapper.sh
