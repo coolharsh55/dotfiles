@@ -15,6 +15,7 @@ set encoding=utf-8
 set autochdir   " Change working directory to open buffer
 set nocompatible
 filetype off
+set directory=~/.dump//
 
 
 " spell "
@@ -161,5 +162,5 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 call plug#end()
 " colorscheme "
 colorscheme solarized
-set background=dark
+set background=light
 

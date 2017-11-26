@@ -14,7 +14,7 @@ websites=(
 
 for website in ${websites[*]}
 do
-    echo $website
+    printf "%s" "$website--> "
     echo | openssl s_client -showcerts -servername $website -connect $website:443 2>/dev/null | openssl x509 -inform pem -noout -text | grep 'Not After' | python -c '''
 import sys
 line = sys.stdin.next()
