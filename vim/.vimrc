@@ -15,7 +15,7 @@ set encoding=utf-8
 set autochdir   " Change working directory to open buffer
 set nocompatible
 filetype off
-set directory=~/.dump//
+set directory=$HOME/.dump//
 
 
 " spell "
@@ -163,4 +163,3 @@ call plug#end()
 " colorscheme "
 colorscheme solarized
 set background=light
-

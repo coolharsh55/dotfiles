@@ -254,6 +254,6 @@ if [ -f '/home/harsh/google-cloud-sdk/completion.bash.inc' ]; then source '/home
 # virtualenv
 export VIRTUALENV_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=$HOME/code/python/.virtualenvs
 export PROJECT_HOME=$HOME/code/python
 source /usr/local/bin/virtualenvwrapper.sh
