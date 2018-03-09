@@ -65,6 +65,12 @@ display_dual_primary_inbuilt() {
 display_dual_primary_external() {
     eval "xrandr --output $DISPLAY_PRIMARY --auto --output $DISPLAY_SECONDARY --auto --primary --$MONITOR_POSITION $DISPLAY_PRIMARY"
 }
+# Dual display, primary mirrored to secondary
+display_mirror() {
+    # ensure displays are on
+    display_dual_primary_inbuilt
+    eval "xrandr --output $DISPLAY_SECONDARY --same-as $DISPLAY_PRIMARY"
+}
 
 # switch on secondary display
 switch_on() {
@@ -117,6 +123,14 @@ while test $# -gt 0; do
             ;;
         -s|--secondary-only)
             display_only_secondary
+            ;;
+        -m|--mirror)
+            if [ -z "$DISPLAY_SECONDARY" ]
+            then
+                debug "no secondary display; aborting"
+            else
+                display_mirror
+            fi
             ;;
         *)
             if [ -z "$DISPLAY_SECONDARY" ]
