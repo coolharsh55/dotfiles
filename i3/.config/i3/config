@@ -45,6 +45,9 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# show/hide status bar
+bindsym $mod+Shift+m bar mode toggle
+
 # start dmenu (a program launcher)
 # configure dmenu to show only apps with gui
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -123,6 +126,7 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+y fullscreen disable; floating enable; resize set 400 300; sticky enable; move window to position 1515 20
+bindsym $mod+Shift+t border toggle;
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
