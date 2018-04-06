@@ -1,2 +1,2 @@
 #!/bin/bash
-xsel -o | tr '\n' ' ' | xsel -ib
+xclip -o -sel c | tr '\n' ' ' | xclip -sel c
