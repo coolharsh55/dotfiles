@@ -209,15 +209,15 @@ bindsym $mod+r mode "resize"
 #}
 bar {
 	colors {
-		background #3333AA
+		background #000000
 		statusline #ffffff
-		separator #666666
+		separator #000000
 
 		# TYPE				border	background	font
-		focused_workspace	#333399	#33AA33 #000000
+		focused_workspace	#000000	#000000 #ff0000
 		active_workspace	#339933	#999933	#ffffff
-		inactive_workspace	#333333	#333333 #999999
-		urgent_workspace	#aa3333	#FF0000	#000000
+		inactive_workspace	#000000	#000000 #999999
+		urgent_workspace	#000000	#FF0000	#000000
 	}
     strip_workspace_numbers yes
 	# i3bar position
