@@ -19,7 +19,7 @@ set directory=$HOME/.dump//
 
 
 " spell "
-set spell   " Enable spell-checking
+set nospell   " Enable spell-checking
 
 " line numbers "
 set number
@@ -64,6 +64,10 @@ nnoremap gV `[v`]  " visually select block of characters last inserted
 set undolevels=1000 " Number of undo levels
 set backspace=indent,eol,start  " Backspace behaviour
 
+" gui options "
+set guioptions-=m  "menu bar
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
 
 """ PLUGINS """
 
@@ -120,6 +124,20 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 
@@ -156,10 +174,12 @@ Plug 'easymotion/vim-easymotion'
 Plug 'kshenoy/vim-signature'
 " tmux focus events
 Plug 'tmux-plugins/vim-tmux-focus-events'
+" incsearch
+Plug 'haya14busa/incsearch.vim'
 
 
 " Initialize plugin system
 call plug#end()
 " colorscheme "
-colorscheme solarized
-set background=light
+colorscheme monokai-soda
+set background=dark

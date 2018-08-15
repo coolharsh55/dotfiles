@@ -12,6 +12,15 @@ font pango:DejaVu Sans Mono 10
 # switch between current and previous workspaces
 workspace_auto_back_and_forth yes
 
+# vim-anywhere
+bindsym $mod+Shift+w exec --no-startup-id /home/harsh/.vim-anywhere/bin/run
+for_window [class="Gvim"] floating enable
+for_window [class="Gvim"] resize set 800 800
+for_window [class="Gvim"] border none
+
+# done.txt
+bindsym $mod+Shift+d exec --no-startup-id gvim +'normal Go' +'r!date' +'normal Go' ~/Dropbox/done.txt
+
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+Shift+x scratchpad show
@@ -82,6 +91,8 @@ bindsym $mod+p mode "apps"
 
 # texpander
 bindsym $mod+i; exec --no-startup-id ~/bin/texpander.sh
+bindsym $mod+z; exec --no-startup-id ~/bin/dates.sh
+# dates
 # thunar
 #bindsym $mod+d; exec --no-statup-id thunar
 
@@ -127,6 +138,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+y fullscreen disable; floating enable; resize set 400 300; sticky enable; move window to position 1515 20
 bindsym $mod+Shift+t border toggle;
+for_window [class="Firefox"] border pixel 0;
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -170,7 +182,7 @@ bindsym $mod+o workspace next
 bindsym $mod+y move workspace to output up
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -207,25 +219,25 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
-bar {
-	colors {
-		background #000000
-		statusline #ffffff
-		separator #000000
+# bar {
+# 	colors {
+# 		background #000000
+# 		statusline #ffffff
+# 		separator #000000
 
-		# TYPE				border	background	font
-		focused_workspace	#000000	#000000 #ff0000
-		active_workspace	#339933	#999933	#ffffff
-		inactive_workspace	#000000	#000000 #999999
-		urgent_workspace	#000000	#FF0000	#000000
-	}
-    strip_workspace_numbers yes
-	# i3bar position
-	position top
-    # tray_output primary
-	# custom i3status.conf
-    status_command i3status -c ~/.config/i3/i3status.conf
-}
+# 		# TYPE				border	background	font
+# 		focused_workspace	#000000	#000000 #ff0000
+# 		active_workspace	#339933	#999933	#ffffff
+# 		inactive_workspace	#000000	#000000 #999999
+# 		urgent_workspace	#000000	#FF0000	#000000
+# 	}
+#     strip_workspace_numbers yes
+# 	# i3bar position
+# 	position top
+#     # tray_output primary
+# 	# custom i3status.conf
+#     status_command i3status -c ~/.config/i3/i3status.conf
+# }
 
 # custom keybinds
 mode "power" {
@@ -270,8 +282,73 @@ mode "scripts" {
 }
 bindsym $mod+Shift+s mode "scripts"
 
+mode "clipboard" {
+    bindsym t exec --no-startup-id ~/bin/line_trim_newlines, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+c mode "clipboard"
+
+# fancy styles
+set $bg     #2f343f
+set $fg     #404552
+set $hi     #fce94f
+set $ac     #4084d6
+set $tx     #2d323d
+set $ia     #9e9e9e
+set $be     #8faf9f
+set $yw     #f8f893
+set $gn     #81c181
+set $rd     #bf9b76
+set $id     #f9f8ff
+set $ce     #ceecee
+set $sl     #7f7f7f
+set $subtle #999999
+
+# set some nice colors      border  background  text    indicator
+client.focused              $ac     $subtle     $tx     $id
+client.unfocused            $bg     $bg         $ia     $id
+client.focused_inactive     $bg     $bg         $ac     $id
+client.urgent               $ac     $ac         $tx     $id
+#border & indicator are ignored
+client.placeholder          $bg     $bg         $bg     $bg
+
+
+# Start i3bar to display a workspace bar
+bar {
+    position top
+    strip_workspace_numbers yes
+    #tray_output none
+    font pango:Economica, FontAwesome 12
+    separator_symbol "⋆"
+
+    # status_command i3status --config ~/.i3/i3status.conf
+    # use patched i3status
+    #status_command ~/src/i3status/i3status --config ~/.i3/i3status.conf
+    #status_command i3bf
+    #status_command ~/.i3/i3-conky-initscript.sh
+	# i3bar position
+	position top
+    # tray_output primary
+	# custom i3status.conf
+    status_command i3status -c ~/.config/i3/i3status.conf
+
+#   statusbar colors       border      background   text
+    colors {
+        background          $bg
+        statusline          #FFFFFF
+        separator           $tx
+        focused_workspace   $ia        $ia        $tx
+        active_workspace    $gn        $ac        $tx
+        inactive_workspace  $bg        $fg        $ia
+        urgent_workspace    $ac        $bg        $ac
+    }
+}
+
+
 # compton
-exec --no-startup-id compton -b --config ~/.config/i3/compton.conf
+exec_always --no-startup-id compton -b --config ~/.config/i3/compton.conf
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
@@ -314,7 +391,7 @@ bindsym $mod+x [urgent=latest] focus
 # login items
 exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
 exec --no-startup-id i3-msg "workspace 9; layout tabbed; exec zim"
-exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
+# exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id "ssh-agent -s"

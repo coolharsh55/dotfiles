@@ -20,12 +20,14 @@ echo "starting borg backup at $NOW"
 # shellcheck source=/dev/null
 source /home/harsh/.private/borg/${HOSTNAME}/passphrase
 export BORG_PASSPHRASE=$PASSPHRASE
+BACKUP_TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
+echo "$REPOSITORY::'${HOSTNAME}--${BACKUP_TIMESTAMP}'"
 # create backup
-borg create --warning -s \
-    $REPOSITORY::'{hostname}--{now:%Y-%m-%d-%H-%M}' \
-    /home/harsh \
-    --exclude '/home/harsh/.cache' \
-    --exclude '/home/harsh/Music' \
-    --exclude-caches
+# borg create --warning -s \
+#     $REPOSITORY::'${HOSTNAME}--{now:%Y-%m-%d-%H-%M}' \
+#     /home/harsh \
+#     --exclude '/home/harsh/.cache' \
+#     --exclude '/home/harsh/Music' \
+#     --exclude-caches
 NOW=$(date +"%Y-%m-%d %H:%M:%S,%3N")
 echo "finished backup at $NOW"
