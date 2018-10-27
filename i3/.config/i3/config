@@ -74,7 +74,7 @@ mode "apps" {
     bindsym c exec chromium-browser ; mode "default"
     bindsym b exec firefox; mode "default"
     # thunderbird
-    bindsym m workspace 8; layout stacking; exec --no-startup-id thunderbird ; mode "default"
+    bindsym m exec thunderbird ; mode "default"
     # zim
     bindsym z workspace 9; layout tabbed; exec --no-startup-id zim ; mode "default"
     # thunar
@@ -317,6 +317,8 @@ client.placeholder          $bg     $bg         $bg     $bg
 
 # Start i3bar to display a workspace bar
 bar {
+    # i3bar_command i3bar
+    # status_command i3status
     position top
     strip_workspace_numbers yes
     #tray_output none
