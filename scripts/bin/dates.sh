@@ -3,7 +3,7 @@
 # Prints current date
 # echo -n "$(date +%d-%m-%Y)"
 
-formats='today tomorrow yesterday monday tuesday wednesday thursday friday saturday sunday'
+formats='today tomorrow yesterday monday tuesday wednesday thursday friday saturday sunday someday'
 
 # zenity will return selected filename
 format=$(zenity --list --title=SnippetExpander --column=Snippets $formats)
@@ -39,6 +39,9 @@ case "$format" in
         ;;
     "sunday")
         value="$(date -dnext-sunday +%Y-%m-%d)"
+        ;;
+    "someday")
+        value="2099-12-31"
         ;;
 esac
 
