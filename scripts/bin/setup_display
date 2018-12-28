@@ -34,7 +34,7 @@ DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIM
 if [[ -z $DISPLAY_SECONDARY ]]; then
     debug "Secondary display not detected";
 else
-    debug "found secondary display $DISPLAY_PRIMARY";
+    debug "found secondary display $DISPLAY_SECONDARY";
 fi
 # Get monitor position from env
 # shellcheck source=/dev/null
