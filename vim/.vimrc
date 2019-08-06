@@ -181,5 +181,5 @@ Plug 'haya14busa/incsearch.vim'
 " Initialize plugin system
 call plug#end()
 " colorscheme "
-colorscheme monokai-soda
+colorscheme solarized
 set background=dark
