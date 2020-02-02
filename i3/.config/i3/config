@@ -397,6 +397,7 @@ bindsym $mod+x [urgent=latest] focus
 
 # login items
 exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
+exec --no-startup-id i3-msg "workspace 2; exec zotero"
 exec --no-startup-id i3-msg "workspace 6; exec firefox"
 exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
 exec --no-startup-id i3-msg "workspace 9; exec zim"
@@ -406,3 +407,4 @@ exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id bash "ssh-agent -s"
 
 exec --no-startup-id clipit &
+exec --no-startup-id clipman
