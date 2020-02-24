@@ -135,7 +135,8 @@ while test $# -gt 0; do
         *)
             if [ -z "$DISPLAY_SECONDARY" ]
             then
-                switch_off
+                # switch_off
+                display_mirror
             else
                 switch_on
             fi
