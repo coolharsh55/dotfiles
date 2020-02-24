@@ -17,3 +17,6 @@ udisksctl mount -b /dev/sda2 || true
 
 # Adjust keyboard keys
 xmodmap ~/.xmodmaprc
+
+# Set natural scrolling on wireless mouse
+~/bin/mouse_scroll_natural.sh
