@@ -38,6 +38,8 @@
 (setq org-agenda-start-on-weekday nil)
 ;; insert coing timestamp
 (setq org-log-done 'time)
+;; block TODO parent tasks until children are done
+(setq org-enforce-todo-dependencies t)
 
 ;; Line numbers
 (global-display-line-numbers-mode)
