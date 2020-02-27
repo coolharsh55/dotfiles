@@ -9,7 +9,15 @@
 (require 'evil)
 (evil-mode 1)
 ;; Line numbers
-(global-display-line-numbers-mode)
+; (global-display-line-numbers-mode)
+(setq-default display-line-numbers-type 'visual
+              display-line-numbers-current-absolute t
+              ; display-line-numbers-width 4
+              display-line-numbers-widen t)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+;; relative line numbers
+(setq display-line-numbers 'relative)
 ;; do not save to clipboard on exit --> it lags
 (setq x-select-enable-clipboard-manager nil)
 
@@ -32,7 +40,7 @@ There are two things you can do about this warning:
 (package-initialize)
 
 ;; solarized theme
-(load-theme 'solarized-dark t)
+(load-theme 'solarized-light t)
 
 ;;;;;;;;;;;;; Org mode configuration ;;;;;;;;;;;;;;;;;;;;;
 
