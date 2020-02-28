@@ -77,6 +77,8 @@ There are two things you can do about this warning:
 (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 ;; block TODO parent tasks until children are done
 (setq org-enforce-todo-dependencies t)
+;; disable timestamp in headlines from appearing in agenda view
+(setq org-agenda-search-headline-for-time nil)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
