@@ -83,6 +83,8 @@ mode "apps" {
     bindsym f ; exec thunar ; mode "default"
     # Pulse Audio Control
     bindsym v ; exec pavucontrol; mode "default"
+    # Emacs GUI
+    bindsym e ; exec emacs ; mode "default"
 
 
     # back to normal
@@ -400,7 +402,7 @@ exec --no-startup-id i3-msg "workspace 1; exec xfce4-terminal"
 exec --no-startup-id i3-msg "workspace 2; exec zotero"
 exec --no-startup-id i3-msg "workspace 6; exec firefox"
 exec --no-startup-id i3-msg "workspace 8; exec thunderbird"
-exec --no-startup-id i3-msg "workspace 9; exec zim"
+exec --no-startup-id i3-msg "workspace 9; exec zim ; exec emacs"
 exec --no-startup-id i3-msg "workspace 7; exec spotify"
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
