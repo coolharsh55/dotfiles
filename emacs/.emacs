@@ -20,6 +20,9 @@
 (setq display-line-numbers 'relative)
 ;; do not save to clipboard on exit --> it lags
 (setq x-select-enable-clipboard-manager nil)
+;; line characters 80
+(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;; package-installed
 (require 'package)
@@ -62,13 +65,15 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
- '(package-selected-packages (quote (solarized-theme))))
+ '(package-selected-packages (quote (org-super-agenda solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
     ;; indent
     org-startup-indented t
     )
+;; org super agenda
+; (require 'org-super-agenda)
 ;; start agenda from current day
 (setq org-agenda-start-on-weekday nil)
 ;; insert coing timestamp
@@ -79,6 +84,20 @@ There are two things you can do about this warning:
 (setq org-enforce-todo-dependencies t)
 ;; disable timestamp in headlines from appearing in agenda view
 (setq org-agenda-search-headline-for-time nil)
+;; TODO states
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "STARTED(s!)" "|" "DONE(d!)" )
+        (sequence "WAITING(w@/!)" "DEFERRED(f@/!)") 
+        (sequence "|" "CANCELED(c@/!)")))
+;; store notes in reverse order
+(setq org-reverse-note-order t)
+;; show effort for the day in agenda
+(setq org-agenda-columns-add-appointments-to-effort-sum t)
+(setq org-columns-default-format "%40ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS")
+;; persist clock history across sessions
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
