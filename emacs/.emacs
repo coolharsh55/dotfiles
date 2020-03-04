@@ -97,7 +97,16 @@ There are two things you can do about this warning:
 ;; persist clock history across sessions
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+;; set drawer for logs
+(setq org-log-into-drawer "LOGBOOK")
 
+;; Thunderlink. Open an email in Thunderbird with ThunderLink.
+(defun org-thunderlink-open (path)
+  (start-process "thunderlink" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
+(org-link-set-parameters
+    "thunderlink"
+    :follow 'org-thunderlink-open
+    :face '(:foreground "darkmagenta" :underline t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
