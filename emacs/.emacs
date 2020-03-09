@@ -63,9 +63,21 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-custom-commands
+   (quote
+    (("L" "Todo items in Limbo" alltodo ""
+      ((org-agenda-skip-function
+	(lambda nil
+	  (org-agenda-skip-entry-if
+	   (quote scheduled)
+	   (quote deadline))))
+       (org-agenda-overriding-header "TODO items in Limbo"))))))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
- '(package-selected-packages (quote (org-super-agenda solarized-theme))))
+ '(org-modules
+   (quote
+    (org-docview org-gnus org-habit org-info org-w3m org-checklist)))
+ '(package-selected-packages (quote (## org-super-agenda solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -82,6 +94,9 @@ There are two things you can do about this warning:
 (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 ;; block TODO parent tasks until children are done
 (setq org-enforce-todo-dependencies t)
+;; do not show deadlines and scheduled items in agenda if done
+; (setq org-agenda-skip-deadline-if-done t)
+; (setq org-agenda-skip-scheduled-if-done t)
 ;; disable timestamp in headlines from appearing in agenda view
 (setq org-agenda-search-headline-for-time nil)
 ;; TODO states
@@ -99,6 +114,11 @@ There are two things you can do about this warning:
 (org-clock-persistence-insinuate)
 ;; set drawer for logs
 (setq org-log-into-drawer "LOGBOOK")
+;; Set default effort estimates
+(setq org-global-properties '(("EFFORT_ALL". "0:05 0:15 0:30 1:00 1:30 2:00")))
+;; show habits in agenda
+; (setq org-habit-show-all-today t
+;       org-habit-show-all-today t)
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-thunderlink-open (path)
@@ -107,6 +127,62 @@ There are two things you can do about this warning:
     "thunderlink"
     :follow 'org-thunderlink-open
     :face '(:foreground "darkmagenta" :underline t))
+;; TAG list
+(setq org-tag-alist '(
+    (:startgrouptag)("People")
+        (:grouptags)
+            ("@ADAPT")("@AdvCIS")("@Academia")("@DPVCG")("@Supervision")
+        	(:endgrouptag)
+        (:startgrouptag)
+            ("@ADAPT")(:grouptags)("@DL")("@DOS")("@ChristopheD")
+        	(:endgrouptag)
+        (:startgrouptag)
+            ("@AdvCIS")(:grouptags)("@MarkL")("@VitorJ")("@JanL")("@PaulK")
+        	(:endgrouptag)
+        (:startgrouptag)
+            ("@Academia")(:grouptags)("@SabrinaK")
+        	(:endgrouptag)
+        (:startgrouptag)
+            ("@DPVCG")(:grouptags)("@BertB")("@AxelP")("@MarkL")
+        	(:endgrouptag)
+        (:startgrouptag)
+            ("@Supervision")(:grouptags)("@DerrickAmponsa")("@EoinLeahy")("@DhruvSachdev")("@DarraghMasterson")("@AnkitaKalra")
+        	(:endgrouptag)
+    	(:endgrouptag)
+    (:startgrouptag)("Organisation")
+    	(:grouptags)("#adapt")("#signatu")("#tcd")("#dcu")
+    	(:endgrouptag)
+    (:startgrouptag)("Academia")
+    	(:grouptags)
+    		("#conference")("#journal")("#publication")("#meeting")
+    		(:endgrouptag)
+    	(:startgrouptag)
+    		("#conference")(:grouptags)("SEMANTiCS")("ISWC")("ESWC")
+    		(:endgrouptag)
+    	(:startgrouptag)
+    		("#journal")(:grouptags)("KAIS")
+    		(:endgrouptag)
+    	(:endgrouptag)
+    (:startgrouptag)("Context")
+		(:grouptags)("#email")("#call")("#online")
+    	(:endgrouptag)
+    (:startgrouptag)("_Action")
+    	(:grouptags)("_read")("_write")("_review")("_plan")("_think")("_analyse")
+    	(:endgrouptag)
+    (:startgrouptag)("__Schedule")
+    	(:grouptags)("__NOW")("__URGENT")("__NEXT")("__SOON")("__SOMEDAY")
+    	(:endgrouptag)
+    ))
+
+;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
+;; TODOS that don't have a schedule or deadline
+(setq org-agenda-custom-commands
+	;; match those tagged with :inbox:, are not scheduled, are not DONE.
+	'(("L" "TODO items in Limbo" ((alltodo ""
+		((org-agenda-skip-function
+			(lambda nil
+				(org-agenda-skip-entry-if 'scheduled 'deadline)))
+	     (org-agenda-overriding-header "TODO items in Limbo")))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
