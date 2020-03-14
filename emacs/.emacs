@@ -194,3 +194,30 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
+
+;; TODO STATE CHANGE
+(add-hook 'org-trigger-hook 
+    (lambda (arg)
+        ;; APPT -> STARTED: clock-in
+        (when (and (string= (plist-get arg :from) 'APPT)
+                   (string= (plist-get arg :to) 'STARTED))
+            (save-excursion
+                ; (org-back-to-heading)
+                ; (org-end-of-line)
+                (org-timer-start)
+                ; (insert "\n")
+                ; (insert (format "%s" arg))
+                ))
+        ;; STARTED -> DONE: clock-out
+        (when (and (string= (plist-get arg :from) 'STARTED)
+                   (string= (plist-get arg :to) 'DONE))
+            (save-excursion
+                ; (org-back-to-heading)
+                ; (org-end-of-line)
+                (org-timer-stop)
+                ; (insert "\n")
+                ; (insert (format "%s" arg))
+                ))
+  ))
