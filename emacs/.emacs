@@ -23,6 +23,13 @@
 ;; line characters 80
 (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+;; move between windows/frames
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+;; org-bullets
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; package-installed
 (require 'package)
@@ -64,31 +71,18 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-custom-commands
-   (quote
-    (("L" "Todo items in Limbo" alltodo ""
-      ((org-agenda-skip-function
-	(lambda nil
-	  (org-agenda-skip-entry-if
-	   (quote scheduled)
-	   (quote deadline))))
-       (org-agenda-overriding-header "TODO items in Limbo"))))))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
  '(org-modules
    (quote
     (org-docview org-gnus org-habit org-info org-w3m org-checklist)))
- '(package-selected-packages
-   (quote
-    (cyberpunk-theme ## org-super-agenda solarized-theme))))
+ '(package-selected-packages (quote (org-bullets cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
     ;; indent
     org-startup-indented t
     )
-;; org super agenda
-; (require 'org-super-agenda)
 ;; start agenda from current day
 (setq org-agenda-start-on-weekday nil)
 ;; insert coing timestamp
