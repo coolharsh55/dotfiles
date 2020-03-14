@@ -43,7 +43,8 @@ There are two things you can do about this warning:
 (package-initialize)
 
 ;; solarized theme
-(load-theme 'solarized-light t)
+; (load-theme 'solarized-light t)
+(load-theme 'cyberpunk t)
 
 ;;;;;;;;;;;;; Org mode configuration ;;;;;;;;;;;;;;;;;;;;;
 
@@ -77,7 +78,9 @@ There are two things you can do about this warning:
  '(org-modules
    (quote
     (org-docview org-gnus org-habit org-info org-w3m org-checklist)))
- '(package-selected-packages (quote (## org-super-agenda solarized-theme))))
+ '(package-selected-packages
+   (quote
+    (cyberpunk-theme ## org-super-agenda solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -102,8 +105,15 @@ There are two things you can do about this warning:
 ;; TODO states
 (setq org-todo-keywords
       '((sequence "TODO(t)" "STARTED(s!)" "|" "DONE(d!)" )
-        (sequence "WAITING(w@/!)" "DEFERRED(f@/!)") 
-        (sequence "|" "CANCELED(c@/!)")))
+        (sequence "WAITING(w@/!)" "DEFERRED(f@/!)" "|") 
+        (sequence "APPT(m)" "|")
+        (sequence "|" "CANCELED(c@/!)")
+        ))
+(setq org-todo-keyword-faces
+      '(("TODO" . "red") ("STARTED" . "tomato") ("DONE" . "dark green")
+        ("WAITING" . "magenta") ("DEFERRED" . "dark orange")
+        ("APPT" . "brown") ("CANCELED" . "olive")
+        ))
 ;; store notes in reverse order
 (setq org-reverse-note-order t)
 ;; show effort for the day in agenda
