@@ -99,13 +99,13 @@ There are two things you can do about this warning:
 ;; TODO states
 (setq org-todo-keywords
       '((sequence "TODO(t)" "STARTED(s!)" "|" "DONE(d!)" )
-        (sequence "WAITING(w@/!)" "DEFERRED(f@/!)" "|") 
+        (sequence "PAUSED(p@/!)" "WAITING(w@/!)" "DEFERRED(f@/!)" "|") 
         (sequence "APPT(m)" "|")
         (sequence "|" "CANCELED(c@/!)")
         ))
 (setq org-todo-keyword-faces
       '(("TODO" . "red") ("STARTED" . "tomato") ("DONE" . "dark green")
-        ("WAITING" . "magenta") ("DEFERRED" . "dark orange")
+        ("PAUSED" . "chocolate") ("WAITING" . "magenta") ("DEFERRED" . "dark orange")
         ("APPT" . "brown") ("CANCELED" . "olive")
         ))
 ;; store notes in reverse order
@@ -200,24 +200,27 @@ There are two things you can do about this warning:
 ;; TODO STATE CHANGE
 (add-hook 'org-trigger-hook 
     (lambda (arg)
-        ;; APPT -> STARTED: clock-in
+        ;; APPT -> STARTED: timer-stop
         (when (and (string= (plist-get arg :from) 'APPT)
                    (string= (plist-get arg :to) 'STARTED))
             (save-excursion
-                ; (org-back-to-heading)
-                ; (org-end-of-line)
                 (org-timer-start)
-                ; (insert "\n")
-                ; (insert (format "%s" arg))
                 ))
-        ;; STARTED -> DONE: clock-out
+        ;; STARTED -> DONE: timer-start
         (when (and (string= (plist-get arg :from) 'STARTED)
                    (string= (plist-get arg :to) 'DONE))
             (save-excursion
-                ; (org-back-to-heading)
-                ; (org-end-of-line)
                 (org-timer-stop)
-                ; (insert "\n")
-                ; (insert (format "%s" arg))
+                ))
+        ;; anything -> STARTED: clock-in
+        (when (and (not (string= (plist-get arg :from) 'APPT))
+                   (string= (plist-get arg :to) 'STARTED))
+            (save-excursion
+                (org-clock-in)
+                ))
+        ;; STARTED -> anything: clock-out
+        (when (and (string= (plist-get arg :from) 'STARTED))
+            (save-excursion
+                (org-clock-out)
                 ))
   ))
