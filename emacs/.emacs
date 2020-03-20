@@ -4,10 +4,6 @@
 (setq inhibit-splash-screen t)
 ;; Enable transient mark mode
 (transient-mark-mode 1)
-;; Evil-mode
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
 ;; Line numbers
 ; (global-display-line-numbers-mode)
 (setq-default display-line-numbers-type 'visual
@@ -30,6 +26,8 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 ;; org-bullets
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; org-sidebar
+(global-set-key (kbd "C-x M-s") 'org-sidebar-tree-toggle)
 
 ;; package-installed
 (require 'package)
@@ -49,9 +47,15 @@ There are two things you can do about this warning:
   )
 (package-initialize)
 
+;;;;;;;;; packages ;;;;;;;;;;;;;;
+
+;; Evil-mode
+(require 'evil)
+(evil-mode 1)
+
 ;; solarized theme
-; (load-theme 'solarized-light t)
-(load-theme 'cyberpunk t)
+(load-theme 'solarized-light t)
+; (load-theme 'solarized-zenburn t)
 
 ;;;;;;;;;;;;; Org mode configuration ;;;;;;;;;;;;;;;;;;;;;
 
@@ -71,6 +75,9 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default)))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
  '(org-modules
