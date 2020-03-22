@@ -26,8 +26,6 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 ;; org-bullets
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-;; org-sidebar
-(global-set-key (kbd "C-x M-s") 'org-sidebar-tree-toggle)
 
 ;; package-installed
 (require 'package)
@@ -83,7 +81,9 @@ There are two things you can do about this warning:
  '(org-modules
    (quote
     (org-docview org-gnus org-habit org-info org-w3m org-checklist)))
- '(package-selected-packages (quote (org-bullets cyberpunk-theme solarized-theme))))
+ '(package-selected-packages
+   (quote
+    (org-ql org-bullets cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -231,3 +231,14 @@ There are two things you can do about this warning:
                 (org-clock-out)
                 ))
   ))
+
+;;;;;;;;;; capture templates ;;;;;;;;;;
+(setq org-default-notes-file "~/temp.org")
+(define-key global-map (kbd "C-c x") 'org-capture)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/temp.org" "Captured Tasks")
+         "* TODO %?\n %U %i\n %f %a")
+        ("n" "Note" entry (file+datetree "~/org/temp.org" "Notes")
+         "* %?\n %U %i\n %f %a")
+        ))
+
