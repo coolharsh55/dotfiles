@@ -376,8 +376,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 exec --no-startup-id xautolock -time 5 -locker "~/.config/i3/fancy-multimonitor/lock" # i3lock -i /home/harsh/Pictures/wallpapers/lock.png &"
 exec --no-startup-id insync start
 exec --no-startup-id xfce4-power-manager
-exec --no-startupid clipIt
-exec --no-startupid clipman
 
 # natural scrolling
 exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
@@ -408,5 +406,5 @@ exec --no-startup-id i3-msg "workspace 7; exec spotify"
 exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id bash "ssh-agent -s"
 
-exec --no-startup-id clipit &
+exec --no-startup-id copyq
 exec --no-startup-id clipman
