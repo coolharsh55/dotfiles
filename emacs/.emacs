@@ -55,6 +55,18 @@ There are two things you can do about this warning:
 (load-theme 'solarized-light t)
 ; (load-theme 'solarized-zenburn t)
 
+;; yasnippets
+;; org-mode compatibility
+(defun yas/org-very-safe-expand ()
+    (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+(add-hook 'org-mode-hook
+    (lambda ()
+        (yas-minor-mode)
+        (make-variable-buffer-local 'yas/trigger-key)
+        (setq yas/trigger-key [tab])
+        (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+        (define-key yas/keymap [tab] 'yas/next-field)))
+
 ;;;;;;;;;;;;; Org mode configuration ;;;;;;;;;;;;;;;;;;;;;
 
 ;; Enable Org mode
@@ -81,9 +93,14 @@ There are two things you can do about this warning:
  '(org-modules
    (quote
     (org-docview org-gnus org-habit org-info org-w3m org-checklist)))
+ '(org-stuck-projects
+   (quote
+    ("+LEVEL=1/-DONE"
+     ("TODO" "NEXT" "NEXTACTION" "STARTED" "WAITING" "PAUSED" "APPT")
+     nil "")))
  '(package-selected-packages
    (quote
-    (org-ql org-bullets cyberpunk-theme solarized-theme))))
+    (yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -125,11 +142,15 @@ There are two things you can do about this warning:
 (org-clock-persistence-insinuate)
 ;; set drawer for logs
 (setq org-log-into-drawer "LOGBOOK")
+;; show repeated tasks in log mode
+(setq org-agenda-log-mode-items '(closed clock state))
 ;; Set default effort estimates
 (setq org-global-properties '(("EFFORT_ALL". "0:05 0:15 0:30 1:00 1:30 2:00")))
 ;; show habits in agenda
 ; (setq org-habit-show-all-today t
 ;       org-habit-show-all-today t)
+;; org structured templates
+(define-key org-mode-map (kbd "C-<f1>") 'org-insert-structure-template)
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-thunderlink-open (path)
