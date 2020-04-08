@@ -101,7 +101,7 @@ There are two things you can do about this warning:
      nil "")))
  '(package-selected-packages
    (quote
-    (yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
+    (helm-org-rifle yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -152,6 +152,8 @@ There are two things you can do about this warning:
 ;       org-habit-show-all-today t)
 ;; org structured templates
 (define-key org-mode-map (kbd "C-<f1>") 'org-insert-structure-template)
+;; org-rifle
+(define-key org-mode-map (kbd "C-c C-f") 'helm-org-rifle)
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-thunderlink-open (path)
