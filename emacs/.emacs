@@ -52,8 +52,22 @@ There are two things you can do about this warning:
 (evil-mode 1)
 
 ;; solarized theme
-(load-theme 'solarized-light t)
+; (load-theme 'solarized-light t)
 ; (load-theme 'solarized-zenburn t)
+(load-theme 'poet t)
+(add-hook 'text-mode-hook
+    (lambda ()
+        (variable-pitch-mode 1)))
+
+;; theming
+(olivetti-mode 1)        ;; Centers text in the buffer
+(flyspell-mode 1)        ;; Catch Spelling mistakes
+(blink-cursor-mode 0)    ;; Reduce visual noise
+(linum-mode 0)           ;; No line numbers for prose
+(set-face-attribute 'default nil :family "Hack" :height 100)
+(set-face-attribute 'fixed-pitch nil :family "Hack" :height 100)
+(set-face-attribute 'variable-pitch nil :family "ETBembo" :height 125)
+
 
 ;; yasnippets
 ;; org-mode compatibility
@@ -101,7 +115,7 @@ There are two things you can do about this warning:
      nil "")))
  '(package-selected-packages
    (quote
-    (helm-org-rifle yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
+    (poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -110,15 +124,13 @@ There are two things you can do about this warning:
     )
 ;; start agenda from current day
 (setq org-agenda-start-on-weekday nil)
-;; insert coing timestamp
-(setq org-log-done 'time)
 ;; disable deadline reminders when tasks are scheduled
 (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 ;; block TODO parent tasks until children are done
 (setq org-enforce-todo-dependencies t)
 ;; do not show deadlines and scheduled items in agenda if done
-; (setq org-agenda-skip-deadline-if-done t)
-; (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
 ;; disable timestamp in headlines from appearing in agenda view
 (setq org-agenda-search-headline-for-time nil)
 ;; TODO states
@@ -137,7 +149,8 @@ There are two things you can do about this warning:
 (setq org-reverse-note-order t)
 ;; show effort for the day in agenda
 (setq org-agenda-columns-add-appointments-to-effort-sum t)
-(setq org-columns-default-format "%40ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS")
+;; agenda column view
+(setq org-columns-default-format "%1PRIORITY(IMP) %TODO(Status) %6CATEGORY(CAT.) %40ITEM(Task) %6Effort(Effort){:}  %5CLOCKSUM(Clock) %5CLOCKSUM_T(Clock_T) %TAGS")
 ;; persist clock history across sessions
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
@@ -153,7 +166,23 @@ There are two things you can do about this warning:
 ;; org structured templates
 (define-key org-mode-map (kbd "C-<f1>") 'org-insert-structure-template)
 ;; org-rifle
-(define-key org-mode-map (kbd "C-c C-f") 'helm-org-rifle)
+(define-key org-mode-map (kbd "C-c C-f") 'helm-org-agenda-files-headings)
+;; prevent editing collapsed trees
+(setq org-catch-invisible-edits 'show-and-error)
+;; show only headlines in subtree
+;; org-kill-note-or-show-branches C-c C-k
+;; do not show empty lines between sections
+(setq org-cycle-separator-lines 0)
+;; sequence for list bullets
+(setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "-") ("*" . "-")))
+;; refiling
+(setq org-refile-targets '((nil :maxlevel . 5)
+                                (org-agenda-files :maxlevel . 5)))
+(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
+;; hide formatting markers symbols
+(setq org-hide-emphasis-markers t)
+
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-thunderlink-open (path)
@@ -266,3 +295,21 @@ There are two things you can do about this warning:
          "* %?\n %U %i\n %f %a")
         ))
 
+;;;;;;; logging tempalte ;;;;;;;;
+(setq 
+    org-log-into-drawer t
+    org-log-done 'time
+    org-log-reschedule 'note
+    org-log-redeadline 'note
+    org-log-delschedule 'note
+    org-log-deldeadline 'note
+    org-log-note-headings '((done        . "CLOSING NOTE %t")
+                           (state       . "State %-12s from %-12S %t")
+                           (note        . "Note taken on %t")
+                           (reschedule  . "Schedule changed on %t: %S -> %s")
+                           (delschedule . "Not scheduled, was %S on %t")
+                           (redeadline  . "Deadline changed on %t: %S -> %s")
+                           (deldeadline . "Removed deadline, was %S on %t")
+                           (refile      . "Refiled on %t")
+                           (clock-out   . ""))
+    )
