@@ -26,6 +26,8 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 ;; org-bullets
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; allow letters in bullets and lists
+(setq org-list-allow-alphabetical t)
 
 ;; package-installed
 (require 'package)
@@ -115,7 +117,7 @@ There are two things you can do about this warning:
      nil "")))
  '(package-selected-packages
    (quote
-    (poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets cyberpunk-theme solarized-theme))))
+    (poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme))))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -246,7 +248,36 @@ There are two things you can do about this warning:
 		((org-agenda-skip-function
 			(lambda nil
 				(org-agenda-skip-entry-if 'scheduled 'deadline)))
-	     (org-agenda-overriding-header "TODO items in Limbo")))))))
+	     (org-agenda-overriding-header "TODO items in Limbo")))))
+    ("A" "Super Agenda" ((agenda "" ((org-agenda-span 'day)
+     (org-super-agenda-groups
+       '(
+         (:name "Logbook"
+                :log t)
+         (:name "Meetings"
+                ; :time-grid t  ; Items that appear on the time grid
+                :todo "APPT")
+         (:name "Important"
+                :deadline past
+                :deadline today
+                :priority "A"
+                :face (:foreground "firebrick"))
+         (:name "Scheduled for Today"
+                :scheduled today)
+         (:name "Overdue"
+                :scheduled past)
+         (:name "Upcoming"
+                :deadline future)
+         (:name "Waiting"
+                :todo "WAITING"
+                :order)
+         ))))))
+
+    ))
+
+;;; Super Agenda
+; (org-agenda nil "a")
+(org-super-agenda-mode)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
