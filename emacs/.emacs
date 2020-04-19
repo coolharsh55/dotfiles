@@ -249,7 +249,7 @@ There are two things you can do about this warning:
 			(lambda nil
 				(org-agenda-skip-entry-if 'scheduled 'deadline)))
 	     (org-agenda-overriding-header "TODO items in Limbo")))))
-    ("A" "Super Agenda" ((agenda "" ((org-agenda-span 'day)
+    ("A" "Super Agenda - Daily" ((agenda "" ((org-agenda-span 'day)
      (org-super-agenda-groups
        '(
          (:name "Logbook"
@@ -264,15 +264,17 @@ There are two things you can do about this warning:
                 :face (:foreground "firebrick"))
          (:name "Scheduled for Today"
                 :scheduled today)
+         (:name "Waiting"
+                :todo "WAITING")
          (:name "Overdue"
                 :scheduled past)
          (:name "Upcoming"
                 :deadline future)
-         (:name "Waiting"
-                :todo "WAITING"
-                :order)
          ))))))
-
+    ("Vg" "Super Agenda - Grouped" ((agenda "" ((org-agenda-span 'day)
+        (org-super-agenda-groups
+          '((:auto-category t))
+          )))))
     ))
 
 ;;; Super Agenda
