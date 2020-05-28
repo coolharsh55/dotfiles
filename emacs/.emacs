@@ -104,8 +104,8 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
-(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-clock-in t)))
-(global-set-key (kbd "<f12>") 'org-clock-out)
+(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "STARTED")))
+(global-set-key (kbd "<f12>") '(lambda (&optional arg) (interactive "P")(org-todo "PAUSED")))
 ;; set org directory
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -187,7 +187,7 @@ There are two things you can do about this warning:
 (setq org-cycle-separator-lines 0)
 ;; sequence for list bullets
 (setq org-list-demote-modify-bullet '(
-    ("-" . "+") ("+" . "-") ("*" . "-")("1." . "a)")("a)" . "1)")("1)" . "a.") ))
+    ("-" . "*") ("+" . "-") ("*" . "+")("1." . "a)")("a)" . "1)")("1)" . "a.") ))
 ;; refiling
 (setq org-refile-targets '((nil :maxlevel . 5)
                                 (org-agenda-files :maxlevel . 5)))
@@ -304,17 +304,19 @@ There are two things you can do about this warning:
 ;; TODO STATE CHANGE
 (add-hook 'org-trigger-hook 
     (lambda (arg)
-        ;; APPT -> STARTED: timer-stop
+        ;; APPT -> STARTED: timer-start
         (when (and (string= (plist-get arg :from) 'APPT)
                    (string= (plist-get arg :to) 'STARTED))
             (save-excursion
                 (org-timer-start)
+                (org-clock-in)
                 ))
         ;; STARTED -> DONE: timer-start
         (when (and (string= (plist-get arg :from) 'STARTED)
                    (string= (plist-get arg :to) 'DONE))
             (save-excursion
                 (org-timer-stop)
+                (org-clock-out)
                 ))
         ;; anything -> STARTED: clock-in
         (when (and (not (string= (plist-get arg :from) 'APPT))
@@ -325,6 +327,7 @@ There are two things you can do about this warning:
         ;; STARTED -> anything: clock-out
         (when (and (string= (plist-get arg :from) 'STARTED))
             (save-excursion
+                (org-timer-stop)
                 (org-clock-out)
                 ))
   ))
@@ -357,3 +360,25 @@ There are two things you can do about this warning:
                            (refile      . "Refiled on %t")
                            (clock-out   . ""))
     )
+
+;;;
+(defun my/copy-idlink-to-clipboard() "Copy an ID link with the
+headline to killring, if no ID is there then create a new unique
+ID.  This function works only in org-mode or org-agenda buffers. 
+
+The purpose of this function is to easily construct id:-links to 
+org-mode items. If its assigned to a key it saves you marking the
+text and copying to the killring."
+       (interactive)
+       (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
+     (org-agenda-show)
+     (org-agenda-goto))       
+       (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
+     (setq mytmphead (nth 4 (org-heading-components)))
+         (setq mytmpid (funcall 'org-id-get-create))
+     (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
+     (kill-new mytmplink)
+     (message "Copied %s to killring (clipboard)" mytmplink)
+       ))
+
+(global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
