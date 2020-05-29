@@ -102,6 +102,7 @@ There are two things you can do about this warning:
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
+(global-set-key (kbd "<f9>") '(lambda (&optional arg) (interactive "P")(find-file "~/org/daily.org")))
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
 (global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "STARTED")))
@@ -340,6 +341,7 @@ There are two things you can do about this warning:
          "* TODO %?\n %U %i\n %f %a")
         ("n" "Note" entry (file+datetree "~/org/temp.org" "Notes")
          "* %?\n %U %i\n %f %a")
+        ("D" "Daily Plan" plain (file+olp+datetree "~/org/daily.org") (file "~/org/snippets/template_daily.txt") :immediate-finish t)
         ))
 
 ;;;;;;; logging tempalte ;;;;;;;;
