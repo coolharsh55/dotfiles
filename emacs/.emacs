@@ -148,10 +148,7 @@ There are two things you can do about this warning:
 (setq org-agenda-search-headline-for-time nil)
 ;; TODO states
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "STARTED(s!)" "|" "DONE(d!)" )
-        (sequence "PAUSED(p@/!)" "WAITING(w@/!)" "DEFERRED(f@/!)" "|") 
-        (sequence "APPT(m)" "|")
-        (sequence "|" "CANCELED(c@/!)")
+      '((sequence "TODO(t)" "APPT(m)" "STARTED(s!)" "PAUSED(p@/!)" "WAITING(w@/!)" "DEFERRED(f@/!)" "|" "CANCELED(c@/!)" "DONE(d!)" )
         ))
 (setq org-todo-keyword-faces
       '(("TODO" . "red") ("STARTED" . "tomato") ("DONE" . "dark green")
