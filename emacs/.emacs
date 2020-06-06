@@ -305,27 +305,27 @@ There are two things you can do about this warning:
 ;; TODO STATE CHANGE
 (add-hook 'org-trigger-hook 
     (lambda (arg)
-        ;; APPT -> STARTED: timer-start
+        ;; APPT -> STARTED: start clock and timer
         (when (and (string= (plist-get arg :from) 'APPT)
                    (string= (plist-get arg :to) 'STARTED))
             (save-excursion
                 (org-timer-start)
                 (org-clock-in)
                 ))
-        ;; STARTED -> DONE: timer-start
-        (when (and (string= (plist-get arg :from) 'STARTED)
-                   (string= (plist-get arg :to) 'DONE))
-            (save-excursion
-                (org-timer-stop)
-                (org-clock-out)
-                ))
-        ;; anything -> STARTED: clock-in
+        ; ;; STARTED -> DONE: stop clocks and timers
+        ; (when (and (string= (plist-get arg :from) 'STARTED)
+        ;            (string= (plist-get arg :to) 'DONE))
+        ;     (save-excursion
+        ;         (org-timer-stop)
+        ;         (org-clock-out)
+        ;         ))
+        ;; anything -> STARTED: start clock
         (when (and (not (string= (plist-get arg :from) 'APPT))
                    (string= (plist-get arg :to) 'STARTED))
             (save-excursion
                 (org-clock-in)
                 ))
-        ;; STARTED -> anything: clock-out
+        ;; STARTED -> anything: stop clock and timer
         (when (and (string= (plist-get arg :from) 'STARTED))
             (save-excursion
                 (org-timer-stop)
