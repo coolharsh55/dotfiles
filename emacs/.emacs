@@ -56,19 +56,21 @@ There are two things you can do about this warning:
 ;; solarized theme
 ; (load-theme 'solarized-light t)
 ; (load-theme 'solarized-zenburn t)
-(load-theme 'poet t)
-(add-hook 'text-mode-hook
-    (lambda ()
-        (variable-pitch-mode 1)))
+(load-theme 'solarized-wombat-dark t)
+; (add-hook 'text-mode-hook
+;     (lambda ()
+;         (variable-pitch-mode 1)))
+;; solarized heading scale
+(setq solarized-scale-org-headlines nil)
 
 ;; theming
 (olivetti-mode 1)        ;; Centers text in the buffer
 (flyspell-mode 1)        ;; Catch Spelling mistakes
 (blink-cursor-mode 0)    ;; Reduce visual noise
 (linum-mode 0)           ;; No line numbers for prose
-(set-face-attribute 'default nil :family "Hack" :height 100)
-(set-face-attribute 'fixed-pitch nil :family "Hack" :height 100)
-(set-face-attribute 'variable-pitch nil :family "ETBembo" :height 125)
+; (set-face-attribute 'default nil :family "Hack" :height 100)
+; (set-face-attribute 'fixed-pitch nil :family "Hack" :height 100)
+; (set-face-attribute 'variable-pitch nil :family "ETBembo" :height 125)
 
 ;; Easy Motion
 (define-key evil-normal-state-map (kbd "SPC w") 'avy-goto-word-0)
@@ -105,8 +107,8 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f9>") '(lambda (&optional arg) (interactive "P")(find-file "~/org/daily.org")))
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
-(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "STARTED")))
-(global-set-key (kbd "<f12>") '(lambda (&optional arg) (interactive "P")(org-todo "PAUSED")))
+(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "BEGN")))
+(global-set-key (kbd "<f12>") '(lambda (&optional arg) (interactive "P")(org-todo "HALT")))
 ;; set org directory
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -115,7 +117,7 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default)))
+    ("13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default)))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
  '(org-modules
@@ -124,7 +126,7 @@ There are two things you can do about this warning:
  '(org-stuck-projects
    (quote
     ("+LEVEL=1/-DONE"
-     ("TODO" "NEXT" "NEXTACTION" "STARTED" "WAITING" "PAUSED" "APPT")
+     ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil "")))
  '(package-selected-packages
    (quote
@@ -148,12 +150,12 @@ There are two things you can do about this warning:
 (setq org-agenda-search-headline-for-time nil)
 ;; TODO states
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "APPT(m)" "STARTED(s!)" "PAUSED(p@/!)" "WAITING(w@/!)" "DEFERRED(f@/!)" "|" "CANCELED(c@/!)" "DONE(d!)" )
+      '((sequence "TODO(t)" "MEET(m)" "BEGN(s!)" "HALT(p@/!)" "WAIT(w@/!)" "DELY(f@/!)" "|" "ABRT(c@/!)" "DONE(d!)" )
         ))
 (setq org-todo-keyword-faces
-      '(("TODO" . "red") ("STARTED" . "tomato") ("DONE" . "dark green")
-        ("PAUSED" . "chocolate") ("WAITING" . "magenta") ("DEFERRED" . "dark orange")
-        ("APPT" . "brown") ("CANCELED" . "olive")
+      '(("TODO" . "red") ("BEGN" . "cyan") ("DONE" . "dark green")
+        ("HALT" . "gold") ("WAIT" . "magenta") ("DELY" . "salmon")
+        ("MEET" . "tomato") ("ABRT" . "tan")
         ))
 ;; store notes in reverse order
 (setq org-reverse-note-order t)
@@ -265,7 +267,7 @@ There are two things you can do about this warning:
                 :log t)
          (:name "Meetings"
                 ; :time-grid t  ; Items that appear on the time grid
-                :todo "APPT")
+                :todo "MEET")
          (:name "Important"
                 :deadline past
                 :deadline today
@@ -274,7 +276,7 @@ There are two things you can do about this warning:
          (:name "Scheduled for Today"
                 :scheduled today)
          (:name "Waiting"
-                :todo "WAITING")
+                :todo "WAIT")
          (:name "Overdue"
                 :scheduled past)
          (:name "Upcoming"
@@ -302,31 +304,31 @@ There are two things you can do about this warning:
 ;; TODO STATE CHANGE
 (add-hook 'org-trigger-hook 
     (lambda (arg)
-        ;; APPT -> STARTED: start clock and timer
-        (when (and (string= (plist-get arg :from) 'APPT)
-                   (string= (plist-get arg :to) 'STARTED))
+        ;; MEET -> BEGN: start clock and timer
+        (when (and (string= (plist-get arg :from) 'MEET)
+                   (string= (plist-get arg :to) 'BEGN))
             (save-excursion
                 (org-timer-start)
                 (org-clock-in)
                 ))
-        ; ;; STARTED -> DONE: stop clocks and timers
-        ; (when (and (string= (plist-get arg :from) 'STARTED)
+        ; ;; BEGN -> DONE: stop clocks and timers
+        ; (when (and (string= (plist-get arg :from) 'BEGN)
         ;            (string= (plist-get arg :to) 'DONE))
         ;     (save-excursion
         ;         (org-timer-stop)
         ;         (org-clock-out)
         ;         ))
-        ;; anything -> STARTED: start clock
-        (when (and (not (string= (plist-get arg :from) 'APPT))
-                   (string= (plist-get arg :to) 'STARTED))
+        ;; anything -> BEGN: start clock
+        (when (and (not (string= (plist-get arg :from) 'MEET))
+                   (string= (plist-get arg :to) 'BEGN))
             (save-excursion
                 (org-clock-in)
                 ))
-        ;; STARTED -> anything: stop clock and timer
-        (when (and (string= (plist-get arg :from) 'STARTED))
+        ;; BEGN -> anything: stop clock and timer
+        (when (and (string= (plist-get arg :from) 'BEGN))
             (save-excursion
-                (org-timer-stop)
                 (org-clock-out)
+                (org-timer-stop)
                 ))
   ))
 
