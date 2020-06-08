@@ -107,10 +107,9 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f9>") '(lambda ()
     "open the daily agenda file"
     (interactive)
-    (delete-other-windows)
-    (split-window-right)
-    (other-window 1)
-    (find-file "~/org/daily.org")))
+    (org-switch-to-buffer-other-window "Daily Agenda")
+    (find-file "~/org/daily.org")
+    ))
 
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
