@@ -104,7 +104,14 @@ There are two things you can do about this warning:
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
-(global-set-key (kbd "<f9>") '(lambda (&optional arg) (interactive "P")(find-file "~/org/daily.org")))
+(global-set-key (kbd "<f9>") '(lambda ()
+    "open the daily agenda file"
+    (interactive)
+    (delete-other-windows)
+    (split-window-right)
+    (other-window 1)
+    (find-file "~/org/daily.org")))
+
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
 (global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "BEGN")))
