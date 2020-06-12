@@ -171,6 +171,8 @@ There are two things you can do about this warning:
 (setq org-columns-default-format "%1PRIORITY(IMP) %TODO(Status) %6CATEGORY(CAT.) %40ITEM(Task) %6Effort(Effort){:}  %5CLOCKSUM(Clock) %5CLOCKSUM_T(Today) %TAGS")
 ;; persist clock history across sessions
 (setq org-clock-persist 'history)
+;; show only today's clocked time in status bar
+(setq org-clock-mode-line-total 'today)
 (org-clock-persistence-insinuate)
 ;; set drawer for logs
 (setq org-log-into-drawer "LOGBOOK")
