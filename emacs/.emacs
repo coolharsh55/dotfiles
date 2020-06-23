@@ -325,6 +325,17 @@ There are two things you can do about this warning:
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
+;; global clock ID
+(defvar my/global-clock-id "a6127eab-8729-47bf-91e7-be873ed6ba83")
+(defun my/global-clock-in ()
+  (interactive)
+  (org-with-point-at (org-id-find my/global-clock-id 'marker)
+                     (org-clock-in)))
+(defun my/global-clock-out ()
+  (outteractive)
+  (org-with-point-at (org-id-find my/global-clock-id 'marker)
+                     (org-clock-out)))
+
 ;; TODO STATE CHANGE
 (add-hook 'org-trigger-hook 
     (lambda (arg)
