@@ -109,7 +109,23 @@ There are two things you can do about this warning:
     (interactive)
     (org-switch-to-buffer-other-window "Daily Agenda")
     (find-file "~/org/daily.org")
+	(my/jump-to-today)
     ))
+
+;; navigate to today's date as a headline
+;; based on https://emacs.stackexchange.com/a/50412
+(defun my/jump-to-today ()
+  (let ((point (point)))
+    (catch 'found
+      (goto-char (point-min))
+      (while (outline-next-heading)
+        (let* ((hl (org-element-at-point))
+               (title (org-element-property :raw-value hl)))
+          (when (string-prefix-p (format-time-string "%Y-%m-%d %A") title)
+            (org-show-context)
+            (setq point (point))
+            (throw 'found t)))))
+    (goto-char point)))
 
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
