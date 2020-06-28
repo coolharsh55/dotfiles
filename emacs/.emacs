@@ -336,7 +336,7 @@ There are two things you can do about this warning:
   (org-with-point-at (org-id-find my/global-clock-id 'marker)
                      (org-clock-out)))
 
-;; TODO STATE CHANGE
+;; todo state change
 (add-hook 'org-trigger-hook 
     (lambda (arg)
         ;; MEET -> BEGN: start clock and timer
@@ -353,7 +353,7 @@ There are two things you can do about this warning:
         ;         (org-timer-stop)
         ;         (org-clock-out)
         ;         ))
-        ;; anything -> BEGN: start clock
+        ;; anything except MEET -> BEGN: start clock
         (when (and (not (string= (plist-get arg :from) 'MEET))
                    (string= (plist-get arg :to) 'BEGN))
             (save-excursion
@@ -365,6 +365,9 @@ There are two things you can do about this warning:
                 (org-clock-out)
                 (org-timer-stop)
                 ))
+        ;; if state is NIL, do not assign todo state, just clock in
+        ;; if state is NIL, do not assign todo state, just clock out
+        ;; Q: how to determine state is NIL???
   ))
 
 ;;;;;;;;;; capture templates ;;;;;;;;;;
