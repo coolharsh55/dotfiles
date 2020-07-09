@@ -202,7 +202,7 @@ There are two things you can do about this warning:
 ;; org structured templates
 (define-key org-mode-map (kbd "C-<f1>") 'org-insert-structure-template)
 ;; org-rifle
-(define-key org-mode-map (kbd "C-c C-f") 'helm-org-agenda-files-headings)
+(define-key org-mode-map (kbd "C-c C-h") 'helm-org-agenda-files-headings)
 ;; prevent editing collapsed trees
 (setq org-catch-invisible-edits 'show-and-error)
 ;; show only headlines in subtree
@@ -228,51 +228,11 @@ There are two things you can do about this warning:
     "thunderlink"
     :follow 'org-thunderlink-open
     :face '(:foreground "darkmagenta" :underline t))
-;; TAG list
+
+;; default list of tags for task annotation
 (setq org-tag-alist '(
-    (:startgrouptag)("People")
-        (:grouptags)
-            ("@ADAPT")("@AdvCIS")("@Academia")("@DPVCG")("@Supervision")
-        	(:endgrouptag)
-        (:startgrouptag)
-            ("@ADAPT")(:grouptags)("@DL")("@DOS")("@ChristopheD")
-        	(:endgrouptag)
-        (:startgrouptag)
-            ("@AdvCIS")(:grouptags)("@MarkL")("@VitorJ")("@JanL")("@PaulK")
-        	(:endgrouptag)
-        (:startgrouptag)
-            ("@Academia")(:grouptags)("@SabrinaK")
-        	(:endgrouptag)
-        (:startgrouptag)
-            ("@DPVCG")(:grouptags)("@BertB")("@AxelP")("@MarkL")
-        	(:endgrouptag)
-        (:startgrouptag)
-            ("@Supervision")(:grouptags)("@DerrickAmponsa")("@EoinLeahy")("@DhruvSachdev")("@DarraghMasterson")("@AnkitaKalra")
-        	(:endgrouptag)
-    	(:endgrouptag)
-    (:startgrouptag)("Organisation")
-    	(:grouptags)("#adapt")("#signatu")("#tcd")("#dcu")
-    	(:endgrouptag)
-    (:startgrouptag)("Academia")
-    	(:grouptags)
-    		("#conference")("#journal")("#publication")("#meeting")
-    		(:endgrouptag)
-    	(:startgrouptag)
-    		("#conference")(:grouptags)("SEMANTiCS")("ISWC")("ESWC")
-    		(:endgrouptag)
-    	(:startgrouptag)
-    		("#journal")(:grouptags)("KAIS")
-    		(:endgrouptag)
-    	(:endgrouptag)
-    (:startgrouptag)("Context")
-		(:grouptags)("#email")("#call")("#online")
-    	(:endgrouptag)
-    (:startgrouptag)("_Action")
-    	(:grouptags)("_read")("_write")("_review")("_plan")("_think")("_analyse")
-    	(:endgrouptag)
-    (:startgrouptag)("__Schedule")
-    	(:grouptags)("__NOW")("__URGENT")("__NEXT")("__SOON")("__SOMEDAY")
-    	(:endgrouptag)
+    ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0)
+    ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("analyse" . ?a)
     ))
 
 ;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
