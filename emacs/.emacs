@@ -104,6 +104,7 @@ There are two things you can do about this warning:
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
+(global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
 (global-set-key (kbd "<f9>") '(lambda ()
     "open the daily agenda file"
     (interactive)
@@ -270,6 +271,8 @@ There are two things you can do about this warning:
         (org-super-agenda-groups
           '((:auto-category t))
           )))))
+    ("N" "Tasks tagged" tags-todo "+__NOW")
+    ("X" "Tasks tagged" tags-todo "+__NEXT")
     ))
 
 ;;; Super Agenda
