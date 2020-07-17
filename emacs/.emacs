@@ -112,7 +112,16 @@ There are two things you can do about this warning:
     (find-file "~/org/daily.org")
 	(my/jump-to-today)
     ))
-
+(global-set-key (kbd "<f6>") '(lambda ()
+	(interactive)
+	(org-ql-search (org-agenda-files)
+	  '(or (and (not (done))
+				(or (habit)
+					(deadline auto)
+					(scheduled :to today)
+					(ts-active :on today)))
+		   (closed :on today))
+	  :sort '(date priority todo))))
 ;; navigate to today's date as a headline
 ;; based on https://emacs.stackexchange.com/a/50412
 (defun my/jump-to-today ()
@@ -232,8 +241,9 @@ There are two things you can do about this warning:
 
 ;; default list of tags for task annotation
 (setq org-tag-alist '(
-    ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0)
+    (:startgroup) ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0) (:endgroup)
     ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("analyse" . ?a)
+    ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o)
     ))
 
 ;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
