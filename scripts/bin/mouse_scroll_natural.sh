@@ -15,7 +15,7 @@ debug() {
 # Identify wireless mouse
 connected_device_id=$(
     xinput list |
-    grep "Mouse" |
+    grep "Mouse" | grep -v "DLL" |
     sed -n 's/.*id=\([0-9]\+\).*/\1/p'
 )
 # If no mouse is connected, quit
