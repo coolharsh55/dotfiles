@@ -242,6 +242,7 @@ function sshagent_init {
 }
 
 alias sagent="sshagent_init"
+sshagent_init
 
 source ~/.env
 
@@ -250,6 +251,8 @@ if [ -f '/home/harsh/google-cloud-sdk/path.bash.inc' ]; then source '/home/harsh
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/harsh/google-cloud-sdk/completion.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/completion.bash.inc'; fi
+
+alias SERVER="python3 -m http.server"
 
 # virtualenv
 export VIRTUALENV_PYTHON=/usr/bin/python3
