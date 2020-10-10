@@ -70,9 +70,6 @@ There are two things you can do about this warning:
 (flyspell-mode 1)        ;; Catch Spelling mistakes
 (blink-cursor-mode 0)    ;; Reduce visual noise
 (linum-mode 0)           ;; No line numbers for prose
-(set-face-attribute 'default nil :family "Noto Sans Mono" :height 100)
-(set-face-attribute 'fixed-pitch nil :family "Noto Sans Mono")
-(set-face-attribute 'variable-pitch nil :family "Noto Serif Regular")
 
 ;; Easy Motion
 (define-key evil-normal-state-map (kbd "SPC w") 'avy-goto-word-0)
@@ -215,6 +212,7 @@ There are two things you can do about this warning:
 (define-key org-mode-map (kbd "C-<f1>") 'org-insert-structure-template)
 ;; org-rifle
 (define-key org-mode-map (kbd "C-c C-h") 'helm-org-agenda-files-headings)
+(define-key org-mode-map (kbd "C-c M-h") 'helm-org-rifle-agenda-files)
 ;; prevent editing collapsed trees
 (setq org-catch-invisible-edits 'show-and-error)
 ;; show only headlines in subtree
