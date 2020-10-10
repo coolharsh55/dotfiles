@@ -259,7 +259,7 @@ export VIRTUALENV_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code/python
-source /usr/local/bin/virtualenvwrapper.sh
+source $HOME/.local/bin/virtualenvwrapper.sh
 export PATH=$PATH:/home/harsh/.local/bin
 export SHACLROOT=/home/harsh/apps/shacl/bin
 export PATH=$SHACLROOT:$PATH
