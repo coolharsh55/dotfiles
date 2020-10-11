@@ -11,7 +11,6 @@ set $browser firefox --profileManager
 set $mail thunderbird
 set $terminal xfce4-terminal
 set $locker light-locker-command
-set $clipboard xfce4-clipman
 set $notes emacs
 set $files thunar
 
@@ -210,7 +209,7 @@ mode "clipboard" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "clipboard"
-bindsym $mod+Ctrl+f exec --no-startup-id xfce4-popup-clipman
+# bindsym $mod+Ctrl+f exec --no-startup-id xfce4-popup-clipman
 
 # class                 border  bground text    indicator child_border
 client.focused          #3F51B5 #3F51B5 #FFFFFF #2E9EF4   #285577
@@ -227,11 +226,10 @@ font pango:Noto Sans Mono 8
 bar {
     position top
     strip_workspace_numbers yes
-    tray_output primary
     font pango:Noto Sans Mono 8, pango:FontAwesome 9
     separator_symbol "|"
 	position top
-	status_command i3status -c ~/.config/i3/i3status.conf  | ~/code/external/i3spotifystatus/pystatus.py
+	status_command i3status -c ~/.config/i3/i3status.conf | ~/code/external/i3spotifystatus/pystatus.py
     colors {
         background #000000
         statusline #FFFFFF
@@ -252,7 +250,7 @@ exec --no-startup-id start-pulseaudio-x11
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 exec --no-startup-id xfsettingsd
 exec --no-startup-id $locker --no-late-locking --lock-on-suspend
-exec --no-startup-id $clipboard
+exec --no-startup-id clipit
 exec --no-startup-id nm-applet
 exec --no-startup-id msm_notifier
 exec --no-startup-id polkit-gnome-authentication-agent-1
