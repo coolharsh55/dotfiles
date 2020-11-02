@@ -262,7 +262,7 @@ There are two things you can do about this warning:
 (setq org-tag-alist '(
     (:startgroup) ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0) (:endgroup)
     ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("analyse" . ?a)
-    ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o)
+    ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o) ("#paper" . ?a) ("#idea" . ?i)
     ))
 
 ;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
