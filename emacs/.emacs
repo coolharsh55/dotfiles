@@ -56,9 +56,9 @@ There are two things you can do about this warning:
 ;; solarized theme
 ; (load-theme 'solarized-light t)
 ; (load-theme 'solarized-zenburn t)
-; (load-theme 'solarized-light-high-contrast t)
-; (load-theme 'solarized-wombat-dark t)
 (load-theme 'poet t)
+(load-theme 'solarized-light-high-contrast t)
+(load-theme 'solarized-wombat-dark t)
 (add-hook 'text-mode-hook
     (lambda ()
         (variable-pitch-mode 1)))
@@ -74,7 +74,6 @@ There are two things you can do about this warning:
                 (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
          (base-font-color     (face-foreground 'default nil 'default))
          (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
     (custom-theme-set-faces
      'user
      `(org-level-8 ((t (,@headline ,@variable-tuple))))
@@ -89,7 +88,6 @@ There are two things you can do about this warning:
 
 
 ;; theming
-(olivetti-mode 1)        ;; Centers text in the buffer
 (flyspell-mode 1)        ;; Catch Spelling mistakes
 (blink-cursor-mode 0)    ;; Reduce visual noise
 (linum-mode 0)           ;; No line numbers for prose
@@ -180,7 +178,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme)))
+   '(gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme)))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
@@ -315,15 +313,15 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-document-title ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro" :height 2.0 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro" :height 1.5))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro" :height 1.25))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro" :height 1.2))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro" :height 1.1))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro"))))
- '(org-level-6 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro"))))
- '(org-level-7 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro"))))
- '(org-level-8 ((t (:inherit default :weight bold :foreground "#444444" :font "OfficeCodePro")))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
