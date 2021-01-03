@@ -131,7 +131,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
 # autojump
-. /usr/share/autojump/autojump.bash
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # colored manpages
 # http://serverfault.com/questions/3743/what-useful-things-can-one-add-to-ones-bashrc
