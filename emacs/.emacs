@@ -54,11 +54,10 @@ There are two things you can do about this warning:
 (evil-mode 1)
 
 ;; solarized theme
-; (load-theme 'solarized-light t)
 ; (load-theme 'solarized-zenburn t)
-(load-theme 'poet t)
-(load-theme 'solarized-light-high-contrast t)
-(load-theme 'solarized-wombat-dark t)
+; (load-theme 'solarized-light-high-contrast t)
+(load-theme 'poet-dark t)
+; (load-theme 'solarized-wombat-dark t)
 (add-hook 'text-mode-hook
     (lambda ()
         (variable-pitch-mode 1)))
@@ -261,7 +260,7 @@ There are two things you can do about this warning:
 ;; default list of tags for task annotation
 (setq org-tag-alist '(
     (:startgroup) ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0) (:endgroup)
-    ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("analyse" . ?a)
+    ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("_analyse" . ?a) ("_quick" . ?q)
     ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o) ("#paper" . ?a) ("#idea" . ?i)
     ))
 
@@ -308,20 +307,20 @@ There are two things you can do about this warning:
 ; (org-agenda nil "a")
 (org-super-agenda-mode)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
+; (custom-set-faces
+;  ;; custom-set-faces was added by Custom.
+;  ;; If you edit it by hand, you could mess it up, so be careful.
+;  ;; Your init file should contain only one such instance.
+;  ;; If there is more than one, they won't work right.
+;  '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
+;  '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
+;  '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
+;  '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
+;  '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
+;  '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -421,3 +420,17 @@ text and copying to the killring."
        ))
 
 (global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro" :height 2.0 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro" :height 1.5))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro" :height 1.25))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro" :height 1.2))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro" :height 1.1))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro")))))
