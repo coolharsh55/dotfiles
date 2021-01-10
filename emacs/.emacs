@@ -223,7 +223,7 @@ There are two things you can do about this warning:
 ;; show repeated tasks in log mode
 (setq org-agenda-log-mode-items '(closed clock state))
 ;; Set default effort estimates
-(setq org-global-properties '(("EFFORT_ALL". "0:05 0:15 0:30 1:00 1:30 2:00")))
+(setq org-global-properties '(("EFFORT_ALL". "0:05 0:15 0:30 1:00 1:30 2:00 3:00 4:00 5:00 6:00 8:00 12:00")))
 ;; show habits in agenda
 ; (setq org-habit-show-all-today t
 ;       org-habit-show-all-today t)
