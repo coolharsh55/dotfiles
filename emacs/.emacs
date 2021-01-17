@@ -108,6 +108,9 @@ There are two things you can do about this warning:
         (define-key yas/keymap [tab] 'yas/next-field)))
 (yas-global-mode 1)
 
+;; selectrum
+(selectrum-mode +1)
+
 ;;;;;;;;;;;;; Org mode configuration ;;;;;;;;;;;;;;;;;;;;;
 
 ;; Enable Org mode
@@ -178,7 +181,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme)))
+   '(selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme)))
 (setq
     ;; hide stars in headlines
     org-hide-leading-stars t
