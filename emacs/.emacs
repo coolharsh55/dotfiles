@@ -260,11 +260,11 @@ There are two things you can do about this warning:
 
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
-(defun org-thunderlink-open (path)
-  (start-process "thunderlink" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
+(defun org-cbthunderlink-open (path)
+  (start-process "cbthunderlink" nil "~/apps/cb_thunderlink/cb_thunderlink" (concat "cbthunderlink:" path)))
 (org-link-set-parameters
-    "thunderlink"
-    :follow 'org-thunderlink-open
+    "cbthunderlink"
+    :follow 'org-cbthunderlink-open
     :face '(:foreground "darkmagenta" :underline t))
 
 ;; default list of tags for task annotation
