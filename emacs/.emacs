@@ -217,11 +217,15 @@ There are two things you can do about this warning:
 (setq org-agenda-columns-add-appointments-to-effort-sum t)
 ;; agenda column view
 (setq org-columns-default-format "%1PRIORITY(IMP) %TODO(Status) %6CATEGORY(CAT.) %40ITEM(Task) %6Effort(Effort){:}  %5CLOCKSUM(Clock) %5CLOCKSUM_T(Today) %TAGS")
-;; persist clock history across sessions
-(setq org-clock-persist 'history)
 ;; show only today's clocked time in status bar
 (setq org-clock-mode-line-total 'today)
 (org-clock-persistence-insinuate)
+;; Save the running clock and all clock history when exiting Emacs, load it on startup
+(setq org-clock-persist t)
+;; persist clock history across sessions
+(setq org-clock-persist 'history)
+;; Show lot of clocking history so it's easy to pick items off the `C-c I` list
+(setq org-clock-history-length 23)
 ;; set drawer for logs
 (setq org-log-into-drawer "LOGBOOK")
 ;; show repeated tasks in log mode
@@ -342,6 +346,13 @@ There are two things you can do about this warning:
                      (org-clock-out)))
 
 ;; todo state change
+(setq org-clock-in-resume t)
+(setq org-clock-in-switch-to-state "BEGN")
+(setq org-clock-into-drawer t)
+(setq org-clock-out-when-done t)
+(setq org-pretty-entities t)
+(setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+
 (add-hook 'org-trigger-hook 
     (lambda (arg)
         ;; MEET -> BEGN: start clock and timer
@@ -365,7 +376,8 @@ There are two things you can do about this warning:
                 (org-clock-in)
                 ))
         ;; BEGN -> anything: stop clock and timer
-        (when (and (string= (plist-get arg :from) 'BEGN))
+        (when (or (string= (plist-get arg :to) 'HALT)
+                  (string= (plist-get arg :to) 'DONE))
             (save-excursion
                 (org-clock-out)
                 (org-timer-stop)
