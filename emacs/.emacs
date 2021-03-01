@@ -127,6 +127,7 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
 (global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
+(global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
 (global-set-key (kbd "<f9>") '(lambda ()
     "open the daily agenda file"
     (interactive)
@@ -304,6 +305,7 @@ There are two things you can do about this warning:
           '((:auto-category t))
           )))))
     ("N" "Tasks tagged" tags-todo "+__NOW")
+    ("Q" "Tasks tagged" tags-todo "+_quick")
     ("X" "Tasks tagged" tags-todo "+__NEXT")
     ))
 
