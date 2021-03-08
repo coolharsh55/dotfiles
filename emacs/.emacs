@@ -52,6 +52,10 @@ There are two things you can do about this warning:
 ;; Evil-mode
 (require 'evil)
 (evil-mode 1)
+;; get evil to work in emacs -nw
+(add-hook 'org-mode-hook
+          (lambda ()
+        (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
 
 ;; solarized theme
 ; (load-theme 'solarized-zenburn t)
@@ -132,7 +136,7 @@ There are two things you can do about this warning:
     "open the daily agenda file"
     (interactive)
     (org-switch-to-buffer-other-window "Daily Agenda")
-    (find-file "~/org/daily.org")
+    (find-file "~/org/org/daily.org")
 	(my/jump-to-today)
     ))
 (global-set-key (kbd "<f6>") '(lambda ()
