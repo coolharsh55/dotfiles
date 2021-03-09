@@ -17,7 +17,7 @@
 ;; do not save to clipboard on exit --> it lags
 (setq x-select-enable-clipboard-manager nil)
 ;; line characters 80
-(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+; (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 ;; move between windows/frames
 (global-set-key (kbd "C-x <up>") 'windmove-up)
@@ -60,7 +60,7 @@ There are two things you can do about this warning:
 ;; solarized theme
 ; (load-theme 'solarized-zenburn t)
 ; (load-theme 'solarized-light-high-contrast t)
-(load-theme 'poet-dark t)
+(load-theme 'poet t)
 ; (load-theme 'solarized-wombat-dark t)
 (add-hook 'text-mode-hook
     (lambda ()
@@ -175,15 +175,15 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
- '(org-directory "~/org")
+   '("2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" "6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
  '(org-agenda-files
-    (apply 'append
-        (mapcar
-        (lambda (directory)
-        (directory-files-recursively
-        directory org-agenda-file-regexp))
-        (list org-directory))))
+   (apply 'append
+	  (mapcar
+	   (lambda
+	     (directory)
+	     (directory-files-recursively directory org-agenda-file-regexp))
+	   (list org-directory))))
+ '(org-directory "~/org")
  '(org-export-backends '(ascii html icalendar latex md odt org))
  '(org-modules
    '(org-docview org-gnus org-habit org-info org-w3m org-checklist))
@@ -192,7 +192,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(zotxt selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme))
+   '(org-fancy-priorities zotxt selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -218,9 +218,9 @@ There are two things you can do about this warning:
       '((sequence "TODO(t)" "MEET(m)" "BEGN(s!)" "HALT(p@/!)" "WAIT(w@/!)" "DELY(f@/!)" "|" "ABRT(c@/!)" "DONE(d!)" )
         ))
 (setq org-todo-keyword-faces
-      '(("TODO" . "red") ("BEGN" . "blue") ("DONE" . "dark green")
-        ("HALT" . "brown") ("WAIT" . "magenta") ("DELY" . "orchid")
-        ("MEET" . "maroon") ("ABRT" . "darkolivegreen")
+      '(("TODO" . (:background "firebrick" :foreground "yellow" :weight bold)) ("BEGN" . (:background "skyblue" :foreground "navy" :weight bold)) ("DONE" . (:background "darkseagreen" :foreground "dark green" :weight light))
+        ("HALT" . (:background "tomato" :foreground "brown" :weight bold)) ("WAIT" . (:background "navy" :foreground "skyblue" :weight semibold)) ("DELY" . (:background "plum" :foreground "orchid" :weight light))
+        ("MEET" . (:background "gold" :foreground "chocolate" :weight light)) ("ABRT" . (:background "wheat" :foreground "darkolivegreen" :weight light))
         ))
 ;; store notes in reverse order
 (setq org-reverse-note-order t)
@@ -228,6 +228,9 @@ There are two things you can do about this warning:
 (setq org-agenda-columns-add-appointments-to-effort-sum t)
 ;; agenda column view
 (setq org-columns-default-format "%1PRIORITY(IMP) %TODO(Status) %6CATEGORY(CAT.) %40ITEM(Task) %6Effort(Effort){:}  %5CLOCKSUM(Clock) %5CLOCKSUM_T(Today) %TAGS")
+;; tags column
+(setq org-tags-column 40)
+(setq org-agenda-tags-column 0)
 ;; show only today's clocked time in status bar
 (setq org-clock-mode-line-total 'today)
 (org-clock-persistence-insinuate)
@@ -397,6 +400,44 @@ There are two things you can do about this warning:
         ;; if state is NIL, do not assign todo state, just clock out
         ;; Q: how to determine state is NIL???
   ))
+
+;; agenda visual customisation
+(setq org-agenda-breadcrumbs-separator " ❱ ")
+(customize-set-value
+    'org-agenda-category-icon-alist
+    `(
+      ("THEME-E" "~/dotfiles/emacs/icons/e.png" nil nil :ascent center)
+      ("CHORES" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
+      ("org" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
+      ("temp" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
+      ("ISO" "~/dotfiles/emacs/icons/iso.png" nil nil :ascent center)
+      ("29184" "~/dotfiles/emacs/icons/iso.png" nil nil :ascent center)
+      ("ADAPT" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
+      ("TCD" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
+      ("COURSES" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
+      ("PROTECT" "~/dotfiles/emacs/icons/protect.png" nil nil :ascent center)
+      ("CL-AI" "~/dotfiles/emacs/icons/AI.png" nil nil :ascent center)
+      ("CL-C-SoT" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
+      ("CL-C-WU" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
+      ("COLLAB" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
+      ("CL-SOLID" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
+      ("DPVCG" "~/dotfiles/emacs/icons/privacy.png" nil nil :ascent center)
+      ("DPV-ODRL" "~/dotfiles/emacs/icons/privacy.png" nil nil :ascent center)
+      ("HARSHP" "~/dotfiles/emacs/icons/web.png" nil nil :ascent center)
+      ("PAECG" "~/dotfiles/emacs/icons/receipt.png" nil nil :ascent center)
+      ("PhD" "~/dotfiles/emacs/icons/phd.png" nil nil :ascent center)
+      ("RESEARCH" "~/dotfiles/emacs/icons/receipt.png" nil nil :ascent center)
+      ("cfp" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
+      ("EVENTS" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
+      ("FUNDING" "~/dotfiles/emacs/icons/money.png" nil nil :ascent center)
+      ("RISKY" "~/dotfiles/emacs/icons/risk.png" nil nil :ascent center)
+      ("CONSENT-CG" "~/dotfiles/emacs/icons/agree.png" nil nil :ascent center)
+      ("SUPERVISION" "~/dotfiles/emacs/icons/supervisor.png" nil nil :ascent center)
+      ))
+
+;; fancy priorities
+(add-hook 'org-mode-hook 'org-fancy-priorities-mode)
+(setq org-fancy-priorities-list '("⚠" "⚡" "⬇"))
 
 ;;;;;;;;;; capture templates ;;;;;;;;;;
 (setq org-default-notes-file "~/temp.org")
