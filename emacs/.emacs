@@ -429,10 +429,13 @@ There are two things you can do about this warning:
       ("RESEARCH" "~/dotfiles/emacs/icons/receipt.png" nil nil :ascent center)
       ("cfp" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
       ("EVENTS" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
+      ("CONSENT-W" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
+      ("SEMANTiCS" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
       ("FUNDING" "~/dotfiles/emacs/icons/money.png" nil nil :ascent center)
       ("RISKY" "~/dotfiles/emacs/icons/risk.png" nil nil :ascent center)
       ("CONSENT-CG" "~/dotfiles/emacs/icons/agree.png" nil nil :ascent center)
       ("SUPERVISION" "~/dotfiles/emacs/icons/supervisor.png" nil nil :ascent center)
+      ("PAPERS" "~/dotfiles/emacs/icons/paper.png" nil nil :ascent center)
       ))
 
 ;; fancy priorities
@@ -440,14 +443,14 @@ There are two things you can do about this warning:
 (setq org-fancy-priorities-list '("⚠" "⚡" "⬇"))
 
 ;;;;;;;;;; capture templates ;;;;;;;;;;
-(setq org-default-notes-file "~/temp.org")
+(setq org-default-notes-file "~/org/temp.org")
 ; (define-key global-map (kbd "C-c x") 'org-capture)
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/temp.org" "Captured Tasks")
          "* TODO %?\n %U %i\n %f %a")
         ("n" "Note" entry (file+datetree "~/org/temp.org" "Notes")
          "* %?\n %U %i\n %f %a")
-        ("D" "Daily Plan" plain (file+olp+datetree "~/org/daily.org") (file "~/org/snippets/template_daily.txt") :immediate-finish t)
+        ("D" "Daily Plan" plain (file+olp+datetree "~/org/org/daily.org") (file "~/org/snippets/template_daily.txt") :immediate-finish t)
         ))
 
 ;;;;;;; logging tempalte ;;;;;;;;
