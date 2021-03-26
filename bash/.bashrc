@@ -245,6 +245,9 @@ function sshagent_init {
 alias sagent="sshagent_init"
 sshagent_init
 
+# Ruby
+export PATH=$PATH:/home/harsh/.local/share/gem/ruby/2.7.0/bin
+
 source ~/.env
 
 # The next line updates PATH for the Google Cloud SDK.
