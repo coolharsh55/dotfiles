@@ -80,7 +80,7 @@ let g:SimpylFold_docstring_preview=1
 
 " airline
 set laststatus=2
-let g:airline_theme='wombat'
+" let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
 
 " Limelight
@@ -152,7 +152,7 @@ Plug 'tpope/vim-surround'
 " fuzzy file finder
 Plug 'kien/ctrlp.vim'
 " colorscheme
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 " theme for status bar
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -176,10 +176,12 @@ Plug 'kshenoy/vim-signature'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " incsearch
 Plug 'haya14busa/incsearch.vim'
+" dracula theme
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 
 " Initialize plugin system
 call plug#end()
 " colorscheme "
-colorscheme solarized
+colorscheme dracula
 set background=dark
