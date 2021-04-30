@@ -113,6 +113,9 @@ There are two things you can do about this warning:
         (define-key yas/keymap [tab] 'yas/next-field)))
 (yas-global-mode 1)
 
+;; load changed files from disk
+(global-auto-revert-mode t)
+
 ;; selectrum
 (selectrum-mode +1)
 
