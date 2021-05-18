@@ -18,6 +18,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+# prompt at bottom
+HSTR_CONFIG=prompt-bottom,hicolor,help-on-opposite-side
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
