@@ -17,8 +17,9 @@
 ;; do not save to clipboard on exit --> it lags
 (setq x-select-enable-clipboard-manager nil)
 ;; line characters 80
-; (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+(add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 ;; move between windows/frames
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)

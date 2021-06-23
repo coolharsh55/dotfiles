@@ -134,6 +134,7 @@ export PAGER='less'
 
 # autojump
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # colored manpages
 # http://serverfault.com/questions/3743/what-useful-things-can-one-add-to-ones-bashrc
