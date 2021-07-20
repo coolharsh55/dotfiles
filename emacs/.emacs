@@ -26,7 +26,25 @@
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 ;; org-bullets
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(defun my/org-enable-prettify ()
+  (setq prettify-symbols-alist
+    '(("TODO" ?☐)
+    ("MEET" ?⌛)
+    ("BEGN" ?✒)
+    ("HALT" ?❢)
+    ("DELY" ?☕)
+    ("WAIT" ?☕)
+    ("ABRT" ?✘)
+    ("DONE" ?✔)))
+  (prettify-symbols-mode))
+(add-hook 'org-mode-hook #'my/org-enable-prettify)
+(require 'org-superstar)
+;; Every non-TODO headline now have no bullet
+; (setq org-superstar-headline-bullets-list '("　"))
+(setq org-superstar-leading-bullet ?　)
+;; Enable custom bullets for TODO items
+(setq org-superstar-special-todo-items 'hide)
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 ;; allow letters in bullets and lists
 (setq org-list-allow-alphabetical t)
 
@@ -58,38 +76,12 @@ There are two things you can do about this warning:
           (lambda ()
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
 
-;; solarized theme
-; (load-theme 'solarized-zenburn t)
-; (load-theme 'solarized-light-high-contrast t)
+;; theme
 (load-theme 'poet-dark t)
 (load-theme 'dracula t)
-; (load-theme 'solarized-wombat-dark t)
 (add-hook 'text-mode-hook
     (lambda ()
         (variable-pitch-mode 1)))
-;; solarized heading scale
-; (setq solarized-scale-org-headlines nil)
-;   (let* ((variable-tuple
-;           (cond ((x-list-fonts "OfficeCodePro")   '(:font "OfficeCodePro"))
-;           		((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-;                 ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-;                 ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-;                 ((x-list-fonts "Verdana")         '(:font "Verdana"))
-;                 ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-;                 (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-;          (base-font-color     (face-foreground 'default nil 'default))
-;          (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-;     (custom-theme-set-faces
-;      'user
-;      `(org-level-8 ((t (,@headline ,@variable-tuple))))
-;      `(org-level-7 ((t (,@headline ,@variable-tuple))))
-;      `(org-level-6 ((t (,@headline ,@variable-tuple))))
-;      `(org-level-5 ((t (,@headline ,@variable-tuple))))
-;      `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-;      `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
-;      `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.25))))
-;      `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
-;      `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
 
 
 ;; theming
@@ -180,7 +172,7 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" "6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
+   '("549ccbd11c125a4e671a1e8d3609063a91228e918ffb269e57bd2cd2c0a6f1c6" "f490984d405f1a97418a92f478218b8e4bcc188cf353e5dd5d5acd2f8efd0790" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" "6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
  '(org-export-backends '(ascii html icalendar latex md odt org))
@@ -191,7 +183,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(dracula-theme org-fancy-priorities zotxt selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-bullets org-ql org-super-agenda cyberpunk-theme solarized-theme))
+   '(org-superstar dracula-theme org-fancy-priorities zotxt selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -330,20 +322,20 @@ There are two things you can do about this warning:
 ; (org-agenda nil "a")
 (org-super-agenda-mode)
 
-; (custom-set-faces
-;  ;; custom-set-faces was added by Custom.
-;  ;; If you edit it by hand, you could mess it up, so be careful.
-;  ;; Your init file should contain only one such instance.
-;  ;; If there is more than one, they won't work right.
-;  '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
-;  '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
-;  '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
-;  '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
-;  '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
-;  '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
-;  '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
-;  '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
-;  '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -506,12 +498,7 @@ text and copying to the killring."
 ;  '(org-level-6 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro"))))
 ;  '(org-level-7 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro"))))
 ;  '(org-level-8 ((t (:inherit default :weight bold :foreground "#EDE7dd" :font "OfficeCodePro")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 ;; zotero citations zotxt
 ;; Activate org-zotxt-mode in org-mode buffers
