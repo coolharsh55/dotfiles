@@ -203,6 +203,7 @@ mode "clipboard" {
     bindsym t exec --no-startup-id ~/bin/line_trim_newlines, mode "default"
     bindsym w exec --no-startup-id ~/bin/line_trim_whitespaces, mode "default"
     bindsym s exec --no-startup-id ~/bin/line_trim_spaces, mode "default"
+    bindsym l exec --no-startup-id ~/bin/select_line_script.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

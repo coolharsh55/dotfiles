@@ -6,9 +6,9 @@
 # executes selected script
 
 # generate list of line scripts
-abbrvs=$(find . -name 'line_*' -printf '%P\n' | sed 's/^line_//g')
+abbrvs=$(find -L ~/bin -name 'line_*' -printf '%P\n' | sed 's/^line_//g')
 # create zenity window with list
-name="$(zenity --list --title=LineScripts --column=Script $abbrvs)"
+name="$(zenity --list --height=500 --title=LineScripts --column=Script $abbrvs)"
 # check for input
 if [[ -z $name ]]
 then
