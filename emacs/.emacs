@@ -195,6 +195,8 @@ There are two things you can do about this warning:
 (global-undo-tree-mode)
 ;; start agenda from current day
 (setq org-agenda-start-on-weekday nil)
+;; inline tasks
+(require 'org-inlinetask)
 ;; disable deadline reminders when tasks are scheduled
 (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 ;; block TODO parent tasks until children are done
