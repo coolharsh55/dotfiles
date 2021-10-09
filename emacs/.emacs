@@ -183,7 +183,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(org-superstar dracula-theme org-fancy-priorities zotxt selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
+   '(org-superstar dracula-theme org-fancy-priorities selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -272,6 +272,13 @@ There are two things you can do about this warning:
     "cbthunderlink"
     :follow 'org-cbthunderlink-open
     :face '(:foreground "darkmagenta" :underline t))
+(org-link-set-parameters 
+    "zotero" 
+    :follow (lambda (zpath)
+                (browse-url
+                    ;; we get the "zotero:"-less url, so we put it back.
+                    (format "zotero:%s" zpath))))
+
 
 ;; default list of tags for task annotation
 (setq org-tag-alist '(
@@ -504,12 +511,12 @@ text and copying to the killring."
 
 ;; zotero citations zotxt
 ;; Activate org-zotxt-mode in org-mode buffers
-(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1)))
+; (add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1)))
 ;; Bind something to replace the awkward C-u C-c " i
-(define-key org-mode-map
-  (kbd "C-c \" \"") (lambda () (interactive)
-                      (org-zotxt-insert-reference-link '(4))))
+; (define-key org-mode-map
+;   (kbd "C-c \" \"") (lambda () (interactive)
+;                       (org-zotxt-insert-reference-link '(4))))
 ;; Change citation format to be less cumbersome in files.
 ;; You'll need to install mkbehr-short into your style manager first.
-(eval-after-load "zotxt"
-'(setq zotxt-default-bibliography-style "mkbehr-short"))
+; (eval-after-load "zotxt"
+; '(setq zotxt-default-bibliography-style "mkbehr-short"))
