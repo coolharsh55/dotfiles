@@ -331,6 +331,12 @@ There are two things you can do about this warning:
 ; (org-agenda nil "a")
 (org-super-agenda-mode)
 
+(cond
+ ((string-equal system-type "darwin") ;  macOS
+  (progn
+    (message "Mac OS X")))
+ ((string-equal system-type "gnu/linux")
+  (progn
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -345,6 +351,7 @@ There are two things you can do about this warning:
  '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
  '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
  '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
+)))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
