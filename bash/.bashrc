@@ -133,6 +133,7 @@ export PAGER='less'
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+
 # colored manpages
 # http://serverfault.com/questions/3743/what-useful-things-can-one-add-to-ones-bashrc
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -275,11 +276,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
     . /opt/homebrew/etc/profile.d/autojump.sh
 
+    # brew stuff
+    PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+
     # virtualenv
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUALENV_PYTHON=/opt/homebrew/bin/python3
     export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
     source virtualenvwrapper.sh
+
 fi
 export PATH=$PATH:/home/harsh/bin
 
