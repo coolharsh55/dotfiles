@@ -129,10 +129,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
-# autojump
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
 
 # colored manpages
 # http://serverfault.com/questions/3743/what-useful-things-can-one-add-to-ones-bashrc
@@ -262,6 +258,7 @@ alias SERVER="python3 -m http.server"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # autojump
     . /usr/share/autojump/autojump.bash
+    [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
     # virtualenv
     export VIRTUALENV_PYTHON=/usr/bin/python3
@@ -275,6 +272,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
     . /opt/homebrew/etc/profile.d/autojump.sh
+    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
     # brew stuff
     PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
