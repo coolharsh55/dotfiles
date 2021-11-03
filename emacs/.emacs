@@ -77,11 +77,11 @@ There are two things you can do about this warning:
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
 
 ;; theme
-(load-theme 'poet t)
-; (load-theme 'dracula t)
-(add-hook 'text-mode-hook
-    (lambda ()
-        (variable-pitch-mode 1)))
+(load-theme 'solarized-light t)
+; (load-theme 'poet t)
+; (add-hook 'text-mode-hook
+;     (lambda ()
+;         (variable-pitch-mode 1)))
 
 
 ;; theming
@@ -173,7 +173,7 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(create-lockfiles nil)
  '(custom-safe-themes
-   '("4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "549ccbd11c125a4e671a1e8d3609063a91228e918ffb269e57bd2cd2c0a6f1c6" "f490984d405f1a97418a92f478218b8e4bcc188cf353e5dd5d5acd2f8efd0790" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" "6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
+   '("0ab2aa38f12640ecde12e01c4221d24f034807929c1f859cbca444f7b0a98b3a" "f5b6be56c9de9fd8bdd42e0c05fecb002dedb8f48a5f00e769370e4517dde0e8" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "549ccbd11c125a4e671a1e8d3609063a91228e918ffb269e57bd2cd2c0a6f1c6" "f490984d405f1a97418a92f478218b8e4bcc188cf353e5dd5d5acd2f8efd0790" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" "6973f93f55e4a6ef99aa34e10cd476bc59e2f0c192b46ec00032fe5771afd9ad" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "ac2ca460db1668a48c35c4d0fd842e5d2ce2d4e8567a7903b76438f2750826cd" "b11699e28cc2f6c34fa6336e67d443be89fadb6a9b60de0b1594f31340ea87e4" "c19e5291471680e72d8bd98f8d6e84f781754a9e8fc089536cda3f0b7c3550e3" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" default))
  '(org-agenda-files (list org-directory))
  '(org-directory "~/org")
  '(org-export-backends '(ascii html icalendar latex md odt org))
@@ -342,22 +342,22 @@ There are two things you can do about this warning:
   (progn
     (message "Mac OS X")))
  ((string-equal system-type "gnu/linux")
-  (progn
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
- '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
-)))
+  ; (progn
+; (custom-set-faces
+ ; ;; custom-set-faces was added by Custom.
+ ; ;; If you edit it by hand, you could mess it up, so be careful.
+ ; ;; Your init file should contain only one such instance.
+ ; ;; If there is more than one, they won't work right.
+ ; '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
+ ; '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
+ ; '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
+ ; '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
+ ; '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
+ ; '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ ; '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ ; '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+ ; '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))))
+))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -533,9 +533,17 @@ text and copying to the killring."
 ;; You'll need to install mkbehr-short into your style manager first.
 ; (eval-after-load "zotxt"
 ; '(setq zotxt-default-bibliography-style "mkbehr-short"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+; (custom-set-faces
+;  ;; custom-set-faces was added by Custom.
+;  ;; If you edit it by hand, you could mess it up, so be careful.
+;  ;; Your init file should contain only one such instance.
+;  ;; If there is more than one, they won't work right.
+;  '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 2.0 :underline nil))))
+;  '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.5))))
+;  '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.25))))
+;  '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.2))))
+;  '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro" :height 1.1))))
+;  '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
+;  '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
