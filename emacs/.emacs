@@ -403,7 +403,10 @@ There are two things you can do about this warning:
                 (org-clock-in)
                 ))
         ;; BEGN -> anything: stop clock and timer
-        (when (or (string= (plist-get arg :to) 'HALT)
+        (when (or 
+                (or
+                    (string= (plist-get arg :to) 'HALT)
+                    (string= (plist-get arg :to) 'WAIT))
                   (string= (plist-get arg :to) 'DONE))
             (save-excursion
                 (org-clock-out)
