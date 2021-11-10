@@ -383,27 +383,13 @@ There are two things you can do about this warning:
 
 (add-hook 'org-trigger-hook 
     (lambda (arg)
-        ;; MEET -> BEGN: start clock and timer
-        (when (and (string= (plist-get arg :from) 'MEET)
-                   (string= (plist-get arg :to) 'BEGN))
+        ;; ANY -> BEGN: start clock and timer
+        (when (string= (plist-get arg :to) 'BEGN)
             (save-excursion
                 (org-timer-start)
                 (org-clock-in)
                 ))
-        ; ;; BEGN -> DONE: stop clocks and timers
-        ; (when (and (string= (plist-get arg :from) 'BEGN)
-        ;            (string= (plist-get arg :to) 'DONE))
-        ;     (save-excursion
-        ;         (org-timer-stop)
-        ;         (org-clock-out)
-        ;         ))
-        ;; anything except MEET -> BEGN: start clock
-        (when (and (not (string= (plist-get arg :from) 'MEET))
-                   (string= (plist-get arg :to) 'BEGN))
-            (save-excursion
-                (org-clock-in)
-                ))
-        ;; BEGN -> anything: stop clock and timer
+        ;; ANY --> END-STATE: stop clock and timer
         (when (or 
                 (or
                     (string= (plist-get arg :to) 'HALT)
