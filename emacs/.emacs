@@ -185,7 +185,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(org-superstar dracula-theme org-fancy-priorities selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
+   '(org-roam org-superstar dracula-theme org-fancy-priorities selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -537,3 +537,15 @@ text and copying to the killring."
 ;  '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
 ;  '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro"))))
 ;  '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d0c8" :font "OfficeCodePro")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq org-roam-v2-ack t)
+(setq org-roam-directory "~/org")
+(require 'org-roam)
+(org-roam-db-autosync-mode)
+
