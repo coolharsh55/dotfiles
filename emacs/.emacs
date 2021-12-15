@@ -545,7 +545,7 @@ text and copying to the killring."
  )
 
 (setq org-roam-v2-ack t)
-(setq org-roam-directory "~/org")
+(setq org-roam-directory "~/org/notes")
 (require 'org-roam)
 (org-roam-db-autosync-mode)
 
