@@ -223,7 +223,7 @@ There are two things you can do about this warning:
         ("MEET" . (:background "gold" :foreground "chocolate" :weight light)) ("ABRT" . (:background "wheat" :foreground "darkolivegreen" :weight light))
         ))
 ;; store notes in reverse order
-(setq org-reverse-note-order t)
+(setq org-reverse-note-order nil)
 ;; show effort for the day in agenda
 (setq org-agenda-columns-add-appointments-to-effort-sum t)
 ;; agenda column view
