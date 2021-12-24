@@ -107,7 +107,6 @@ let g:limelight_priority = -1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll|pyc)$',
@@ -178,7 +177,8 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'haya14busa/incsearch.vim'
 " dracula theme
 Plug 'dracula/vim', { 'as': 'dracula' }
-
+" Vim RDF + Prefix auto-complete
+Plug 'niklasl/vim-rdf'
 
 " Initialize plugin system
 call plug#end()
