@@ -94,11 +94,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias NOTIFY='zenity --info "process completed"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -270,6 +265,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export PATH=$PATH:/home/harsh/.local/bin
     export SHACLROOT=/home/harsh/apps/shacl/bin
     export PATH=$SHACLROOT:$PATH
+
+    # notify process completion
+    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+    alias NOTIFY='zenity --info "Process completed"'
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
     . /opt/homebrew/etc/profile.d/autojump.sh
@@ -283,6 +283,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     export VIRTUALENV_PYTHON=/opt/homebrew/bin/python3
     export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
     source virtualenvwrapper.sh
+
+    # notify process completion
+    alias NOTIFY="osascript -e 'display notification \"Process completed\"'"
 
 fi
 export PATH=$PATH:/home/harsh/bin
