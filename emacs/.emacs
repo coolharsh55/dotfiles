@@ -547,11 +547,14 @@ text and copying to the killring."
  ;; If there is more than one, they won't work right.
  )
 
+;; org-roam setup
 (setq org-roam-v2-ack t)
 (setq org-roam-directory "~/org/notes")
 (require 'org-roam)
 (org-roam-db-autosync-mode)
-
+;; roam shortcuts
+(global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
+(global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
 
 ;; projects for exporting
 (require 'ox-publish)
