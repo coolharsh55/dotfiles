@@ -270,6 +270,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
     alias NOTIFY='zenity --info "Process completed"'
 
+    # PyEnv
+    PATH=$(pyenv root)/shims:$PATH
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
     . /opt/homebrew/etc/profile.d/autojump.sh
@@ -290,3 +295,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 export PATH=$PATH:/home/harsh/bin
 
+if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi
