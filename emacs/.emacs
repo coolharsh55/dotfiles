@@ -498,7 +498,7 @@ text and copying to the killring."
      (message "Copied %s to killring (clipboard)" mytmplink)
        ))
 
-(global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
+(global-set-key (kbd "<f4>") 'my/copy-idlink-to-clipboard)
 ; (custom-set-faces
 ;  ;; custom-set-faces was added by Custom.
 ;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -553,8 +553,8 @@ text and copying to the killring."
 (require 'org-roam)
 (org-roam-db-autosync-mode)
 ;; roam shortcuts
-(global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
 (global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
+(global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
 
 ;; projects for exporting
 (require 'ox-publish)
