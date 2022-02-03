@@ -179,6 +179,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 " Vim RDF + Prefix auto-complete
 Plug 'niklasl/vim-rdf'
+" ShellCheck for bash linting
+Plug 'itspriddle/vim-shellcheck'
 
 " Initialize plugin system
 call plug#end()
