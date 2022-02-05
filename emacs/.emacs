@@ -576,3 +576,16 @@ text and copying to the killring."
      :with-creator t
      )
 )) ;; end project-alist
+
+;; graphviz / dot
+(setq org-confirm-babel-evaluate "query-export")
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (string= lang "dot")))  ;don't ask for dot
+(setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot
+(defun my/fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
+(add-hook 'org-babel-after-execute-hook 'my/fix-inline-images)
