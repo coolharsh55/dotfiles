@@ -555,6 +555,12 @@ text and copying to the killring."
 ;; roam shortcuts
 (global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
 (global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
+;; roam templates
+(setq org-roam-capture-templates
+   '(("d" "default" plain "%?" :target
+      (file+head "${slug}.org" "#+title: ${title}
+                 ")
+      :unnarrowed t)))
 
 ;; projects for exporting
 (require 'ox-publish)
