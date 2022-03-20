@@ -15,4 +15,4 @@
 [pull]
 	ff = only
 [core]
-	excludesfile = /home/harsh/.gitignore
+	excludesfile = ~/.gitignore
