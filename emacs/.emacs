@@ -257,6 +257,7 @@ There are two things you can do about this warning:
 ;; org-rifle
 (define-key org-mode-map (kbd "C-c C-h") 'helm-org-agenda-files-headings)
 (define-key org-mode-map (kbd "C-c M-h") 'helm-org-rifle-agenda-files)
+(setq helm-org-ignore-autosaves t)
 ;; prevent editing collapsed trees
 (setq org-catch-invisible-edits 'show-and-error)
 ;; show only headlines in subtree
