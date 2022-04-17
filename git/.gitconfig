@@ -1,6 +1,7 @@
 [user]
 	email = me@harshp.com
     name = Harshvardhan Pandit
+	signingkey = EAFC1FA70B395CAF
 [diff]
     tool = meld
 [difftool]
@@ -16,3 +17,5 @@
 	ff = only
 [core]
 	excludesfile = ~/.gitignore
+[commit]
+	gpgSign = true
