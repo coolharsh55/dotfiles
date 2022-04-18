@@ -21,7 +21,7 @@ There are two things you can do about this warning:
 ;; org files location
 ; (setq org-agenda-files '("~/org"))
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/" "\.org$")) 
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
@@ -550,7 +550,7 @@ text and copying to the killring."
 
 ;; org-roam setup
 (setq org-roam-v2-ack t)
-(setq org-roam-directory "~/org/notes")
+(setq org-roam-directory "~/org")
 (require 'org-roam)
 (org-roam-db-autosync-mode)
 ;; roam shortcuts
@@ -584,11 +584,9 @@ text and copying to the killring."
      )
 )) ;; end project-alist
 
+;; code blocks
+(setq org-confirm-babel-evaluate nil)
 ;; graphviz / dot
-(setq org-confirm-babel-evaluate "query-export")
-(defun my-org-confirm-babel-evaluate (lang body)
-  (not (string= lang "dot")))  ;don't ask for dot
-(setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t))) ; this line activates dot
