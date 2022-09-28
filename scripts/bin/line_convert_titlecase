@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# author: Harshvardhan J. Pandit
-
-# trims whitespaces in input lines
-xclip -sel c -o | python -c "exec(\"import fileinput\nfor line in fileinput.input(): print(line.title())\")" | xclip -sel c -i
-

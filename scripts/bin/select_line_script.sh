@@ -16,5 +16,10 @@ then
 fi
 # remap selected script into filepath
 path="line_${name}"
-# shellcheck source=/dev/null
-source $path
+
+if [[ $path == *.py ]] 
+then
+    python $path
+else
+    bash $path
+fi
