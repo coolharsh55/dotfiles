@@ -65,9 +65,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+Shift+y fullscreen disable; floating enable; resize set 400 300; sticky enable; move window to position 1515 20
+bindsym $mod+Shift+y fullscreen disable; floating enable; resize set 400 300; border pixel 0; sticky enable; move window to position 1515 20
 bindsym $mod+Shift+t border toggle;
 for_window [class="Firefox"] border pixel 0;
+hide_edge_borders smart
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 # focus the parent container
