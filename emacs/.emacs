@@ -594,3 +594,7 @@ text and copying to the killring."
   (when org-inline-image-overlays
     (org-redisplay-inline-images)))
 (add-hook 'org-babel-after-execute-hook 'my/fix-inline-images)
+
+;; reassert in case something above changes this
+(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
