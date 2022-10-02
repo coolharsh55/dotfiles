@@ -283,6 +283,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # brew stuff
     PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 
+    # SHACL stuff
+    export SHACLROOT=/Users/harsh/apps/shacl/bin
+    export PATH=$SHACLROOT:$PATH
+
+    # Java stuff
+    PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
     # virtualenv
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUALENV_PYTHON=/opt/homebrew/bin/python3
