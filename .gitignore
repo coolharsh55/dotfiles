@@ -5,3 +5,5 @@ XNMPRO/zim/\.config/zim/notebooks\.list
 
 XNMPRO/zim/\.config/zim/accelmap
 XNMPRO/xfce/.config/xfce4/terminal/accels.scm
+
+*.~undo-tree~
