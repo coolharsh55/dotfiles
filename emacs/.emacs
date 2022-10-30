@@ -198,6 +198,7 @@ There are two things you can do about this warning:
     )
 ;; undo tree
 (global-undo-tree-mode)
+(setq undo-tree-auto-save-history nil)
 ;; start agenda from current day
 (setq org-agenda-start-on-weekday nil)
 ;; inline tasks
