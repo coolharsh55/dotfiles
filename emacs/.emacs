@@ -48,19 +48,6 @@ There are two things you can do about this warning:
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
-;; org-bullets
-(defun my/org-enable-prettify ()
-  (setq prettify-symbols-alist
-    '(("TODO" ?☐)
-    ("MEET" ?⌛)
-    ("BEGN" ?✒)
-    ("HALT" ?❢)
-    ("DELY" ?☕)
-    ("WAIT" ?☕)
-    ("ABRT" ?✘)
-    ("DONE" ?✔)))
-  (prettify-symbols-mode))
-(add-hook 'org-mode-hook #'my/org-enable-prettify)
 (require 'org-superstar)
 ;; Every non-TODO headline now have no bullet
 ; (setq org-superstar-headline-bullets-list '("　"))
@@ -329,7 +316,8 @@ There are two things you can do about this warning:
                 :scheduled past)
          (:name "Upcoming"
                 :deadline future)
-         ))))))
+         )
+       )))))
     ("Vg" "Super Agenda - Grouped" ((agenda "" ((org-agenda-span 'day)
         (org-super-agenda-groups
           '((:auto-category t))
@@ -411,44 +399,6 @@ There are two things you can do about this warning:
 
 ;; agenda visual customisation
 (setq org-agenda-breadcrumbs-separator " ❱ ")
-(customize-set-value
-    'org-agenda-category-icon-alist
-    `(
-      ("THEME-E" "~/dotfiles/emacs/icons/e.png" nil nil :ascent center)
-      ("CHORES" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
-      ("org" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
-      ("temp" "~/dotfiles/emacs/icons/chores.png" nil nil :ascent center)
-      ("ISO" "~/dotfiles/emacs/icons/iso.png" nil nil :ascent center)
-      ("29184" "~/dotfiles/emacs/icons/iso.png" nil nil :ascent center)
-      ("ADAPT" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
-      ("TCD" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
-      ("COURSES" "~/dotfiles/emacs/icons/university.png" nil nil :ascent center)
-      ("PROTECT" "~/dotfiles/emacs/icons/protect.png" nil nil :ascent center)
-      ("CL-AI" "~/dotfiles/emacs/icons/AI.png" nil nil :ascent center)
-      ("CL-C-SoT" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
-      ("CL-C-WU" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
-      ("COLLAB" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
-      ("CL-SOLID" "~/dotfiles/emacs/icons/collab.png" nil nil :ascent center)
-      ("DPVCG" "~/dotfiles/emacs/icons/privacy.png" nil nil :ascent center)
-      ("DPV-ODRL" "~/dotfiles/emacs/icons/privacy.png" nil nil :ascent center)
-      ("HARSHP" "~/dotfiles/emacs/icons/web.png" nil nil :ascent center)
-      ("PAECG" "~/dotfiles/emacs/icons/receipt.png" nil nil :ascent center)
-      ("PhD" "~/dotfiles/emacs/icons/phd.png" nil nil :ascent center)
-      ("RESEARCH" "~/dotfiles/emacs/icons/receipt.png" nil nil :ascent center)
-      ("cfp" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
-      ("EVENTS" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
-      ("CONSENT-W" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
-      ("SEMANTiCS" "~/dotfiles/emacs/icons/event.png" nil nil :ascent center)
-      ("FUNDING" "~/dotfiles/emacs/icons/money.png" nil nil :ascent center)
-      ("RISKY" "~/dotfiles/emacs/icons/risk.png" nil nil :ascent center)
-      ("CONSENT-CG" "~/dotfiles/emacs/icons/agree.png" nil nil :ascent center)
-      ("SUPERVISION" "~/dotfiles/emacs/icons/supervisor.png" nil nil :ascent center)
-      ("PAPERS" "~/dotfiles/emacs/icons/paper.png" nil nil :ascent center)
-      ))
-
-;; fancy priorities
-(add-hook 'org-mode-hook 'org-fancy-priorities-mode)
-(setq org-fancy-priorities-list '("⚠" "⚡" "⬇"))
 
 ;;;;;;;;;; capture templates ;;;;;;;;;;
 (setq org-default-notes-file "~/org/org-temp.org")
@@ -577,6 +527,21 @@ text and copying to the killring."
      :publishing-function org-html-publish-to-html
      :auto-sitemap t
      :sitemap-title "Public Notes"
+     :sitemap-filename "index.org"
+     :sitemap-file-entry-format "%t - %d"
+     :sitemap-style tree
+     :author "Harshvardhan J. Pandit"
+     :with-creator t
+     )
+    ("dpv"
+     :base-directory "~/org"
+     :base-extension "org"
+     :exclude "^(dpv.*.org)"
+     :recursive t
+     :publishing-directory "~/code/hp-org/dpv/"
+     :publishing-function org-html-publish-to-html
+     :auto-sitemap t
+     :sitemap-title "DPV Notes"
      :sitemap-filename "index.org"
      :sitemap-file-entry-format "%t - %d"
      :sitemap-style tree
