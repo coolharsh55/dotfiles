@@ -119,7 +119,7 @@ There are two things you can do about this warning:
 (global-set-key (kbd "C-c c") 'org-capture)
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
-(global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
+(global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "D")))
 (global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
 (global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
 (global-set-key (kbd "<f9>") '(lambda ()
@@ -295,6 +295,9 @@ There are two things you can do about this warning:
 			(lambda nil
 				(org-agenda-skip-entry-if 'scheduled 'deadline)))
 	     (org-agenda-overriding-header "TODO items in Limbo")))))
+    ("D" "Super Agenda - Grouped" ((agenda "" ((org-agenda-span 'day)
+     (org-super-agenda-groups
+       '((:auto-category t)))))))
     ("A" "Super Agenda - Daily" ((agenda "" ((org-agenda-span 'day)
      (org-super-agenda-groups
        '(
