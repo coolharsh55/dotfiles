@@ -255,12 +255,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     . /usr/share/autojump/autojump.bash
     [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
-    # virtualenv
-    export VIRTUALENV_PYTHON=/usr/bin/python3
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-    export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/code/python
-    source $HOME/.local/bin/virtualenvwrapper.sh
     export PATH=$PATH:/home/harsh/.local/bin
     export SHACLROOT=/home/harsh/apps/shacl/bin
     export PATH=$SHACLROOT:$PATH
@@ -272,7 +266,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # PyEnv
     PATH=$(pyenv root)/shims:$PATH
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
@@ -288,12 +281,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # Java stuff
     PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-    # virtualenv
-    export WORKON_HOME=$HOME/.virtualenvs
-    export VIRTUALENV_PYTHON=/opt/homebrew/bin/python3
-    export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
-    source virtualenvwrapper.sh
 
     # notify process completion
     alias NOTIFY="osascript -e 'display notification \"Process completed\"'"
