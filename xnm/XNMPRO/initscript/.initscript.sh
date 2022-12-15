@@ -13,10 +13,12 @@ fi
 udisksctl mount -b /dev/sda2 || true
 
 # Start monitor if connected
-~/bin/setup_display -s >> ~/.display.log 2>&1 || true
+~/bin/setup_display -a >> ~/.display.log 2>&1 || true
 
 # Adjust keyboard keys
 xmodmap ~/.xmodmaprc
 
 # Set natural scrolling on wireless mouse
 ~/bin/mouse_scroll_natural.sh
+
+easyeffects --gapplication-service
