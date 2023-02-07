@@ -266,8 +266,11 @@ There are two things you can do about this warning:
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-cbthunderlink-open (path)
-  (simpleclip-set-contents (concat "cbthunderlink:" path)))
-  ; (start-process "cbthunderlink" nil "~/apps/cb_thunderlink/cb_thunderlink" (concat "cbthunderlink:" path)))
+  (if (eq system-type 'darwin)
+      (simpleclip-set-contents (concat "cbthunderlink:" path)))
+  (if (eq system-type 'gnu/linux)
+              (start-process "cbthunderlink" nil "~/apps/cb_thunderlink/cb_thunderlink" (concat "cbthunderlink:" path)))
+  )
 (org-link-set-parameters
     "cbthunderlink"
     :follow 'org-cbthunderlink-open
