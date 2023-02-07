@@ -274,6 +274,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # brew stuff
     PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+    PATH="/opt/homebrew/sbin:$PATH"
 
     # SHACL stuff
     export SHACLROOT=/Users/harsh/apps/shacl/bin
