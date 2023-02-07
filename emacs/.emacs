@@ -175,7 +175,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(org-roam org-superstar dracula-theme org-fancy-priorities selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
+   '(simpleclip org-roam org-superstar dracula-theme org-fancy-priorities selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion poet-theme helm-org helm-org-rifle yasnippet org-caldav org-ql org-ql org-super-agenda cyberpunk-theme solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -266,7 +266,8 @@ There are two things you can do about this warning:
 
 ;; Thunderlink. Open an email in Thunderbird with ThunderLink.
 (defun org-cbthunderlink-open (path)
-  (start-process "cbthunderlink" nil "~/apps/cb_thunderlink/cb_thunderlink" (concat "cbthunderlink:" path)))
+  (simpleclip-set-contents (concat "cbthunderlink:" path)))
+  ; (start-process "cbthunderlink" nil "~/apps/cb_thunderlink/cb_thunderlink" (concat "cbthunderlink:" path)))
 (org-link-set-parameters
     "cbthunderlink"
     :follow 'org-cbthunderlink-open
