@@ -267,6 +267,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     PATH=$(pyenv root)/shims:$PATH
     eval "$(pyenv init -)"
 
+    # Clipboard management
+    alias pbcopy='xclip -sel c -i'
+    alias pbpaste='xclip -sel c -o'
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # autojump
     . /opt/homebrew/etc/profile.d/autojump.sh
