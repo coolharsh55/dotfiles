@@ -119,7 +119,7 @@ There are two things you can do about this warning:
 (global-set-key (kbd "C-c c") 'org-capture)
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
-(global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "D")))
+(global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
 (global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
 (global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
 (global-set-key (kbd "<f9>") '(lambda ()
