@@ -16,6 +16,7 @@
 [pull]
 	ff = only
 [core]
-	excludesfile = ~/.gitignore
+    excludesFile = ~/.gitignore
+    ignoreCase = false
 [commit]
 	gpgSign = true
