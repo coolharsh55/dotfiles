@@ -270,6 +270,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     . /opt/homebrew/etc/profile.d/autojump.sh
     [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+    # bash completion
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
     # brew stuff
     PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
     PATH="/opt/homebrew/sbin:$PATH"
