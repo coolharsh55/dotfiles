@@ -242,12 +242,6 @@ export PATH=$PATH:/home/harsh/.local/share/gem/ruby/2.7.0/bin
 
 source ~/.env
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/harsh/google-cloud-sdk/path.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/harsh/google-cloud-sdk/completion.bash.inc' ]; then source '/home/harsh/google-cloud-sdk/completion.bash.inc'; fi
-
 alias SERVER="python3 -m http.server"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
