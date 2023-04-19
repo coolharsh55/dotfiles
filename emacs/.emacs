@@ -306,10 +306,12 @@ There are two things you can do about this warning:
                 :deadline today
                 :priority "A"
                 :face (:foreground "firebrick"))
-         (:name "Scheduled for Today"
-                :scheduled today)
          (:name "Waiting"
                 :todo "WAIT")
+         (:name "Unimportant"
+                :priority "C")
+         (:name "Scheduled for Today"
+                :scheduled today)
          (:name "Overdue"
                 :scheduled past)
          (:name "Upcoming"
