@@ -464,6 +464,11 @@ text and copying to the killring."
       (file+head "${slug}.org" "#+title: ${title}
                  ")
       :unnarrowed t)))
+(setq org-roam-mode-sections
+    (list #'org-roam-backlinks-section
+        #'org-roam-reflinks-section
+        ;; #'org-roam-unlinked-references-section
+    ))
 
 ;; projects for exporting
 (require 'ox-publish)
