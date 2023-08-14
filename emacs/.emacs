@@ -73,7 +73,6 @@ There are two things you can do about this warning:
 ;; theming
 (flyspell-mode 1)        ;; Catch Spelling mistakes
 (blink-cursor-mode 0)    ;; Reduce visual noise
-(linum-mode 0)           ;; No line numbers for prose
 
 ;; Easy Motion
 (define-key evil-normal-state-map (kbd "SPC w") 'avy-goto-word-0)
