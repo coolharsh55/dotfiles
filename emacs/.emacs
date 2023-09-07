@@ -297,6 +297,9 @@ There are two things you can do about this warning:
        '(
          (:name "Logbook"
                 :log t)
+         (:name "Ongoing"
+                ; :time-grid t  ; Items that appear on the time grid
+                :todo "BEGN")
          (:name "Meetings"
                 ; :time-grid t  ; Items that appear on the time grid
                 :todo "MEET")
