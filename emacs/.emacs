@@ -55,6 +55,8 @@ There are two things you can do about this warning:
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 ;; allow letters in bullets and lists
 (setq org-list-allow-alphabetical t)
+;; set folding to give outline on start
+(setq org-startup-folded 'content)
 
 
 ;;;;;;;;; packages ;;;;;;;;;;;;;;
@@ -82,13 +84,13 @@ There are two things you can do about this warning:
 ;; org-mode compatibility
 (defun yas/org-very-safe-expand ()
     (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-(add-hook 'org-mode-hook
-    (lambda ()
-        (yas-minor-mode)
-        (make-variable-buffer-local 'yas/trigger-key)
-        (setq yas/trigger-key [tab])
-        (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-        (define-key yas/keymap [tab] 'yas/next-field)))
+; (add-hook 'org-mode-hook
+;     (lambda ()
+;         (yas-minor-mode)
+;         (make-variable-buffer-local 'yas/trigger-key)
+;         (setq yas/trigger-key [tab])
+;         (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+;         (define-key yas/keymap [tab] 'yas/next-field)))
 (yas-global-mode 1)
 
 ;; load changed files from disk
