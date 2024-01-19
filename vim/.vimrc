@@ -17,6 +17,8 @@ set nocompatible
 filetype off
 set directory=$HOME/.dump//
 
+" move between buffers without saving "
+set hidden
 
 " spell "
 set nospell   " Enable spell-checking
