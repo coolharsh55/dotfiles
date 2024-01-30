@@ -111,11 +111,29 @@ There are two things you can do about this warning:
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+;; F Shortcuts
 ;; Agenda views bound to function keys
 (global-set-key (kbd "<f1>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "a")))
 (global-set-key (kbd "<f2>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "A")))
 (global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
-(global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
+; (global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
+(global-set-key (kbd "<f4>") 'my/copy-idlink-to-clipboard)
+;; roam shortcuts
+(global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
+(global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
+;; TODO: figure out what the code does and assign to another key 
+; (global-set-key (kbd "<f6>") '(lambda ()
+; 	(interactive)
+; 	(org-ql-search (org-agenda-files)
+; 	  '(or (and (not (done))
+; 				(or (habit)
+; 					(deadline auto)
+; 					(scheduled :to today)
+; 					(ts-active :on today)))
+; 		   (closed :on today))
+; 	  :sort '(date priority todo))))
+(global-set-key (kbd "<f7>") 'org-roam-buffer-toggle)
 (global-set-key (kbd "<f9>") '(lambda ()
     "open the daily agenda file"
     (interactive)
@@ -123,16 +141,11 @@ There are two things you can do about this warning:
     (find-file "~/org/org-daily.org")
 	(my/jump-to-today)
     ))
-(global-set-key (kbd "<f6>") '(lambda ()
-	(interactive)
-	(org-ql-search (org-agenda-files)
-	  '(or (and (not (done))
-				(or (habit)
-					(deadline auto)
-					(scheduled :to today)
-					(ts-active :on today)))
-		   (closed :on today))
-	  :sort '(date priority todo))))
+;; clocking commands bound to function keys
+(global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
+(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "BEGN")))
+(global-set-key (kbd "<f12>") '(lambda (&optional arg) (interactive "P")(org-todo "HALT")))
+
 ;; navigate to today's date as a headline
 ;; based on https://emacs.stackexchange.com/a/50412
 (defun my/jump-to-today ()
@@ -148,10 +161,6 @@ There are two things you can do about this warning:
             (throw 'found t)))))
     (goto-char point)))
 
-;; clocking commands bound to function keys
-(global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
-(global-set-key (kbd "<f11>") '(lambda (&optional arg) (interactive "P")(org-todo "BEGN")))
-(global-set-key (kbd "<f12>") '(lambda (&optional arg) (interactive "P")(org-todo "HALT")))
 ;; set org directory
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -439,7 +448,6 @@ text and copying to the killring."
      (message "Copied %s to killring (clipboard)" mytmplink)
        ))
 
-(global-set-key (kbd "<f4>") 'my/copy-idlink-to-clipboard)
 
 
 ;; zotero citations zotxt
@@ -459,9 +467,6 @@ text and copying to the killring."
 (setq org-roam-directory "~/org")
 (require 'org-roam)
 (org-roam-db-autosync-mode)
-;; roam shortcuts
-(global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
-(global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
 ;; roam templates
 (setq org-roam-capture-templates
    '(("d" "default" plain "%?" :target
@@ -524,3 +529,9 @@ text and copying to the killring."
 ;; reassert in case something above changes this
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
