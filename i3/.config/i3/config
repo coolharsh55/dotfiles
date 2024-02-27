@@ -288,13 +288,10 @@ exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
 # touchegg
 exec --no-startup-id touchegg
 # login items
-exec --no-startup-id i3-msg "workspace 1:1:term; exec $terminal"
-# exec --no-startup-id i3-msg "workspace 2; exec zotero"
-exec --no-startup-id i3-msg "workspace 3:3:files; exec $files"
-exec --no-startup-id i3-msg "workspace 6:6:browser; exec $browser"
-exec --no-startup-id i3-msg "workspace 7:7:music"
-exec --no-startup-id i3-msg "workspace 8:8:mail; exec $mail"
-exec --no-startup-id i3-msg "workspace 9:9:org; exec $notes"
+exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
+exec --no-startup-id i3-msg "workspace $ws6; exec $browser"
+exec --no-startup-id i3-msg "workspace $ws8; exec $mail"
+exec --no-startup-id i3-msg "workspace $ws9; exec $notes"
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id bash "ssh-agent -s"
