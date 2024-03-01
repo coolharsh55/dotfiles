@@ -63,9 +63,16 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-# toggle tiling / floating
+# floating window management
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+Shift+y fullscreen disable; floating enable; resize set 640 360; border pixel 0; sticky enable; move window to position 1279 719
+mode "video" {
+    bindsym 1 fullscreen disable; floating enable; resize set 640 360; border pixel 0; sticky enable; move window to position 5 5; mode "default"
+    bindsym 2 fullscreen disable; floating enable; resize set 640 360; border pixel 0; sticky enable; move window to position 1279 5; mode "default"
+    bindsym 3 fullscreen disable; floating enable; resize set 640 360; border pixel 0; sticky enable; move window to position 1279 719; mode "default"
+    bindsym 4 fullscreen disable; floating enable; resize set 640 360; border pixel 0; sticky enable; move window to position 5 719; mode "default"
+}
+bindsym $mod+Shift+y mode "video"
+# window border management
 bindsym $mod+Shift+t border toggle;
 for_window [class="firefox"] border pixel 0;
 for_window [class="thunderbird"] border pixel 0;
