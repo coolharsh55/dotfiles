@@ -70,7 +70,10 @@ There are two things you can do about this warning:
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
 
 ;; theme
-(load-theme 'solarized-light t)
+; (load-theme 'whiteboard t)
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil)
+(load-theme 'modus-operandi)
 
 ;; theming
 (flyspell-mode 1)        ;; Catch Spelling mistakes
@@ -176,7 +179,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(simpleclip org-roam org-superstar selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion helm-org helm-org-rifle yasnippet org-ql org-super-agenda solarized-theme))
+   '(modus-themes simpleclip org-roam org-superstar selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion helm-org helm-org-rifle yasnippet org-ql org-super-agenda solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -287,8 +290,8 @@ There are two things you can do about this warning:
 ;; default list of tags for task annotation
 (setq org-tag-alist '(
     (:startgroup) ("__NOW" . ?1) ("__NEXT" . ?2) ("__SOON" . ?3) ("__SOMEDAY" . ?4) ("__URGENT" . ?0) (:endgroup)
-    ("_read" . ?r) ("_write" . ?w) ("_review" . ?v) ("_plan" . ?p) ("_think" . ?t) ("_analyse" . ?a) ("_quick" . ?q)
-    ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o) ("#paper" . ?a) ("#idea" . ?i)
+    ("_repeat" . ?r) ("_focus" . ?f) ("_review" . ?v) ("_plan" . ?p) ("_creative-thinking" . ?c) ("_analyse" . ?z) ("_quick" . ?q)
+    ("#meeting" . ?m) ("#email" . ?e) ("#online" . ?o) ("#paper" . ?a) ("#idea" . ?i) ("#admin" . ?a)
     ))
 
 ;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
@@ -307,33 +310,59 @@ There are two things you can do about this warning:
      (org-super-agenda-groups
        '(
          (:name "Logbook"
+		:order 0
                 :log t)
          (:name "Ongoing"
                 ; :time-grid t  ; Items that appear on the time grid
+		:order 1
                 :todo "BEGN")
          (:name "Meetings"
+		:order 2
                 ; :time-grid t  ; Items that appear on the time grid
                 :todo "MEET")
          (:name "Important"
-                :deadline past
-                :deadline today
-                :priority "A"
-                :face (:foreground "firebrick"))
+		:order 3
+		:deadline past
+		:deadline today
+		:priority "A")
+	 (:name "DPVCG"
+		:order 4
+		:category "DPVCG")
+         (:name "Quick-Tasks"
+		:order 4
+		:and (:scheduled t :tag "_quick"))
          (:name "Waiting"
-                :todo "WAIT")
+		:order 5
+		:and (:scheduled t :todo "WAIT"))
          (:name "Unimportant"
+		:order 8
                 :priority "C")
          (:name "Scheduled for Today"
+		:order 6
                 :scheduled today)
          (:name "Overdue"
+		:order 7
                 :scheduled past)
          (:name "Upcoming"
+		:order 10
                 :deadline future)
          )
        )))))
-    ("Vg" "Super Agenda - Grouped" ((agenda "" ((org-agenda-span 'day)
+    ("Vc" "Super Agenda - Category" ((agenda "" ((org-agenda-span 'day)
         (org-super-agenda-groups
           '((:auto-category t))
+          )))))
+    ("Vt" "Super Agenda - Tag" ((agenda "" ((org-agenda-span 'day)
+        (org-super-agenda-groups
+          '((:auto-tags t))
+          )))))
+    ("Vd" "Super Agenda - Todo State" ((agenda "" ((org-agenda-span 'day)
+        (org-super-agenda-groups
+          '((:auto-todo t))
+          )))))
+    ("Vs" "Super Agenda - Timestamp" ((agenda "" ((org-agenda-span 'day)
+        (org-super-agenda-groups
+          '((:auto-ts t))
           )))))
     ("N" "Tasks tagged" tags-todo "+__NOW")
     ("Q" "Tasks tagged" tags-todo "+_quick")
