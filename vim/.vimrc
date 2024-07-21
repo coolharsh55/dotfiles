@@ -43,6 +43,16 @@ set foldlevel=99
 " enable folding with spacebar
 noremap <space> za
 
+" disable modeline
+" in ttl files, ex: is taken as a vim command
+set nomodeline
+" set option so paste works without indents
+set mouse=a
+set copyindent
+set pastetoggle=<F3>
+exec "set <F24>=\<Esc>[O"
+exec "set <F25>=\<Esc>[I"
+
 " movement
 " splits
 set splitbelow
