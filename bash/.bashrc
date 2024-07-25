@@ -287,6 +287,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias NOTIFY="osascript -e 'display notification \"Process completed\"'"
 
 fi
-export PATH=$PATH:/home/harsh/bin
+export PATH=$HOME/bin:$PATH
 
 if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi

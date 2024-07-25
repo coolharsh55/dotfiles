@@ -187,5 +187,5 @@ Plug 'itspriddle/vim-shellcheck'
 " Initialize plugin system
 call plug#end()
 " colorscheme "
-colorscheme dracula
-set background=dark
+colorscheme default
+set background=light

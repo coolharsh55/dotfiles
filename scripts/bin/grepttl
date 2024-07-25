@@ -1,0 +1,3 @@
+#!/bin/bash
+
+grep $1 -r --include=\*.ttl | grep modules | grep -v owl

@@ -1,0 +1,13 @@
+git status . | grep ttl | grep -v owl
+
+OR
+
+cd <vocab>/modules
+git status . | grep ttl | grep -v owl
+git each ttl
+    git add filename*
+    git add *.html
+cd ..
+git add .
+cd ..
+
