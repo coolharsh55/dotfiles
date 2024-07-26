@@ -1,5 +1,88 @@
 ;; -*- mode: elisp -*-
 
+;; ------------
+;; my functions
+
+;; clock in to work timer
+(defun my/org-clock-in-work()
+  "Clock in for Work"
+  (interactive)
+  (org-id-goto "E99899B2-1A3C-4B6E-9EEC-AD6B1017534D")
+  (org-todo "BEGN")
+  (org-clock-in))
+;; clock out of work timer
+(defun my/org-clock-out-work()
+  "Clock out of Work"
+  (interactive)
+  (org-id-goto "E99899B2-1A3C-4B6E-9EEC-AD6B1017534D")
+  (org-todo "DONE")
+  (org-clock-out))
+;; clock in to home work timer
+(defun my/org-clock-in-work-home()
+  "Clock in for Work"
+  (interactive)
+  (org-id-goto "7300A56D-4FBE-4438-95A5-4406F477050D")
+  (org-todo "BEGN")
+  (org-clock-in))
+;; clock out of home work timer
+(defun my/org-clock-out-work-home()
+  "Clock out of Work"
+  (interactive)
+  (org-id-goto "7300A56D-4FBE-4438-95A5-4406F477050D")
+  (org-todo "DONE")
+  (org-clock-out))
+;; clock in to break timer
+(defun my/org-clock-in-break()
+  "Clock in for Break"
+  (interactive)
+  (org-id-goto "08E0E792-F125-41EB-81B6-157EA6A32247")
+  (org-todo "BEGN")
+  (org-clock-in))
+;; clock out of break timer
+(defun my/org-clock-out-break()
+  "Clock out of Break"
+  (interactive)
+  (org-id-goto "08E0E792-F125-41EB-81B6-157EA6A32247")
+  (org-todo "DONE")
+  (org-clock-out))
+
+
+;; Define a custom keymap for the workday clocking
+(defvar my/org-clock-keymap-work (let ((map (make-sparse-keymap)))
+                              (define-key map (kbd "w i") 'my/org-clock-in-work)
+                              (define-key map (kbd "w o") 'my/org-clock-out-work)
+                              (define-key map (kbd "h i") 'my/org-clock-in-work-home)
+                              (define-key map (kbd "h o") 'my/org-clock-out-work-home)
+                              (define-key map (kbd "b i") 'my/org-clock-in-break)
+                              (define-key map (kbd "b o") 'my/org-clock-out-break)
+                              map)
+  "Keymap for work clocks")
+
+;; provide feedback when the keymap is activated
+(defun my/show-org-clock-keymap-help-work ()
+  "Show help for org clocking keymap."
+  (interactive)
+  (message "(w)ork ; (h)ome work ; (b) break ; clock (i)n / (o)ut"))
+
+;; Show help when <f8> is pressed
+(global-set-key (kbd "<f8>") (lambda ()
+                               (interactive)
+                               (my/show-org-clock-keymap-help-work)
+                               (set-transient-map my/org-clock-keymap-work)))
+
+(defun my/clocktable-formatter-group-by-prop (ipos tables params)
+  "Custom formatter for clocktables to show work done for each category."
+  (let ((total-time 0))
+    (org-clocktable-write-default ipos tables params)
+    (save-excursion
+      (goto-char ipos)
+      (while (re-search-forward "^[ \t]*|[^-]" nil t)
+        (let ((time (org-clock-get-table-cell-value)))
+          (setq total-time (+ total-time time)))))
+    (insert (format "\n| Total | %s |\n"
+                    (org-duration-from-minutes total-time)))))
+;; ------------
+
 ;; package-installed
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -381,6 +464,14 @@ There are two things you can do about this warning:
 ))
 
 ;;;;;;;;;;;;;;;;; HOOKS ;;;;;;;;;;;;;;;;;;;;;;
+
+;; Function to enable column mode in org-agenda
+(defun my/org-agenda-column-view ()
+  "Enable column view in org-agenda."
+  (org-agenda-columns))
+
+;; Add the function to org-agenda-finalize-hook
+(add-hook 'org-agenda-finalize-hook 'my/org-agenda-column-view)
 
 ;; global clock ID
 (defvar my/global-clock-id "a6127eab-8729-47bf-91e7-be873ed6ba83")
