@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+if __name__ == '__main__':
+    import argparse
+    import pathlib
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', type=pathlib.Path)
+    parser.add_argument('-q', type=pathlib.Path)
+    # parser.add_argument('-d', '--data', action='store_true', type=pathlib.Path, required=True, help="load data from file")
+    # parser.add_argument('-q', '--query', action='store_true', type=pathlib.Path, required=True, help="load query from file")
+    args = parser.parse_args()
+
+    from rdflib import Graph
+    g = Graph()
+    g.parse(args.d)
+    with open(args.q) as fd:
+        query = fd.read()
+    results = g.query(query)
+
+    for row in results:
+        print(row)
+
