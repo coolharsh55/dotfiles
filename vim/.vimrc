@@ -193,6 +193,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'niklasl/vim-rdf'
 " ShellCheck for bash linting
 Plug 'itspriddle/vim-shellcheck'
+" gitgutter
+Plug 'airblade/vim-gitgutter'
 
 " Initialize plugin system
 call plug#end()
