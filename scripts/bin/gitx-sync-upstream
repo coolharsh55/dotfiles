@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git pull
+git pull upstream $BRANCH
+git push
