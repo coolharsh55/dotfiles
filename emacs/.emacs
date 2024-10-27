@@ -471,7 +471,7 @@ There are two things you can do about this warning:
   (org-agenda-columns))
 
 ;; Add the function to org-agenda-finalize-hook
-(add-hook 'org-agenda-finalize-hook 'my/org-agenda-column-view)
+; (add-hook 'org-agenda-finalize-hook 'my/org-agenda-column-view)
 
 ;; global clock ID
 (defvar my/global-clock-id "a6127eab-8729-47bf-91e7-be873ed6ba83")
