@@ -132,9 +132,9 @@ There are two things you can do about this warning:
 (require 'org-superstar)
 ;; Every non-TODO headline now have no bullet
 ; (setq org-superstar-headline-bullets-list '("　"))
-(setq org-superstar-leading-bullet ?　)
+; (setq org-superstar-leading-bullet ?　)
 ;; Enable custom bullets for TODO items
-(setq org-superstar-special-todo-items 'hide)
+; (setq org-superstar-special-todo-items 'hide)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 ;; allow letters in bullets and lists
 (setq org-list-allow-alphabetical t)
