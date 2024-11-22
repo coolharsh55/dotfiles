@@ -50,8 +50,10 @@ set nomodeline
 set mouse=a
 set copyindent
 set pastetoggle=<F3>
-exec "set <F24>=\<Esc>[O"
-exec "set <F25>=\<Esc>[I"
+" stop vim insert paste characters
+" exec "set <F24>=\<Esc>[O"
+" exec "set <F25>=\<Esc>[I"
+set t_BE=
 
 " movement
 " splits
