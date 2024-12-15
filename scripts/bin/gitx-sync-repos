@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+#author: Harshvardhan Pandit
+#description: script to update multiple git repos
+#ack: used ChatGPT 4o to generate script, then fine-tuned it
+
+# Check for the operating system and set the path prefix accordingly
+if [[ "$(uname)" == "Linux" ]]; then
+    PATH_PREFIX="/home/harsh"
+elif [[ "$(uname)" == "Darwin" ]]; then
+    PATH_PREFIX="/Users/harsh"
+fi
+
+# Dictionary of local git repositories with key as short name and value as the path
+declare -A REPOS=(
+    [hp]="${PATH_PREFIX}/code/harshp_com"
+    [dpv]="${PATH_PREFIX}/code/dpvcg/dpv"
+    [dotfiles]="${PATH_PREFIX}/dotfiles"
+    # Add more repositories as needed
+)
+
+# List to store paths of repositories that could not be updated
+FAILED_UPDATES=()
+
+# Function to check and update a git repository
+update_repo() {
+    local repo_name="$1"
+    local repo_path="$2"
+    
+    echo "Processing repository at $repo_path"
+    
+    # Check if the path exists and is a directory
+    if [ ! -d "$repo_path" ]; then
+        FAILED_UPDATES+=("$repo_name :: Directory does not exist")
+        return
+    fi
+
+    cd "$repo_path" || { 
+        FAILED_UPDATES+=("$repo_name :: Failed to change directory"); 
+        return; 
+    }
+    
+    # Check if the directory is a git repository
+    if [ ! -d .git ]; then
+        FAILED_UPDATES+=("$repo_name :: Not a git repository")
+        return
+    fi
+    
+    # Check for uncommitted changes
+    if ! git diff-index --quiet HEAD --; then
+        FAILED_UPDATES+=("$repo_name :: Uncommitted changes")
+        return
+    fi
+    
+    # Check for unpushed commits
+    if ! git diff --quiet @{u}; then
+        FAILED_UPDATES+=("$repo_name :: Unpushed commits")
+        return
+    fi
+    
+    # Check for updates from remote
+    # echo "Fetching updates for $repo_path"
+    if ! git fetch --quiet; then
+        FAILED_UPDATES+=("$repo_name :: Failed to fetch updates")
+        return
+    fi
+    
+    # Check if the local branch is behind the remote branch
+    UPSTREAM="origin/$(git rev-parse --abbrev-ref HEAD)"
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse "$UPSTREAM")
+    
+    if [ "$LOCAL" != "$REMOTE" ]; then
+        # echo "$repo_name :: Updating repository"
+        if ! git pull --rebase --quiet; then
+            FAILED_UPDATES+=("$repo_name :: Failed to update")
+            return
+        fi
+    fi
+
+    # Check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        FAILED_UPDATES+=("$repo_name :: Untracked files")
+        return
+    fi
+}
+
+# Run updates sequentially for all repositories in the REPOS dictionary
+for repo_name in "${!REPOS[@]}"; do
+    update_repo "$repo_name" "${REPOS[$repo_name]}"
+done
+
+# Print the list of repositories that could not be updated
+if [ ${#FAILED_UPDATES[@]} -gt 0 ]; then
+    echo "The following repositories could not be updated:"
+    for repo in "${FAILED_UPDATES[@]}"; do
+        echo -e "\e[31m- $repo\e[0m"
+    done
+else
+    echo "All repositories were successfully updated."
+fi
