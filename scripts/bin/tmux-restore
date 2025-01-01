@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+cd ~/.tmux/resurrect
+
+SIZE_LIMIT=400
+if [ -L "last" ]; then
+    TARGET_FILE=$(readlink "last")
+    if [ -f "$TARGET_FILE" ]; then
+        FILE_SIZE=$(stat -c%s "$TARGET_FILE")
+        if [ "$FILE_SIZE" -gt "$SIZE_LIMIT" ]; then
+            echo "Tmux restore save is over 400B."
+            exit 0
+        fi
+    fi
+fi
+
+NEW_TARGET=$(find tmux_resurrect_* -type f -size +400c | sort -r | head -n1)
+
+if [ -n "$NEW_TARGET" ]; then
+    ln -sf "$NEW_TARGET" "last"
+    echo "last updated to point to $NEW_TARGET"
+else
+    echo "No files with prefix 'tmux_resurrect_' are over 400B."
+fi

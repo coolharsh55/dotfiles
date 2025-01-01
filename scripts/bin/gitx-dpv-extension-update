@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+./100_download_CSV.py --ds=$1 && ./200_serialise_RDF.py && ./300_generate_HTML.py
