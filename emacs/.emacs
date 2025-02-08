@@ -156,7 +156,7 @@ There are two things you can do about this warning:
 ; (load-theme 'whiteboard t)
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs nil)
-(load-theme 'modus-operandi)
+(load-theme 'modus-operandi t)
 
 ;; theming
 (flyspell-mode 1)        ;; Catch Spelling mistakes
@@ -254,6 +254,8 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(create-lockfiles nil)
+ '(custom-safe-themes
+   '("fbf73690320aa26f8daffdd1210ef234ed1b0c59f3d001f342b9c0bbf49f531c" default))
  '(org-export-backends '(ascii html icalendar latex md odt org))
  '(org-modules
    '(org-docview org-gnus org-habit org-info org-w3m org-checklist))

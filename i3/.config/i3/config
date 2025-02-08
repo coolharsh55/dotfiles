@@ -10,7 +10,7 @@ set $mod Mod4
 set $browser firefox --profileManager
 set $mail thunderbird
 set $terminal xfce4-terminal
-set $locker light-locker-command
+set $locker xfce4-screensaver-command -l
 set $notes emacs
 set $files thunar
 
@@ -250,7 +250,7 @@ bar {
     font pango:Noto Sans Mono 8, pango:FontAwesome 9
     separator_symbol "|"
 	position top
-	status_command i3status -c ~/.config/i3/i3status.conf | ~/code/external/i3spotifystatus/pystatus.py
+	status_command i3status -c ~/.config/i3/i3status.conf 
   colors {
     background #282A36
     statusline #F8F8F2
@@ -281,7 +281,8 @@ exec --no-startup-id $locker --no-late-locking --lock-on-suspend
 exec --no-startup-id clipit
 exec --no-startup-id nm-applet
 exec --no-startup-id msm_notifier
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id kwalletd6 
 exec --no-startup-id insync start
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id start-pulseaudio-x11
@@ -290,6 +291,7 @@ exec --no-startup-id light-locker
 exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
 # wallpaper
 # exec_always --no-startup-id DISPLAY=:0.0 feh --bg-scale /home/harsh/Pictures/wallpaper.jpg 
+exec --no-startup-id xsetroot --solid "333" 
 # redshift
 # exec --no-startup-id redshift
 # touchegg
@@ -299,6 +301,7 @@ exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 exec --no-startup-id i3-msg "workspace $ws6; exec $browser"
 exec --no-startup-id i3-msg "workspace $ws8; exec $mail"
 exec --no-startup-id i3-msg "workspace $ws9; exec $notes"
+exec --no-startup-id xfce4-screensaver &
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id bash "ssh-agent -s"
