@@ -264,7 +264,7 @@ There are two things you can do about this warning:
      ("TODO" "NEXT" "NEXTACTION" "BEGN" "WAIT" "HALT" "MEET")
      nil ""))
  '(package-selected-packages
-   '(modus-themes simpleclip org-roam org-superstar selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion helm-org helm-org-rifle yasnippet org-ql org-super-agenda solarized-theme))
+   '(org-contrib modus-themes simpleclip org-roam org-superstar selectrum gnu-elpa-keyring-update writeroom-mode undo-tree evil-avy evil-easymotion helm-org helm-org-rifle yasnippet org-ql org-super-agenda solarized-theme))
  '(writeroom-width 120))
 (setq
     ;; hide stars in headlines
@@ -647,6 +647,23 @@ text and copying to the killring."
   (when org-inline-image-overlays
     (org-redisplay-inline-images)))
 (add-hook 'org-babel-after-execute-hook 'my/fix-inline-images)
+
+;; calculate due dates and pending days to deadline
+(defun my/calculate-available-days ()
+  "Calculate the number of days left from today for the DUE_DATE property
+   in the current Org node and its children, and store the result in the DAYS_LEFT property."
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (let* ((due-date (org-entry-get (point) "DUE_DATE"))
+            (days-left (when due-date
+                         (let* ((due-time (org-time-string-to-time due-date))
+                                (today-time (current-time))
+                                (diff-days (/ (float-time (time-subtract due-time today-time)) 86400.0)))
+                           (floor diff-days)))))
+       (when days-left
+         (org-entry-put (point) "DAYS_LEFT" (number-to-string days-left)))))
+   nil 'tree))
 
 ;; reassert in case something above changes this
 (setq org-directory "~/org/")
