@@ -250,7 +250,7 @@ bar {
     font pango:Noto Sans Mono 8, pango:FontAwesome 9
     separator_symbol "|"
 	position top
-	status_command i3status -c ~/.config/i3/i3status.conf 
+	status_command i3status -c ~/.config/i3/i3status.conf | ~/apps/i3spotifystatus/pystatus.py
   colors {
     background #282A36
     statusline #F8F8F2
@@ -278,10 +278,11 @@ exec --no-startup-id start-pulseaudio-x11
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 exec --no-startup-id xfsettingsd
 exec --no-startup-id $locker --no-late-locking --lock-on-suspend
-exec --no-startup-id clipit
+exec --no-startup-id clipit &
 exec --no-startup-id nm-applet
 exec --no-startup-id msm_notifier
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
 exec --no-startup-id kwalletd6 
 exec --no-startup-id insync start
 exec --no-startup-id xfce4-power-manager
@@ -291,7 +292,7 @@ exec --no-startup-id light-locker
 exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
 # wallpaper
 # exec_always --no-startup-id DISPLAY=:0.0 feh --bg-scale /home/harsh/Pictures/wallpaper.jpg 
-exec --no-startup-id xsetroot --solid "333" 
+exec_always --no-startup-id xsetroot -solid "#333" 
 # redshift
 # exec --no-startup-id redshift
 # touchegg
