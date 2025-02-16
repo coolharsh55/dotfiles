@@ -660,10 +660,36 @@ text and copying to the killring."
                          (let* ((due-time (org-time-string-to-time due-date))
                                 (today-time (current-time))
                                 (diff-days (/ (float-time (time-subtract due-time today-time)) 86400.0)))
-                           (floor diff-days)))))
+                           (1+ (floor diff-days))))))
        (when days-left
          (org-entry-put (point) "DAYS_LEFT" (number-to-string days-left)))))
    nil 'tree))
+
+(defun my/update-link-state ()
+  "Update the description of an Org mode link to reflect the title and state of the linked node.
+   Assumes the link is of the format [[id:<ID>][description]], and updates only the description
+   to '<title> (<state>)' without modifying the node title."
+  (interactive)
+  (when (org-in-regexp org-link-bracket-re 1)
+    (let* ((link (match-string 1))  ;; Extract link part ([[id:<ID>][description]])
+           (desc-start (match-beginning 2)) ;; Start position of the description
+           (desc-end (match-end 2))   ;; End position of the description
+           (id (when (string-match "^id:\\(.+\\)" link) (match-string 1 link))) ;; Extract the ID
+           (marker (and id (org-id-find id 'marker))) ;; Find the node by ID
+           (title nil)
+           (state nil))
+      (when marker
+        (with-current-buffer (marker-buffer marker)
+          (save-excursion
+            (goto-char marker)
+            (setq title (org-get-heading t t t t))  ;; Get the heading text
+            (setq state (or (org-get-todo-state) ""))))) ;; Get the TODO state
+      (when (and title id desc-start desc-end)
+        ;; Replace only the description part of the link
+        (goto-char desc-start)
+        (delete-region desc-start desc-end)
+        (insert (format "%s (%s)" title (or state "")))))))
+
 
 ;; reassert in case something above changes this
 (setq org-directory "~/org/")
