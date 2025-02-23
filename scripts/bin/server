@@ -2,7 +2,8 @@
 
 if pgrep -fl "/harsh/bin/server"; then
     echo "termiating existing server process"
-    process=$(pgrep -fl "/harsh/bin/server" | cut -d ' ' -f1)
+    process=$(pgrep -fl "/harsh/bin/server" | head -n1 | cut -d ' ' -f1)
+    echo $process
     pkill -P $process
 fi
 echo "Starting HTTP server at $PWD using python3"
