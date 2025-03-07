@@ -282,12 +282,14 @@ exec --no-startup-id clipit &
 exec --no-startup-id nm-applet
 exec --no-startup-id msm_notifier
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 
+exec --no-startup-id /usr/lib/pam_kwallet_init
 exec --no-startup-id kwalletd6 
 exec --no-startup-id insync start
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id light-locker
+exec --no-startup-id nextcloud
 # natural scrolling
 exec_always --no-startup-id /home/harsh/bin/touchpad.sh &
 # wallpaper
