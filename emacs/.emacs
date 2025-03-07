@@ -205,6 +205,7 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f3>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "N")))
 ; (global-set-key (kbd "<f4>") '(lambda (&optional arg) (interactive "P")(org-agenda arg "Q")))
 (global-set-key (kbd "<f4>") 'my/copy-idlink-to-clipboard)
+(global-set-key (kbd "<M-f4>") 'my/copy-idlink-filetags-to-clipboard)
 ;; roam shortcuts
 (global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
 (global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
@@ -552,23 +553,42 @@ There are two things you can do about this warning:
 
 ;;;
 (defun my/copy-idlink-to-clipboard() "Copy an ID link with the
-headline to killring, if no ID is there then create a new unique
-ID.  This function works only in org-mode or org-agenda buffers. 
+  headline to killring, if no ID is there then create a new unique
+  ID.  This function works only in org-mode or org-agenda buffers. 
 
-The purpose of this function is to easily construct id:-links to 
-org-mode items. If its assigned to a key it saves you marking the
-text and copying to the killring."
-       (interactive)
-       (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
-     (org-agenda-show)
-     (org-agenda-goto))       
-       (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
-     (setq mytmphead (nth 4 (org-heading-components)))
-         (setq mytmpid (funcall 'org-id-get-create))
-     (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
-     (kill-new mytmplink)
-     (message "Copied %s to killring (clipboard)" mytmplink)
-       ))
+  The purpose of this function is to easily construct id:-links to 
+  org-mode items. If its assigned to a key it saves you marking the
+  text and copying to the killring."
+  (interactive)
+  (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
+	(org-agenda-show)
+	(org-agenda-goto))       
+  (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
+	(setq mytmphead (nth 4 (org-heading-components)))
+	(setq mytmpid (funcall 'org-id-get-create))
+	(setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
+	(kill-new mytmplink)
+	(message "Copied %s to killring (clipboard)" mytmplink)))
+
+(defun my/copy-idlink-filetags-to-clipboard()
+  "Copy an ID link with the headline and filetags to killring.
+  If no ID is present, a new unique ID is created.
+  Works only in org-mode or org-agenda buffers.
+
+  The purpose of this function is to easily construct id:-links to
+  org-mode items with filetags. If assigned to a key, it saves you marking the
+  text and copying to the killring."
+  (interactive)
+  (when (eq major-mode 'org-agenda-mode) ; Switch to Org mode if in Agenda
+	(org-agenda-show)
+	(org-agenda-goto))
+  (when (eq major-mode 'org-mode)  ; Only proceed in org-mode buffers
+	(setq mytmphead (nth 4 (org-heading-components)))
+	(setq mytmpid (funcall 'org-id-get-create))
+	(setq mytmptags (org-entry-get (point) "ALLTAGS"))
+	(setq mytmplink (format "[[id:%s][%s (%s)]]" mytmpid mytmphead mytmptags))
+	(kill-new mytmplink)
+	(message "Copied %s to killring (clipboard)" mytmplink)))
 
 
 
