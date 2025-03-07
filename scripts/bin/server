@@ -7,4 +7,4 @@ if pgrep -fl "/harsh/bin/server"; then
     pkill -P $process
 fi
 echo "Starting HTTP server at $PWD using python3"
-python3 -m http.server
+python3 ~/bin/simpleserver

@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import os
+import http.server
+
+import logging
+logging.basicConfig(
+    level=logging.DEBUG, format='%(levelname)s - %(funcName)s :: %(lineno)d - %(message)s')
+DEBUG = logging.debug
+INFO = logging.info
+# logging.disable(logging.DEBUG)
+
+
+class RequestHandler(http.server.SimpleHTTPRequestHandler):
+    extensions_map = {
+            '': 'application/octet-stream',
+            '.css': 'text/css',
+            '.html': 'text/html',
+            '.jpg': 'image/jpg',
+            '.js':'application/x-javascript',
+            '.json': 'application/json',
+            '.png': 'image/png',
+            '.svg': 'image/svg+xml',
+            }
+
+    def translate_path(self, path):
+        DEBUG(path)
+        path = f'.{path}'
+        if path.endswith('/'):
+            path = f"{path}index.html"
+        elif not path.endswith('.html'):
+            if os.path.isfile(f"{path}.html"):
+                path = f"{path}.html"
+                DEBUG(f"found file {path}")
+            elif os.path.isdir(path):
+                path = f"{path}/index.html"
+                DEBUG(f"found dir {path}")
+            else:
+                DEBUG(f"found nothing {path}")
+        return path
+
+
+if __name__ == "__main__":
+    httpd = http.server.HTTPServer(('localhost', 8000), RequestHandler)
+    try:
+        print(f"serving at http://localhost:8000")
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        httpd.server_close()
