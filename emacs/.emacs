@@ -209,24 +209,24 @@ There are two things you can do about this warning:
 ;; roam shortcuts
 (global-set-key (kbd "<f5>") '(lambda (&optional arg) (interactive "P")(org-roam-node-insert)))
 (global-set-key (kbd "<f6>") '(lambda (&optional arg) (interactive "P")(org-roam-node-find)))
-;; TODO: figure out what the code does and assign to another key 
+;; TODO: figure out what the code does and assign to another key
 ; (global-set-key (kbd "<f6>") '(lambda ()
-; 	(interactive)
-; 	(org-ql-search (org-agenda-files)
-; 	  '(or (and (not (done))
-; 				(or (habit)
-; 					(deadline auto)
-; 					(scheduled :to today)
-; 					(ts-active :on today)))
-; 		   (closed :on today))
-; 	  :sort '(date priority todo))))
+;   (interactive)
+;   (org-ql-search (org-agenda-files)
+;     '(or (and (not (done))
+;               (or (habit)
+;                   (deadline auto)
+;                   (scheduled :to today)
+;                   (ts-active :on today)))
+;          (closed :on today))
+;     :sort '(date priority todo))))
 (global-set-key (kbd "<f7>") 'org-roam-buffer-toggle)
 (global-set-key (kbd "<f9>") '(lambda ()
     "open the daily agenda file"
     (interactive)
     (org-switch-to-buffer-other-window "Daily Agenda")
     (find-file "~/org/org-daily.org")
-	(my/jump-to-today)
+    (my/jump-to-today)
     ))
 ;; clocking commands bound to function keys
 (global-set-key (kbd "<f10>") '(lambda (&optional arg) (interactive "P")(org-clock-goto t)))
@@ -365,8 +365,8 @@ There are two things you can do about this warning:
     "cbthunderlink"
     :follow 'org-cbthunderlink-open
     :face '(:foreground "darkmagenta" :underline t))
-(org-link-set-parameters 
-    "zotero" 
+(org-link-set-parameters
+    "zotero"
     :follow (lambda (zpath)
                 (browse-url
                     ;; we get the "zotero:"-less url, so we put it back.
@@ -383,12 +383,12 @@ There are two things you can do about this warning:
 ;;;;;;;;;;; Custom Agenda Views ;;;;;;;;;;;;;
 ;; TODOS that don't have a schedule or deadline
 (setq org-agenda-custom-commands
-	;; match those tagged with :inbox:, are not scheduled, are not DONE.
-	'(("L" "TODO items in Limbo" ((alltodo ""
-		((org-agenda-skip-function
-			(lambda nil
-				(org-agenda-skip-entry-if 'scheduled 'deadline)))
-	     (org-agenda-overriding-header "TODO items in Limbo")))))
+    ;; match those tagged with :inbox:, are not scheduled, are not DONE.
+    '(("L" "TODO items in Limbo" ((alltodo ""
+        ((org-agenda-skip-function
+            (lambda nil
+                (org-agenda-skip-entry-if 'scheduled 'deadline)))
+         (org-agenda-overriding-header "TODO items in Limbo")))))
     ("D" "Super Agenda - Grouped" ((agenda "" ((org-agenda-span 'day)
      (org-super-agenda-groups
        '((:auto-category t)))))))
@@ -396,41 +396,41 @@ There are two things you can do about this warning:
      (org-super-agenda-groups
        '(
          (:name "Logbook"
-		:order 0
+        :order 0
                 :log t)
          (:name "Ongoing"
                 ; :time-grid t  ; Items that appear on the time grid
-		:order 1
+        :order 1
                 :todo "BEGN")
          (:name "Meetings"
-		:order 2
+        :order 2
                 ; :time-grid t  ; Items that appear on the time grid
                 :todo "MEET")
          (:name "Important"
-		:order 3
-		:deadline past
-		:deadline today
-		:priority "A")
-	 (:name "DPVCG"
-		:order 4
-		:category "DPVCG")
+        :order 3
+        :deadline past
+        :deadline today
+        :priority "A")
+     (:name "DPVCG"
+        :order 4
+        :category "DPVCG")
          (:name "Quick-Tasks"
-		:order 4
-		:and (:scheduled t :tag "_quick"))
+        :order 4
+        :and (:scheduled t :tag "_quick"))
          (:name "Waiting"
-		:order 5
-		:and (:scheduled t :todo "WAIT"))
+        :order 5
+        :and (:scheduled t :todo "WAIT"))
          (:name "Unimportant"
-		:order 8
+        :order 8
                 :priority "C")
          (:name "Scheduled for Today"
-		:order 6
+        :order 6
                 :scheduled today)
          (:name "Overdue"
-		:order 7
+        :order 7
                 :scheduled past)
          (:name "Upcoming"
-		:order 10
+        :order 10
                 :deadline future)
          )
        )))))
@@ -495,7 +495,7 @@ There are two things you can do about this warning:
 (setq org-pretty-entities t)
 (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
 
-(add-hook 'org-trigger-hook 
+(add-hook 'org-trigger-hook
     (lambda (arg)
         ;; ANY -> BEGN: start clock and timer
         (when (string= (plist-get arg :to) 'BEGN)
@@ -504,7 +504,7 @@ There are two things you can do about this warning:
                 (org-clock-in)
                 ))
         ;; ANY --> END-STATE: stop clock and timer
-        (when (or 
+        (when (or
                 (or
                     (string= (plist-get arg :to) 'HALT)
                     (string= (plist-get arg :to) 'WAIT))
@@ -533,7 +533,7 @@ There are two things you can do about this warning:
         ))
 
 ;;;;;;; logging tempalte ;;;;;;;;
-(setq 
+(setq
     org-log-into-drawer t
     org-log-done 'time
     org-log-reschedule 'note
@@ -554,21 +554,21 @@ There are two things you can do about this warning:
 ;;;
 (defun my/copy-idlink-to-clipboard() "Copy an ID link with the
   headline to killring, if no ID is there then create a new unique
-  ID.  This function works only in org-mode or org-agenda buffers. 
+  ID.  This function works only in org-mode or org-agenda buffers.
 
-  The purpose of this function is to easily construct id:-links to 
+  The purpose of this function is to easily construct id:-links to
   org-mode items. If its assigned to a key it saves you marking the
   text and copying to the killring."
   (interactive)
   (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
-	(org-agenda-show)
-	(org-agenda-goto))       
+    (org-agenda-show)
+    (org-agenda-goto))
   (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
-	(setq mytmphead (nth 4 (org-heading-components)))
-	(setq mytmpid (funcall 'org-id-get-create))
-	(setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
-	(kill-new mytmplink)
-	(message "Copied %s to killring (clipboard)" mytmplink)))
+    (setq mytmphead (nth 4 (org-heading-components)))
+    (setq mytmpid (funcall 'org-id-get-create))
+    (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
+    (kill-new mytmplink)
+    (message "Copied %s to killring (clipboard)" mytmplink)))
 
 (defun my/copy-idlink-filetags-to-clipboard()
   "Copy an ID link with the headline and filetags to killring.
@@ -580,15 +580,15 @@ There are two things you can do about this warning:
   text and copying to the killring."
   (interactive)
   (when (eq major-mode 'org-agenda-mode) ; Switch to Org mode if in Agenda
-	(org-agenda-show)
-	(org-agenda-goto))
+    (org-agenda-show)
+    (org-agenda-goto))
   (when (eq major-mode 'org-mode)  ; Only proceed in org-mode buffers
-	(setq mytmphead (nth 4 (org-heading-components)))
-	(setq mytmpid (funcall 'org-id-get-create))
-	(setq mytmptags (org-entry-get (point) "ALLTAGS"))
-	(setq mytmplink (format "[[id:%s][%s (%s)]]" mytmpid mytmphead mytmptags))
-	(kill-new mytmplink)
-	(message "Copied %s to killring (clipboard)" mytmplink)))
+    (setq mytmphead (nth 4 (org-heading-components)))
+    (setq mytmpid (funcall 'org-id-get-create))
+    (setq mytmptags (org-entry-get (point) "ALLTAGS"))
+    (setq mytmplink (format "[[id:%s][%s (%s)]]" mytmpid mytmphead mytmptags))
+    (kill-new mytmplink)
+    (message "Copied %s to killring (clipboard)" mytmplink)))
 
 
 
@@ -625,7 +625,7 @@ There are two things you can do about this warning:
 (require 'ox-publish)
 (setq org-export-with-broken-links t)
 (setq org-publish-project-alist '(
-    ("public-org" 
+    ("public-org"
      :base-directory "~/org/public"
      :base-extension "org"
      :exclude ".*~"
@@ -687,8 +687,8 @@ There are two things you can do about this warning:
 
 (defun my/update-link-state ()
   "Update the description of an Org mode link to reflect the title and state of the linked node.
-   Assumes the link is of the format [[id:<ID>][description]], and updates only the description
-   to '<title> (<state>)' without modifying the node title."
+  Assumes the link is of the format [[id:<ID>][description]], and updates only the description
+  to '<title> (<state>)' without modifying the node title."
   (interactive)
   (when (org-in-regexp org-link-bracket-re 1)
     (let* ((link (match-string 1))  ;; Extract link part ([[id:<ID>][description]])
@@ -700,15 +700,21 @@ There are two things you can do about this warning:
            (state nil))
       (when marker
         (with-current-buffer (marker-buffer marker)
-          (save-excursion
-            (goto-char marker)
-            (setq title (org-get-heading t t t t))  ;; Get the heading text
-            (setq state (or (org-get-todo-state) ""))))) ;; Get the TODO state
+                             (save-excursion
+                               (goto-char marker)
+                               (setq title (org-get-heading t t t t))  ;; Get the heading text
+                               (setq state (or (org-get-todo-state) "")) ;; Get the TODO state
+                               (setq scheduled (org-entry-get nil "SCHEDULED")))))  ;; Get the SCHEDULED date
       (when (and title id desc-start desc-end)
         ;; Replace only the description part of the link
         (goto-char desc-start)
         (delete-region desc-start desc-end)
-        (insert (format "%s (%s)" title (or state "")))))))
+        (insert (format "%s (%s%s)"
+                        title
+                        state
+                        (if (and (string= state "WAIT") scheduled)
+                          (format " - %s" (org-format-time-string "%Y-%m-%d" (org-time-string-to-time scheduled)))
+                          "")))))))
 
 
 ;; reassert in case something above changes this
