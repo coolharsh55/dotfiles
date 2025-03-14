@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+RES=$(osascript -e 'tell application "Finder" to get bounds of window of desktop' | cut -d ',' -f 3,4)
+RES_1=$(echo "$RES" | cut -d ',' -f 1 | xargs)
+RES_2=$(echo "$RES" | cut -d ',' -f 2 | xargs)
+
+if [[ $RES_1 == 1440 ]];
+then
+    echo "Switching from ${RES_1}x${RES_2} to 1680x1050"
+    python ~/apps/display_manager/display_manager.py res 1680 1050
+else
+    echo "Switching from ${RES_1}x${RES_2} to 1440x900 (default)"
+    python ~/apps/display_manager/display_manager.py res default
+fi
