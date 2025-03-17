@@ -720,6 +720,10 @@ There are two things you can do about this warning:
 ;; reassert in case something above changes this
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+
+;; show agenda at startup
+(add-hook 'after-init-hook 'org-agenda-list)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
