@@ -22,3 +22,5 @@ if [ -n "$NEW_TARGET" ]; then
 else
     echo "No files with prefix 'tmux_resurrect_' are over 400B."
 fi
+
+tmux new -s dpv
