@@ -24,20 +24,24 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             }
 
     def translate_path(self, path):
-        DEBUG(path)
+        if '?' in path:
+            # extract query parameters
+            path, query = path.split('?')
+            query = f"?{query}"
+        else:
+            query = ""
         path = f'.{path}'
         if path.endswith('/'):
             path = f"{path}index.html"
         elif not path.endswith('.html'):
             if os.path.isfile(f"{path}.html"):
                 path = f"{path}.html"
-                DEBUG(f"found file {path}")
             elif os.path.isdir(path):
                 path = f"{path}/index.html"
-                DEBUG(f"found dir {path}")
             else:
                 DEBUG(f"found nothing {path}")
-        return path
+        return f"{path}"
+
 
 
 if __name__ == "__main__":

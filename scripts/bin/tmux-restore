@@ -17,8 +17,10 @@ fi
 NEW_TARGET=$(find tmux_resurrect_* -type f -size +400c | sort -r | head -n1)
 
 if [ -n "$NEW_TARGET" ]; then
-    ln -sf "$NEW_TARGET" "last"
-    echo "last updated to point to $NEW_TARGET"
+    NEW_SAVE="manual-$(date '+%Y%-m%-d%-H-%M-%S')"
+    cp $NEW_TARGET $NEW_SAVE
+    ln -sf "$NEW_SAVE" "last"
+    echo "last updated to point to $NEW_SAVE"
 else
     echo "No files with prefix 'tmux_resurrect_' are over 400B."
 fi
