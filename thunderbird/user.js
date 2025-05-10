@@ -1,0 +1,10 @@
+user_pref("mailnews.tags.$label1.color", "#ff0000");
+user_pref("mailnews.tags.$label1.tag", "[A]");
+user_pref("mailnews.tags.$label2.color", "#009900");
+user_pref("mailnews.tags.$label2.tag", "[B]");
+user_pref("mailnews.tags.$label3.color", "#3333ff");
+user_pref("mailnews.tags.$label3.tag", "[C]");
+user_pref("mailnews.tags.$label4.color", "#ff9900");
+user_pref("mailnews.tags.$label4.tag", "q");
+user_pref("mailnews.tags.$label5.color", "#993399");
+user_pref("mailnews.tags.$label5.tag", "n");
