@@ -270,7 +270,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
     # bash completion
-    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    # [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
     # brew stuff
     PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
@@ -289,4 +289,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 export PATH=$HOME/bin:$PATH
 
-if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi
+# if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi
