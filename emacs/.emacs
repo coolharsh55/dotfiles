@@ -153,10 +153,10 @@ There are two things you can do about this warning:
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
 
 ;; theme
-; (load-theme 'whiteboard t)
-(setq modus-themes-italic-constructs t
-      modus-themes-bold-constructs nil)
-(load-theme 'modus-operandi t)
+(load-theme 'leuven t)
+; (setq modus-themes-italic-constructs t
+;       modus-themes-bold-constructs nil)
+; (load-theme 'modus-operandi t)
 
 ;; theming
 (flyspell-mode 1)        ;; Catch Spelling mistakes
@@ -178,6 +178,7 @@ There are two things you can do about this warning:
 ;         (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
 ;         (define-key yas/keymap [tab] 'yas/next-field)))
 (yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "C-c &") nil)
 
 ;; load changed files from disk
 (global-auto-revert-mode t)
