@@ -18,5 +18,6 @@
 [core]
     excludesFile = ~/.gitignore
     ignoreCase = false
+    autocrlf = input
 [commit]
 	gpgSign = true
