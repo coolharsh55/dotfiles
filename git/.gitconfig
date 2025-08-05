@@ -19,5 +19,6 @@
     excludesFile = ~/.gitignore
     ignoreCase = false
     autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [commit]
 	gpgSign = true
