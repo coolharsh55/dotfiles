@@ -31,6 +31,8 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth
 floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
+# focus follows mouse
+focus_follows_mouse yes
 # show/hide status bar
 bindsym $mod+Shift+m bar mode toggle
 # change focus
@@ -309,3 +311,5 @@ exec --no-startup-id xfce4-screensaver &
 # actions declared in init script
 exec_always /home/harsh/.initscript.sh &
 exec --no-startup-id bash "ssh-agent -s"
+# notification manager
+exec --no-startup-id /usr/bin/dunst &
