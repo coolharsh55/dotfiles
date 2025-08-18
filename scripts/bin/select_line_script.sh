@@ -6,7 +6,11 @@
 # executes selected script
 
 # generate list of line scripts
-abbrvs=$(find -L ~/bin -name 'line_*' -printf '%P\n' | sed 's/^line_//g')
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    abbrvs=$(find -L ~/bin -name 'line_*' -printf '%P\n' | sed 's/^line_//g')
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    abbrvs=$(gfind -L ~/bin -name 'line_*' -printf '%P\n' | sed 's/^line_//g')
+fi
 # create zenity window with list
 name="$(zenity --list --height=500 --title=LineScripts --column=Script $abbrvs)"
 # check for input

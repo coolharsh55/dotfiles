@@ -1,2 +1,6 @@
 #!/bin/bash
-xclip -o -sel c | tr '\n' ' ' | xclip -sel c
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    xclip -o -sel c | tr '\n' ' ' | tr -s ' ' | xclip -sel c
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    pbpaste | tr '\n' ' ' | tr -s ' ' | pbcopy
+fi

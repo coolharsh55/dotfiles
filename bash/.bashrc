@@ -290,3 +290,5 @@ fi
 export PATH=$HOME/bin:$PATH
 
 # if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi
+
+. "$HOME/.local/bin/env"
