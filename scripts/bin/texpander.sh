@@ -16,7 +16,7 @@ path=$base_dir$name
 
 copy_text_file() {
     if [[ "$(uname)" == "Linux" ]]; then
-        xclip -selection c -i "$1"
+        xclip -selection c -r -i "$1"
     elif [[ "$(uname)" == "Darwin" ]]; then
         cat $1 | pbcopy
     fi
