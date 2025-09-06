@@ -1,0 +1,176 @@
+#!/usr/bin/env bash
+
+# Dependencies:
+# Linux:
+#   sudo apt install diff-so-fancy less coreutils
+# macOS (with Homebrew):
+#   brew install diff-so-fancy coreutils
+
+set -euo pipefail
+IFS=$'\n\t'
+
+files=()
+labels=()
+for f in ~/org/*.org; do
+    bckp="$(dirname "$f")/#$(basename "$f")#"
+    if [ -f "$bckp" ] && [ "$f" -ot "$bckp" ]; then
+        files+=("$(realpath "$f")")
+        labels+=("$(basename "$f")")
+    fi
+done
+
+if [ "${#files[@]}" -eq 0 ]; then
+    echo "No files with newer backups found."
+    exit 0
+fi
+
+term_lines=$(tput lines)
+text_area_lines=$((term_lines - 2))
+selected_idx=0
+
+draw_menu() {
+    clear
+    for i in "${!labels[@]}"; do
+        if [ "$i" -eq "$selected_idx" ]; then
+            printf "> %s\n" "${labels[$i]}"
+        else
+            printf "  %s\n" "${labels[$i]}"
+        fi
+    done | head -n "$text_area_lines"
+
+    tput cup $((term_lines - 2)) 0
+    printf "^R Read file    ^B Read backup    ^D Diff    ^F Move    ^I Info    ^X Exit"
+    tput cup $((term_lines - 1)) 0
+    printf "Use arrows to navigate"
+}
+
+show_info() {
+    f="${files[$selected_idx]}"
+    bckp="$(dirname "$f")/#$(basename "$f")#"
+    f_size=$(stat -c%s "$f" 2>/dev/null || stat -f%z "$f")
+    f_mtime=$(stat -c%y "$f" 2>/dev/null || stat -f%Sm "$f")
+    b_size=$(stat -c%s "$bckp" 2>/dev/null || stat -f%z "$bckp")
+    b_mtime=$(stat -c%y "$bckp" 2>/dev/null || stat -f%Sm "$bckp")
+    clear
+    echo "File: $f"
+    echo "Size: $f_size bytes    Last modified: $f_mtime"
+    echo
+    echo "Backup: $bckp"
+    echo "Size: $b_size bytes    Last modified: $b_mtime"
+    echo
+    read -rp "Press Enter to return..."
+}
+
+while true; do
+    draw_menu
+    IFS= read -rsn1 key
+    if [[ $key == $'\x1b' ]]; then
+        read -rsn2 -t 0.1 rest || rest=""
+        key+=$rest
+    fi
+
+    case "$key" in
+        $'\x1b[A')  # Up arrow - move selection up
+            selected_idx=$(( (selected_idx - 1 + ${#labels[@]}) % ${#labels[@]} )) ;;
+        $'\x1b[B')  # Down arrow - move selection down
+            selected_idx=$(( (selected_idx + 1) % ${#labels[@]} )) ;;
+        $'\x12')  # Ctrl+R - Read file in less
+            clear
+            less "${files[$selected_idx]}" ;;
+        $'\x02')  # Ctrl+B - Read backup in less
+            clear
+            less "$(dirname "${files[$selected_idx]}")/#$(basename "${files[$selected_idx]}")#" ;;
+        $'\x04')  # Ctrl+D - Show diff using diff-so-fancy
+            clear
+            diff -u "${files[$selected_idx]}" "$(dirname "${files[$selected_idx]}")/#$(basename "${files[$selected_idx]}")#" \
+                | diff-so-fancy | LESS='-R' less || true ;;
+        $'\x06')  # Ctrl+F - Move backup over original (was Ctrl+M)
+            orig="${files[$selected_idx]}"
+            bckp="$(dirname "$orig")/#$(basename "$orig")#"
+            if [ -f "$bckp" ]; then
+                eval mv -f "$(printf '%q' "$bckp")" "$(printf '%q' "$orig")"
+                echo "Moved backup to $orig"
+                # Remove from arrays
+                unset 'files[selected_idx]'
+                unset 'labels[selected_idx]'
+                files=("${files[@]}")
+                labels=("${labels[@]}")
+                # Exit if no files left
+                if [ "${#files[@]}" -eq 0 ]; then
+                    echo "No more files with newer backups."
+                    read -rp "Press Enter to exit..."
+                    clear
+                    exit 0
+                fi
+                selected_idx=$((selected_idx % ${#files[@]}))
+            else
+                echo "Backup file not found: $bckp"
+                read -rp "Press Enter to continue..."
+            fi
+            ;;
+        $'\x09')  # Ctrl+I - Show file and backup info
+            show_info ;;
+        $'\x18')  # Ctrl+X - Exit program
+            clear
+            exit 0 ;;
+    esac
+done
+
+# Generated with prompts:
+# Model: GPT-5-mini
+#  1. the output should be only the code no explanation; code should not have
+#     comments unless the content is complex or not obvious; create a bash
+#     script that for each .org file in folder ~/org checks for the existence
+#     of file #filename.org# and if yes then whether this file is older than the
+#     .org file. It then prints out a list of these files with index number 1, 2,
+#     and so on and 0 being for exit. Then it loops over and over again until
+#     the user enters 0 to exit. For each number entered, it runs the command
+#     diff -u filename.org #filename.org# | diff-so-fancy | less ; when the
+#     user closes this it goes back to the indexed loop.
+#  2. will the double quotes work here?
+#  3. write shellcheck conformant code
+#  4. explain changes
+#  5. add comments, skip obvious comments
+#  6. add more comments for each block
+#  7. is this script a better way to do this or should ncurses be used?
+#  8. use ncurses
+#  9. when parameter -d is passed run debug mode where each step is printed add
+#     print statements
+# 10. no dialog is launched dialog does not exist
+# 11. dialog does not work empty space in terminal
+# 12. use fzf
+# 13. where is the exit option in the menu?
+# 14. after using less it should go back to the menu; in less the diff so fancy
+#     colours should be visible
+# 15. use this: if [ -f "$alt" ] && [ "$f" -ot "$alt" ]; then ... fi
+# 16. press q in less quits instead of going back to the menu
+# 17. use first option
+# 18. the while loop reads and analyses all the files again each iteration;
+#     instead do that once then only keep the menu and choice in the loop
+# 19. I improved the script, here it is: ...
+# 20. explain using my code
+# 21. what is the order of the checking if and the loop?
+# 22. so what is the problem
+# 23. use associative array
+# 24. modify the script so that for the selected file from the menu there are
+#     options given in the style of nano editor that are: ctrl+r read filename.org
+#     ctrl+b read #filename.org# ctrl+m mv #filename.org# to filename.org
+#     ctrl+x go back to the main menu
+# 25. There shouldn't be a secondary menu. The whole thing should look like nano
+#     editor with the file list at the top, controls displayed on the bottom,
+#     and ctrl+x on main menu should exit. Remove quit as option.
+# 26. Nano editor has a text area and a command area at the bottom where keys are
+#     displayed. Confirm layout.
+# 27. The control keys are not displayed at bottom.
+# 28. The file details text is messed up. Remove the details area. Instead, accept
+#     control Ctrl+I label Info which shows this info. At the top of the script
+#     add a comment with the prompt used to generate the file and version of model.
+#     Add a list of dependencies which need to be installed on linux or macos.
+# 29. prompt should be combination of all prompts from the first to the last
+# 30. Remove the colours from the file list it is unreadable I don't see any
+#     colours at all
+# 31. The move option does not move the file nothing happens. Keep updating the
+#     prompt list at the top from all prompts.
+# 32. change ctrl+m to ctrl+f fix
+# 33. line 101: selected_idx % 0: division by 0 (error token is "0")
+# 34. list all prompts max-width 80 with index number as bash comments
