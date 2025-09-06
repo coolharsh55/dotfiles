@@ -79,6 +79,8 @@ bindsym $mod+Shift+t border toggle;
 for_window [class="firefox"] border pixel 0;
 for_window [class="thunderbird"] border pixel 0;
 for_window [class="Emacs"] border pixel 0;
+for_window [class="Galculator" instance="galculator"] floating enable;
+for_window [class="Galculator" instance="galculator"] move window to position 1350 700;
 hide_edge_borders smart
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
