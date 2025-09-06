@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+grep -iF $1 --include="*.org" -r ~/org --color=always
