@@ -23,6 +23,14 @@ if [ -n "$NEW_TARGET" ]; then
     echo "last updated to point to $NEW_SAVE"
 else
     echo "No files with prefix 'tmux_resurrect_' are over 400B."
+    NEW_TARGET=$(find manual-* -type f -size +400c | sort -r | head -n1)
+    if [ -n "$NEW_TARGET" ]; then
+        ln -sf "$NEW_TARGET" "last"
+        echo "last updated to point to $NEW_TARGET"
+    else
+        echo "No files with prefix 'tmux_resurrect_' are over 400B."
+    fi
 fi
 
 tmux new -s dpv
+cd -
