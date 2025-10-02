@@ -372,6 +372,9 @@ There are two things you can do about this warning:
                 (browse-url
                     ;; we get the "zotero:"-less url, so we put it back.
                     (format "zotero:%s" zpath))))
+(setq browse-url-mailto-function 'browse-url-generic)
+(setq browse-url-generic-program "thunderbird")
+
 
 
 ;; default list of tags for task annotation

@@ -272,6 +272,7 @@ bar {
 # start dmenu (a program launcher)
 # configure dmenu to show only apps with gui
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -b -f -p '> ' -fn 'Noto Sans Mono:normal:pixelsize=12' -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10'"
+bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu_run -i -b -f -p '> ' -fn 'Noto Sans Mono:normal:pixelsize=12' -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10'"
 
 # font
 font pango:Noto Sans Mono 8
