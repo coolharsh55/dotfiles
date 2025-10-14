@@ -92,7 +92,7 @@ bindsym $mod+c focus child
 set $ws1 "1:1:term"
 set $ws2 "2:2:ref"
 set $ws3 "3:3:files"
-set $ws4 "4:4:files"
+set $ws4 "4:4:comms"
 set $ws5 "5:5:misc"
 set $ws6 "6:6:web"
 set $ws7 "7:7:music"
@@ -238,6 +238,9 @@ mode "clipboard" {
 bindsym $mod+Shift+c mode "clipboard"
 # bindsym $mod+Ctrl+f exec --no-startup-id xfce4-popup-clipman
 
+assign [title="Signal"] "4:4:comms"
+assign [title="Mattermost"] "4:4:comms"
+
 # dracula theme
 
 # class                 border  bground text    indicator child_border
@@ -309,6 +312,8 @@ exec --no-startup-id touchegg
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 exec --no-startup-id i3-msg "workspace $ws6; exec $browser"
 exec --no-startup-id i3-msg "workspace $ws8; exec $mail"
+exec --no-startup-id i3-msg "workspace $ws4; exec signal-desktop"
+exec --no-startup-id i3-msg "workspace $ws4; exec mattermost-desktop"
 exec --no-startup-id i3-msg "workspace $ws9; exec $notes"
 exec --no-startup-id xfce4-screensaver &
 # actions declared in init script
