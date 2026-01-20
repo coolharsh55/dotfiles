@@ -728,6 +728,12 @@ There are two things you can do about this warning:
 ;; show agenda at startup
 (add-hook 'after-init-hook 'org-agenda-list)
 
+;; revaluate the org-files on demand
+(defun my/org-files-reload ()
+   (interactive)
+   (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$")))
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
