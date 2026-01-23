@@ -406,6 +406,8 @@ There are two things you can do about this warning:
                 ; :time-grid t  ; Items that appear on the time grid
         :order 1
                 :todo "BEGN")
+         (:name "!ATTENTION!"
+                :deadline past)
          (:name "Meetings"
         :order 2
                 ; :time-grid t  ; Items that appear on the time grid
@@ -415,6 +417,9 @@ There are two things you can do about this warning:
         :deadline past
         :deadline today
         :priority "A")
+     (:name "AIAL"
+        :order 4
+        :category "AIAL")
      (:name "DPVCG"
         :order 4
         :category "DPVCG")
