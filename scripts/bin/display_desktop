@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 0 ]; then
+    if [ -e ~/.displayconfig ]; then
+        mode=$(<~/.displayconfig)
+    else
+        mode="-L"
+    fi
+else
+    mode=$1
+    echo $mode > ~/.displayconfig
+fi
+case "$mode" in
+    -L)
+        # echo "left only"
+        xrandr --output HDMI-A-0 --off --output DVI-D-0 --auto
+        ;;
+    -R)
+        # echo "right only"
+        xrandr --output HDMI-A-0 --auto --output DVI-D-0 --off
+        ;;
+    -D)
+        # echo "both"
+        xrandr --output HDMI-A-0 --auto --output DVI-D-0 --auto --left-of HDMI-A-0
+        ;;
+    *)
+        echo "-L for left, -R for right, -D for both"
+esac
