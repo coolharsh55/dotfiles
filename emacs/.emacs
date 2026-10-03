@@ -110,14 +110,14 @@ There are two things you can do about this warning:
 ;; Enable transient mark mode
 (transient-mark-mode 1)
 ;; Line numbers
-(setq-default display-line-numbers-type 'visual
-              display-line-numbers-current-absolute t
-              ; display-line-numbers-width 4
-              display-line-numbers-widen t)
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-;; relative line numbers
-(setq display-line-numbers 'relative)
+; (setq-default display-line-numbers-type 'visual
+;               display-line-numbers-current-absolute t
+;               ; display-line-numbers-width 4
+;               display-line-numbers-widen t)
+; (add-hook 'text-mode-hook #'display-line-numbers-mode)
+; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+; ;; relative line numbers
+; (setq display-line-numbers 'relative)
 ;; do not save to clipboard on exit --> it lags
 (setq x-select-enable-clipboard-manager nil)
 ;; line characters 80
@@ -737,6 +737,51 @@ There are two things you can do about this warning:
 (defun my/org-files-reload ()
    (interactive)
    (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$")))
+
+;; when at heading, move to add text as contents below it
+(defun my/func-heading-add-text ()
+  (interactive)
+  (org-back-to-heading)
+  (org-end-of-meta-data t)
+  (when (org-at-heading-p)
+    (beginning-of-line)
+    (newline)
+    (previous-line)
+    (insert "- ")
+    ))
+
+(defun my/org-heading-append ()
+  (interactive)
+  (when (org-at-heading-p)
+    (my/func-heading-add-text))
+  (evil-append-line 1))
+
+(evil-define-key 'normal org-mode-map
+  (kbd "A") #'my/org-heading-append)
+
+;; remove empty lines and convert to list
+(defun my/remove-empty-lines-list (beg end)
+  (interactive "r")
+  (save-restriction
+    (narrow-to-region beg end)
+    ;; Remove empty lines
+    (flush-lines "^[[:space:]]*$")
+    ;; Prefix remaining lines with "- "
+    (goto-char (point-min))
+    (while (not (eobp))
+      (beginning-of-line)
+      (insert "- ")
+      (forward-line 1))))
+
+;; paste link from clipboard as [email]
+(defun my/org-paste-email-link ()
+  (interactive)
+  (let ((url (current-kill 0)))
+    (insert (format " [[%s][email]]" url)))
+  (evil-insert-state))
+
+(evil-define-key 'normal org-mode-map
+  (kbd "C-c e") #'my/org-paste-email-link)
 
 
 (custom-set-faces
