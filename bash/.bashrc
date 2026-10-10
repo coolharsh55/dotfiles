@@ -139,7 +139,7 @@ alias vi=vim
 export EDITOR="$VISUAL"
 
 #### HSTR CONFIG ####
-alias hh=hstr
+alias hh="hstr -f"
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it

@@ -442,6 +442,9 @@ There are two things you can do about this warning:
         :order 10
                 :deadline future)
          )
+      (:name "chores"
+        :order 11
+        :category ("ORG" "HPCOM" "TEMP"))
        )))))
     ("Vc" "Super Agenda - Category" ((agenda "" ((org-agenda-span 'day)
         (org-super-agenda-groups
